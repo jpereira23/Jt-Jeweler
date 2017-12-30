@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { User } from './models/user'; 
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -15,10 +15,9 @@ export class DataService {
       .map(result => this.result = result.json().data);
   }
 
-  addUser() {
+  addUser(user: User) {
   var headers = new Headers();
   headers.append('Content-Type', 'application/json'); 
-  var user = {firstName: "Luis", lastName: "Yuja", password: "lll", streetAddress:"1234 ABC St.", city: "Tracy", state: "Ca", wishList: [100002, 10003], order: [4, 5], email: "jpereira1@mail.csuchico.edu"};
   return this._http.post("api/adduser", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
   }
 

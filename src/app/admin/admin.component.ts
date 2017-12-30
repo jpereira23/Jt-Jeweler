@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 
 // Import the DataService
-import { DataService } from './data.service';
+import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  moduleId: module.id,
+  selector: 'admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
 
-export class AppComponent {
-  /*
+export class AdminComponent {
+  
   // Define a users property to hold our user data
   users: Array<any>;
 
@@ -22,11 +23,6 @@ export class AppComponent {
         .subscribe(res => this.users = res);
   }
 
-  onSubmit(){
-    console.log("here");
-    this._dataService.addUser().subscribe();
-  }
-
   onUpdate(){
     console.log("updating");
     this._dataService.updateUser().subscribe();
@@ -36,6 +32,4 @@ export class AppComponent {
     console.log("deleting");
     this._dataService.deleteUser().subscribe();
   }
-  */
-
 }

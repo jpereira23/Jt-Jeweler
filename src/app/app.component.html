@@ -1,9 +1,11 @@
-<h1>Our MongoDB is Working!</h1>
-
-<ul>
-  <li *ngFor="let user of users">{{ user.firstName }}</li>
-</ul>
-<a ng-href='#here' (click)='onSubmit()'>click me</a>
-
-<a ng-href='#here' (click)='onUpdate()'>update me</a>
-<a ng-href='#here' (click)='onDelete()'>delete me</a>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Career Fair</title>
+</head>
+<body>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</body>
+</html>
