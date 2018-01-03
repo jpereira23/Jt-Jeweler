@@ -12,6 +12,7 @@ import { SignInComponent } from './signin/signin.component';
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
+import { AuthenticationService } from './authentication.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DataService } from './data.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DataService], // <-Add DataService
+  providers: [DataService,
+              AuthenticationService], // <-Add DataService
   bootstrap: [AppComponent]
 })
 export class AppModule { }

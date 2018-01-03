@@ -5,6 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { DataService } from '../data.service';
 import { HomeComponent } from '../home/home.component';
 import { User } from '../models/user';
+import { AuthenticationService } from '../authentication.service'; 
 
 @Component({
   selector: 'signin',
@@ -17,13 +18,27 @@ export class SignInComponent {
   users: Array<any>;
   home: HomeComponent; 
 
-  constructor(private _dataService: DataService, private router: Router){
+  constructor(private _dataService: DataService, private router: Router, private authenticationService: AuthenticationService){
+    console.log("hmmm....");
     this._dataService.getUsers().subscribe(res => this.users = res);
   }
-  
+
+  ngOnInit()
+  {
+    this.authenticationService.logout();
+  } 
+
   signIn()
   {
-    
+  this.authenticationService.login(this.signedIn.email, this.signedIn.password)
+    .subscribe(
+      data => { 
+        this.router.navigate(['']);
+      },
+      error => {
+      
+      });  
+    /*
     var i;
     for(i = 0; i < this.users.length; i++)
     {
@@ -38,5 +53,6 @@ export class SignInComponent {
         this.router.navigate([''], navigationExtras);
       }
     }
+    */
   }
 }

@@ -16,23 +16,34 @@ export class HomeComponent {
   
   // Define a users property to hold our user data
   users: Array<any>;
-  signedIn = false;
-  firstName: string;
+  signedIn = false  ;
   signedInUser: User;
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService, private route: ActivatedRoute) {
+    /*
     if(this.route.params)
     {
     this.route.queryParams.subscribe(params => {
         this.firstName = params["firstName"];
       });
     }
+    */
+    this.signedInUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(this.signedInUser != null)
+    {
+      this.signedIn = true;
+      console.log('signed in user is ' + this.signedInUser.firstName);    
+    }
+    else
+    {
+      console.log("its null");
+    }
     // Access the Data Service's getUsers() method we defined
     this._dataService.getUsers()
-        .subscribe(res => this.delegateForUsers(res));
+        .subscribe(res => this.users = res);
     
   } 
-
+  /*
   delegateForUsers(users)
   {
     this.users = users;
@@ -48,6 +59,7 @@ export class HomeComponent {
       }
     } 
   }
+  */
   onUpdate(){
     console.log("updating");
     this._dataService.updateUser().subscribe();

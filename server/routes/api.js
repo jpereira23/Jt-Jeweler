@@ -108,7 +108,7 @@ router.delete('/user/:id', (req, res) => {
 router.post('/authenticate', (req, res) => {
   var user = req.body;
   var deferred = Q.defer();
-
+  console.log("Fuck....");
   connection((db) => {
     db.collection('user')
       .findOne({ email: user.email }, (err, aUser) => {
@@ -119,6 +119,7 @@ router.post('/authenticate', (req, res) => {
         console.log('password in system is ' + aUser.password);
         if(user && user.password == aUser.password)
         {
+          console.log('user first name is ' + aUser.firstName);
           // authentication should have succeeded
           deferred.resolve({
             _id: aUser._id,
@@ -127,7 +128,7 @@ router.post('/authenticate', (req, res) => {
             lastName: aUser.lastName,
             token: jwt.sign({ sub: aUser._id }, config.secret)
           });
-          res.json(user);
+          res.json(aUser);
         }
         else
         {
