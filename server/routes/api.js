@@ -1,8 +1,10 @@
+const config = require('../../config.json');
 const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-
+const jwt = require('jsonwebtoken');
+const Q = require('q');
 // Connect
 const connection = (closure) => {
     return MongoClient.connect('mongodb://localhost:27017/jt-jewelry', (err, client) => {
@@ -101,4 +103,38 @@ router.delete('/user/:id', (req, res) => {
 
 });
 
+// Authenticate user
+
+router.post('/authenticate', (req, res) => {
+  var user = req.body;
+  var deferred = Q.defer();
+
+  connection((db) => {
+    db.collection('user')
+      .findOne({ email: user.email }, (err, aUser) => {
+        if(err){
+          res.send(err);
+        }
+        console.log('requested password is ' + user.password);
+        console.log('password in system is ' + aUser.password);
+        if(user && user.password == aUser.password)
+        {
+          // authentication should have succeeded
+          deferred.resolve({
+            _id: aUser._id,
+            email: aUser.email, 
+            firstName: aUser.firstName,
+            lastName: aUser.lastName,
+            token: jwt.sign({ sub: aUser._id }, config.secret)
+          });
+          res.json(user);
+        }
+        else
+        {
+          //authentication failed
+          res.send(err);
+        }
+    });    
+  });
+});
 module.exports = router;
