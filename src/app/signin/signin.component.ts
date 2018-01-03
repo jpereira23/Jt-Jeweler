@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 // Import the DataService
 import { DataService } from '../data.service';
@@ -23,13 +23,19 @@ export class SignInComponent {
   
   signIn()
   {
+    
     var i;
     for(i = 0; i < this.users.length; i++)
     {
       if(this.users[i].email == this.signedIn.email && this.users[i].password == this.signedIn.password)
       {
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            "firstName": this.users[i].firstName
+          }
+        };
         console.log("it worked");
-        this.router.navigate(['', {firstName: this.users[i].firstName}]);
+        this.router.navigate([''], navigationExtras);
       }
     }
   }
