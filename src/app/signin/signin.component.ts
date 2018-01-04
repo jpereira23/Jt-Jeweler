@@ -30,29 +30,20 @@ export class SignInComponent {
 
   signIn()
   {
-  this.authenticationService.login(this.signedIn.email, this.signedIn.password)
+    this.authenticationService.login(this.signedIn.email.toLowerCase(), this.signedIn.password)
     .subscribe(
       data => { 
-        this.router.navigate(['']);
+        if(this.signedIn.email.toLowerCase() == 'admin@gmail.com')
+        {
+          this.router.navigate(['admin']);
+        }
+        else
+        {  
+          this.router.navigate(['']);
+        }
       },
       error => {
       
-      });  
-    /*
-    var i;
-    for(i = 0; i < this.users.length; i++)
-    {
-      if(this.users[i].email == this.signedIn.email && this.users[i].password == this.signedIn.password)
-      {
-        let navigationExtras: NavigationExtras = {
-          queryParams: {
-            "firstName": this.users[i].firstName
-          }
-        };
-        console.log("it worked");
-        this.router.navigate([''], navigationExtras);
-      }
-    }
-    */
+    });  
   }
 }

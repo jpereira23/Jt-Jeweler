@@ -4,24 +4,36 @@ Sign Up Page
 
     <div>
       <label for="firstName">First Name:</label>
-      <input type="text" class="form-control" id="firstName" name="firstName" ngControl="firstName" [(ngModel)]="newUser.firstName" (ngModelChange)="newUser.firstName" #firstName="ngModel" placeHolder="First Name" required>
+      <input type="text" class="form-control" id="firstName" name="firstName" ngControl="firstName" (blur)="checkForFirstName()" [(ngModel)]="newUser.firstName" (ngModelChange)="newUser.firstName" #firstName="ngModel" placeHolder="First Name" required>
+      <div *ngIf="firstNameError == true">
+        <span>{{ firstNameMessage }}</span>
+      </div>
     </div>
 
 
     <div>
       <label for="lastName">Last Name:</label>
-      <input type="text" class="form-control" id="lastName" name="lastName" ngControl="lastName" [(ngModel)]="newUser.lastName" (ngModelChange)="newUser.lastName" #lastName="ngModel" placeHolder="Last Name" required>
+      <input type="text" class="form-control" id="lastName" name="lastName" ngControl="lastName"  (blur)="checkForLastName()"[(ngModel)]="newUser.lastName" (ngModelChange)="newUser.lastName" #lastName="ngModel" placeHolder="Last Name" required>
+      <div *ngIf="lastNameError == true">
+        <span>{{ lastNameMessage }}</span>
+      </div>
     </div>
 
     <div>
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" name="email" ngControl="email" [(ngModel)]="newUser.email" (ngModelChange)="newUser.email" #email="ngModel" placeHolder="JohnDoe@ABC.com" required>
+      <input type="text" class="form-control" id="email" name="email" ngControl="email" (blur)="checkForEmail()" [(ngModel)]="newUser.email" (ngModelChange)="newUser.email" #email="ngModel" placeHolder="JohnDoe@ABC.com" required>
+      <div *ngIf="emailError == true">
+        <span>{{ emailMessage }} </span>
+      </div>
     </div>
 
 
     <div>
       <label for="password">Password:</label>
-      <input type="password" class="form-control" id="password" name="password" ngControl="password" [(ngModel)]="newUser.password" (ngModelChange)="newUser.password" #password="ngModel" placeHolder="123456" required>
+      <input type="password" class="form-control" id="password" name="password" ngControl="password" (blur)="checkForPassword()" [(ngModel)]="newUser.password" (ngModelChange)="newUser.password" #password="ngModel" placeHolder="123456" required>
+      <div *ngIf="passwordError == true">
+        <span>{{ passwordMessage }}</span>
+      </div>
     </div>
 
     <div>
@@ -41,4 +53,4 @@ Sign Up Page
 
 
     <button type="submit">Submit User</button>
-</form>
+    </form>
