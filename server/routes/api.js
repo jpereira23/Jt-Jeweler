@@ -28,6 +28,9 @@ let response = {
     message: null
 };
 
+/**
+ * Everything below is for the user collection
+ */
 // Get users
 router.get('/users', (req, res) => {
     connection((db) => {
@@ -44,6 +47,7 @@ router.get('/users', (req, res) => {
     });
 });
 
+// Add a user
 router.post('/adduser', (req, res) => {
     var user = req.body;
     console.log('the user name is ' + user.firstName);
@@ -138,4 +142,28 @@ router.post('/authenticate', (req, res) => {
     });    
   });
 });
+
+
+/**
+ * Everything below is for the jewelry collection
+ */
+
+router.post('/addjewelry', (req, res) => {
+    var jewel = req.body;
+    connection((db) => {
+      db.collection('jewelry')
+        .save(jewel, function(err, user){
+          if(err)
+          {
+            res.send(err);
+          }
+          else
+          {
+            res.json(jewel);
+          }
+        });
+    });
+}); 
+
+
 module.exports = router;

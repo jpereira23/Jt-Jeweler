@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './models/user'; 
+import { Jewel } from './models/jewel';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -35,6 +36,12 @@ export class DataService {
     headers.append('Content-Type', 'application/json');
 
     return this._http.delete("api/user/" + "5a45883ae48e9a1be8d652db", {headers: headers}).map(res => res.json());
+  }
+  
+  addJewel(jewel: Jewel){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("api/addjewelry", JSON.stringify(jewel), {headers: headers}).map(res => res.json());
   }
 
 }

@@ -8,6 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { SignUpComponent } from './signup/signup.component'; 
 import { SignInComponent } from './signin/signin.component';
+import { AddJewelryComponent } from './addJewel/addjewel.component';
+import { EditJewelryComponent } from './editJewel/editjewel.component';
+import { ViewJewelryComponent } from './viewJewel/viewjewel.component';
+
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
@@ -20,7 +24,10 @@ import { AuthenticationService } from './authentication.service';
     HomeComponent,
     AdminComponent,
     SignUpComponent,
-    SignInComponent
+    SignInComponent,
+    AddJewelryComponent,
+    EditJewelryComponent,
+    ViewJewelryComponent
   ],
   imports: [
     BrowserModule,
