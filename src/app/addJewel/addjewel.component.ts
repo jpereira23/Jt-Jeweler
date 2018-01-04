@@ -12,20 +12,17 @@ import { Jewel } from '../models/jewel';
 
 export class AddJewelryComponent {
   newJewel = new Jewel();
-  threeDimOne: number;
-  threeDimTwo: number;
-  threeDimThree: number;
-  threeDimArray = [];
-  detailsArray: Array<string>;
-  detail1: string;
-  detail2: string;
-  detail3: string;  
+  threeDimOne: number = 0.00;
+  threeDimTwo: number = 0.00;
+  threeDimThree: number = 0.00;
+  threeDimArray: Array<number> = [];
+  detailsArray: Array<string> = [];
+  detail1: string="";
+  detail2: string="";
+  detail3: string="";  
 
   constructor(private _dataService: DataService, private router: Router)
   {
-    this.threeDimOne = 0;
-    this.threeDimTwo = 0;
-    this.threeDimThree = 0;
   } 
 
   public onSubmit()
@@ -59,7 +56,14 @@ export class AddJewelryComponent {
       video: "N/A"
     }
     this._dataService.addJewel(newJewel).subscribe();
-    this.router.navigate(['editJewel']);
+
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "itemCode": this.newJewel.itemCode
+      }
+    };
+
+    this.router.navigate(['editJewel'], navigationExtras);
   }
 }
 

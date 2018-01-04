@@ -39,19 +39,18 @@ Add Jewelry page
 
   <div>
     <label for="weightOneDim">Weight of Jewelry:</label>
-    <input type="number" min="1" step="any" class="form-control" id="weightOneDim" name="weightOneDim" ngControl="weightOneDim" [(ngModel)]="newJewel.weightOneDim" (ngModelChange)="newJewel.weightOneDim" #weightOneDim="ngModel" placeHolder="0.00">
+    <input type="number" min="0" step="any" class="form-control" id="weightOneDim" name="weightOneDim" ngControl="weightOneDim" [(ngModel)]="newJewel.weightOneDim" (ngModelChange)="newJewel.weightOneDim" #weightOneDim="ngModel" placeHolder="0.00">
   </div>
 
 
   <div>
 
     <label for="weightThreeDim">Weight(3D) of Jewelry:</label>
-    <input type="number" min="1" step="any" class="form-control" id="weightThreeDim" name="weightThreeDim" ngControl="weightThreeDim" [(ngModel)]="threeDimOne" (ngModelChange)="threeDimOne" #threeDimOne="ngModel" placeHolder="0.00"> x
-    <input type="number" min="1" step="any" class="form-control" id="weightThreeDim" name="weightThreeDim" ngControl="weightThreeDim" [(ngModel)]="threeDimTwo" (ngModelChange)="threeDimTwo" #threeDimTwo="ngModel" placeHolder="0.00"> x
-    <input type="number" min="1" step="any" class="form-control" id="weightThreeDim" name="weightThreeDim" ngControl="weightThreeDim" [(ngModel)]="threeDimThree" (ngModelChange)="threeDimThree" #threeDimThree="ngModel" placeHolder="0.00">
+    <input type="number" min="0" step="any" class="form-control" id="weightThreeDim" name="weightThreeDim" ngControl="weightThreeDim" [value]="threeDimOne" (input)="threeDimOne=$event.target.value" placeHolder="0.00"> x
+    <input type="number" min="0" step="any" class="form-control" id="weightThreeDim" name="weightThreeDim" ngControl="weightThreeDim" [value]="threeDimTwo" (input)="threeDimTwo=$event.target.value" placeHolder="0.00"> x
+    <input type="number" min="0" step="any" class="form-control" id="weightThreeDim" name="weightThreeDim" ngControl="weightThreeDim" [value]="threeDimThree" (input)="threeDimThree=$event.target.value" placeHolder="0.00">
   </div>
 
-<!--
   <div>
     <label for="shape">Shape of Jewelry:</label>
     <input type="text" class="form-control" id="shape" name="shape" ngControl="shape" [(ngModel)]="newJewel.shape" (ngModelChange)="newJewel.shape" #shape="ngModel" placeHolder="Shape">
@@ -61,16 +60,12 @@ Add Jewelry page
     <label for="metal">Metal of Jewelry:</label>
     <input type="text" class="form-control" id="metal" name="metal" ngControl="metal" [(ngModel)]="newJewel.metal" (ngModelChange)="newJewel.metal" #metal="ngModel" placeHolder="Metal">
   </div>
-  <div>
-    <label for="metal">Metal of Jewelry:</label>
-    <input type="text" class="form-control" id="metal" name="metal" ngControl="metal" [(ngModel)]="newJewel.metal" (ngModelChange)="newJewel.metal" #metal="ngModel" placeHolder="Metal">
-  </div>
-
+  
   <div>
     <label for="details">Details of Jewelry:</label>
-    <input type="text" class="form-control" id="detail1" name="detail1" ngControl="detail1" [(ngModel)]="detail1" (ngModelChange)="detail1" #detail1="ngModel" placeHolder="First Detail">
-    <input type="text" class="form-control" id="detail2" name="detail2" ngControl="detail2" [(ngModel)]="detail2" (ngModelChange)="detail2" #detail2="ngModel" placeHolder="Second Detail">
-    <input type="text" class="form-control" id="detail3" name="detail3" ngControl="detail3" [(ngModel)]="detail3" (ngModelChange)="detail3" #detail3="ngModel" placeHolder="Third Detail">
+    <input type="text" class="form-control" id="detail1" name="detail1" ngControl="detail1" [value]="detail1" (input)="detail1=$event.target.value" placeHolder="First Detail">
+    <input type="text" class="form-control" id="detail2" name="detail2" ngControl="detail2" [value]="detail2" (input)="detail2=$event.target.value" placeHolder="Second Detail">
+    <input type="text" class="form-control" id="detail3" name="detail3" ngControl="detail3" [value]="detail3" (input)="detail3=$event.target.value" placeHolder="Third Detail">
   </div>
 
   <div>
@@ -78,7 +73,6 @@ Add Jewelry page
     <input type="text" class="form-control" id="formalDescription" name="formalDescription" ngControl="formalDescription" [(ngModel)]="newJewel.formalDescription" (ngModelChange)="newJewel.formalDescription" #formalDescription="ngModel" placeHolder="Formal Description">
   </div>
 
--->
   <button type="submit">Submit Jewelry</button>
 </form>
 

@@ -1,1 +1,7 @@
 View Jewelry Page
+
+<ul>
+  <li *ngFor="let jewel of jewelry;let i = index">{{ jewel.jewelName }} <button (click)="editPage(i)">Edit {{ jewel.jewelName }}</button><button (click)="deletePage(i)">Delete {{ jewel.jewelName }}</button></li>
+</ul>
+
+

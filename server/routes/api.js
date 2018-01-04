@@ -31,6 +31,7 @@ let response = {
 /**
  * Everything below is for the user collection
  */
+
 // Get users
 router.get('/users', (req, res) => {
     connection((db) => {
@@ -66,6 +67,7 @@ router.post('/adduser', (req, res) => {
     });
 }); 
 
+// Edit a user
 router.put('/user/:id', (req, res) => {
     var user = req.body;
     var updTask = {};
@@ -89,6 +91,7 @@ router.put('/user/:id', (req, res) => {
     });
 }); 
 
+// Remove a user
 router.delete('/user/:id', (req, res) => {
   var user = req.body;
   connection((db) => {
@@ -148,6 +151,22 @@ router.post('/authenticate', (req, res) => {
  * Everything below is for the jewelry collection
  */
 
+router.get('/jewelry', (req, res) => {
+    connection((db) => {
+        db.collection('jewelry')
+            .find()
+            .toArray()
+            .then((jewelry) => {
+                response.data = jewelry;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
+// Add Jewel
 router.post('/addjewelry', (req, res) => {
     var jewel = req.body;
     connection((db) => {
@@ -164,6 +183,53 @@ router.post('/addjewelry', (req, res) => {
         });
     });
 }); 
+
+// Edit a jewel
+router.put('/jewel/:id', (req, res) => {
+    var jewel = req.body;
+    var updTask = {};
+
+    if(jewel.jewelName)
+    {
+      updTask.jewelName = jewel.jewelName;
+    } 
+    connection((db) => {
+    db.collection('jewelry')
+      .update({_id: ObjectID(req.params.id)}, updTask, {}, function(err, user){
+        if(err)
+        {
+          res.send(err);
+        }
+        else
+        {
+          res.json(jewel);
+        }
+      });
+    });
+}); 
+
+// Remove a jewel
+router.delete('/jewel/:id', (req, res) => {
+  var jewel = req.body;
+  connection((db) => {
+    db.collection('jewelry')
+      .remove({_id: ObjectID(req.params.id)}, function(err, jewel){
+        if(err)
+        {
+          console.log("Not working");
+          res.send(err);
+        }
+        else
+        {
+          console.log("Working");
+          res.json(jewel);
+        } 
+      });
+  });
+
+});
+
+
 
 
 module.exports = router;

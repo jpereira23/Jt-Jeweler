@@ -44,6 +44,29 @@ export class DataService {
     return this._http.post("api/addjewelry", JSON.stringify(jewel), {headers: headers}).map(res => res.json());
   }
 
+  getJewelry() {
+    return this._http.get("/api/jewelry")
+      .map(result => this.result = result.json().data);
+  }
+
+  deleteJewel(jewel)
+  {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    console.log("the second part is " + jewel.itemCode);
+    return this._http.delete("api/jewel/" + jewel._id, {headers: headers}).map(res => res.json());
+  }
+
+  editJewel(jewel){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this._http.put("api/jewel/" + jewel._id, JSON.stringify(jewel), {headers: headers}).map(res => res.json()); 
+  }
+
+
+ 
+
 }
 
 
