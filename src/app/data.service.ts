@@ -60,7 +60,7 @@ export class DataService {
   editJewel(jewel){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
+    console.log(jewel.itemCode); 
     return this._http.put("api/jewel/" + jewel._id, JSON.stringify(jewel), {headers: headers}).map(res => res.json()); 
   }
 

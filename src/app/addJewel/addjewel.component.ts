@@ -57,13 +57,7 @@ export class AddJewelryComponent {
     }
     this._dataService.addJewel(newJewel).subscribe();
 
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "itemCode": this.newJewel.itemCode
-      }
-    };
-
-    this.router.navigate(['editJewel'], navigationExtras);
+    this.router.navigate(['viewJewel');
   }
 }
 

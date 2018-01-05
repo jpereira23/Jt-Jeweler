@@ -186,22 +186,18 @@ router.post('/addjewelry', (req, res) => {
 
 // Edit a jewel
 router.put('/jewel/:id', (req, res) => {
-    var jewel = req.body;
-    var updTask = {};
-
-    if(jewel.jewelName)
-    {
-      updTask.jewelName = jewel.jewelName;
-    } 
-    connection((db) => {
+  
+  connection((db) => {
     db.collection('jewelry')
-      .update({_id: ObjectID(req.params.id)}, updTask, {}, function(err, user){
+      .update({'_id': ObjectID(editedJewel._id)}, {'jewelName': req.body.jewelName, 'price': req.body.price, 'quantity': req.body.quantity, 'sizes': req.body.sizes, 'colors': req.body.colors, 'isFemale': req.body.isFemale, 'isMale': req.body.isMale, 'category': req.body.category, 'images': req.body.images, 'popularRank': req.body.popularRank, 'itemCode': req.body.itemCode, 'centerStone': req.body.centerStone, 'weightOneDim': req.body.weightOneDim, 'weightThreeDim': req.body.weightThreeDim, 'shape': req.body.shape, 'clarity': req.body.clarity, 'metal': req.body.metal, 'details': req.body.details, 'formalDescription': req.body.formalDescription, 'video': req.body.video },{ $multi: true } , function(err, jewel){
         if(err)
         {
           res.send(err);
+          console.log("Did not work"); 
         }
         else
         {
+          console.log("it worked"); 
           res.json(jewel);
         }
       });

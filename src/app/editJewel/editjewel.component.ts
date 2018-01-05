@@ -42,7 +42,30 @@ export class EditJewelryComponent {
   public onSubmit()
   {
     console.log(this.jewelryToBeEdited.itemCode);
-    this._dataService.editJewel(this.jewelryToBeEdited).subscribe();
+    var editJewel = {
+      _id: this.jewelryToBeEdited._id,
+      jewelName: this.jewelryToBeEdited.jewelName,
+      price: this.jewelryToBeEdited.price,
+      quantity: this.jewelryToBeEdited.quantity,
+      sizes: this.jewelryToBeEdited.sizes,
+      colors: this.jewelryToBeEdited.colors,
+      isFemale: this.jewelryToBeEdited.isFemale,
+      isMale: this.jewelryToBeEdited.isMale,
+      category: this.jewelryToBeEdited.category,
+      images: this.jewelryToBeEdited.images,
+      popularRank: this.jewelryToBeEdited.popularRank,
+      itemCode: this.jewelryToBeEdited.itemCode,
+      centerStone: this.jewelryToBeEdited.centerStone,
+      weightOneDim: this.jewelryToBeEdited.weightOneDim, 
+      weightThreeDim: this.jewelryToBeEdited.weightThreeDim, 
+      shape: this.jewelryToBeEdited.shape, 
+      clarity: this.jewelryToBeEdited.clarity, 
+      metal: this.jewelryToBeEdited.metal, 
+      details: this.jewelryToBeEdited.details, 
+      formalDescription: this.jewelryToBeEdited.formalDescription, 
+      video: this.jewelryToBeEdited.video
+    }
+    this._dataService.editJewel(editJewel).subscribe();
 
     this.router.navigate(['viewJewel']);
   }
