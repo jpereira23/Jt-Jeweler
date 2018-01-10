@@ -51,8 +51,7 @@ app.options('/upload', function(req, res, next) {
   {
     console.log('!OPTIONS');
     var headers = {};
-    headers["Access-Control-Allow-Origin"] = "http://localhost:4200";
-  
+    headers["Access-Control-Allow-Origin"] = "http://192.168.1.69:4200";
     headers["Access-Control-Allow-Credentials"] = true;
     headers["Access-Control-Max-Age"] = '86400';
     headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept";
