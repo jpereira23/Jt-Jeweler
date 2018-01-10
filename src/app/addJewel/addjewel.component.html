@@ -75,7 +75,7 @@ Add Jewelry page
   
   <div>
     <label for="images">Add Image:</label>
-    <input type="file" ng2FileSelect [uploader]="uploader" />
+    <input type="file" ng2FileSelect [uploader]="uploader" (change)="uploading($event)" />
   </div>
   <div>
     <table class="table">
@@ -95,6 +95,15 @@ Add Jewelry page
           </td>
         </tr>
     </table>
+  </div>
+  <div>
+    <label for="videos">Add Videos:</label>
+    <input type="file" ng2FileSelect [uploader]="videoUploader" (change)="uploadingVideo($event)" />
+  </div>
+  <div *ngIf="videoUploader.queue.length > 0">
+    <button type="button" class="upload" (click)="videoUploader.queue[0].upload()" [disabled]="videoUploader.queue[0].isReady || videoUploader.queue[0].isUploading || videoUploader.queue[0].isSuccess">Upload</button>       
+    <button type="button" class="cancel" (click)="videoUploader.queue[0].cancel()" [disabled]="!videoUploader.queue[0].isUploading">Cancel</button>
+    <button type="button" class="remove" (click)="videoUploader.queue[0].remove()">Remove</button>
   </div>
   <button type="submit">Submit Jewelry</button>
 </form>

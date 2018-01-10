@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { DataService } from '../data.service';
 import { Jewel } from '../models/jewel';
@@ -16,6 +17,7 @@ const URL = 'http://192.168.1.69:3000/upload';
 export class AddJewelryComponent {
   newJewel = new Jewel();
   uploader: FileUploader = new FileUploader({url: URL});
+  videoUploader: FileUploader = new FileUploader({url: URL});
   threeDimOne: number = 0.00;
   threeDimTwo: number = 0.00;
   threeDimThree: number = 0.00;
@@ -24,8 +26,9 @@ export class AddJewelryComponent {
   detail1: string="";
   detail2: string="";
   detail3: string="";  
-
-  constructor(private _dataService: DataService, private router: Router)
+  imagesArray: Array<string> = [];
+  videoUrl: string="";
+  constructor(private _dataService: DataService, private router: Router, private _http: Http)
   {
   } 
 
@@ -37,6 +40,7 @@ export class AddJewelryComponent {
     this.detailsArray.push(this.detail1);
     this.detailsArray.push(this.detail2);
     this.detailsArray.push(this.detail3);
+    
     var newJewel = {
       jewelName: this.newJewel.jewelName,
       price: this.newJewel.price,
@@ -46,7 +50,7 @@ export class AddJewelryComponent {
       isFemale: this.newJewel.isFemale, 
       isMale: this.newJewel.isMale, 
       category: "N/A",
-      images: [],
+      images: this.imagesArray,
       popularRank: 0,
       itemCode: this.newJewel.itemCode,
       centerStone: this.newJewel.centerStone,
@@ -57,7 +61,7 @@ export class AddJewelryComponent {
       metal: this.newJewel.metal,
       details: this.detailsArray,
       formalDescription: this.newJewel.formalDescription,
-      video: "N/A"
+      video: this.videoUrl
     }
     this._dataService.addJewel(newJewel).subscribe();
 
@@ -68,5 +72,17 @@ export class AddJewelryComponent {
   {
     const formData: any = new FormData();
   }
+
+  public uploading(event: any)
+  {
+    this.imagesArray.push("multimedia/" + event.target.files[0].name);
+  }
+
+  public uploadingVideo(event: any)
+  {
+    this.videoUrl = "multimedia/" + event.target.files[0].name;
+  }
+
+
 }
 

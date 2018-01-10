@@ -6,10 +6,10 @@ const expressJwt = require('express-jwt');
 const config = require('./config.json');
 const multer = require('multer');
 const app = express();
-
+var filename = '';
 app.use(function(req, res, next) {
   res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-  res.header("Access-Control-Allow-Origin", "http://192.168.1.69:4200", "http://localhost:4200", "http://localhost:4200/upload", "http://192.168.1.69:3000/upload", "http://192.168.1.69:4200");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Credentials", true);
   next();
@@ -32,14 +32,16 @@ var upload = multer({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
-
+app.post('/filename', function(req, res) {
+  console.log("HELLO");
+  console.log(res.date);
+});
 app.post('/upload', function(req, res) {
-  console.log("Hmm");
   upload(req, res, function(err) {
     console.log(req.file);
     if(err)
     {
-      res.json({error_code: 1, er_desc: err});
+      res.json({error_code: 1, err_desc: err});
       return;
     }
     res.json({error_code: 0, err_desc:null});
@@ -49,7 +51,6 @@ app.post('/upload', function(req, res) {
 app.options('/upload', function(req, res, next) {
   if(req.method == 'OPTIONS')
   {
-    console.log('!OPTIONS');
     var headers = {};
     headers["Access-Control-Allow-Origin"] = "http://192.168.1.69:4200";
     headers["Access-Control-Allow-Credentials"] = true;

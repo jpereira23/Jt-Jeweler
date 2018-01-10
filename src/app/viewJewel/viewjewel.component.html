@@ -1,7 +1,7 @@
 View Jewelry Page
 
 <ul>
-  <li *ngFor="let jewel of jewelry;let i = index">{{ jewel.jewelName }} <button (click)="editPage(i)">Edit {{ jewel.jewelName }}</button><button (click)="deletePage(i)">Delete {{ jewel.jewelName }}</button></li>
+  <li *ngFor="let jewel of jewelry;let i = index"><img src={{jewel.images[0]}} style="height:100px;width:100px" /><video src={{jewel.video}} controls style="height:100px;width:100px">Your browser does not support the tag.</video>{{ jewel.jewelName }} <button (click)="editPage(i)">Edit {{ jewel.jewelName }}</button><button (click)="deletePage(i)">Delete {{ jewel.jewelName }}</button></li>
 </ul>
 
 
