@@ -72,7 +72,30 @@ Add Jewelry page
     <label for="formalDescription">Formal Description of Jewelry:</label>
     <input type="text" class="form-control" id="formalDescription" name="formalDescription" ngControl="formalDescription" [(ngModel)]="newJewel.formalDescription" (ngModelChange)="newJewel.formalDescription" #formalDescription="ngModel" placeHolder="Formal Description">
   </div>
-
+  
+  <div>
+    <label for="images">Add Image:</label>
+    <input type="file" ng2FileSelect [uploader]="uploader" />
+  </div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th width="50%">Name</th>
+          <th>Progress</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of uploader.queue">
+          <td><strong>{{ item?.file?.name }}</strong></td>
+          <td nowrap>
+            <button type="button" class="upload" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">Upload</button>
+            <button type="button" class="cancel" (click)="item.cancel()" [disabled]="!item.isUploading">Cancel</button>
+            <button type="button" class="remove" (click)="item.remove()">Remove</button>
+          </td>
+        </tr>
+    </table>
+  </div>
   <button type="submit">Submit Jewelry</button>
 </form>
 

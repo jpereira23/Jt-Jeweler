@@ -10,7 +10,7 @@ constructor(private _http: Http) {
 
   login(email: string, password: string) 
   {
-  return this._http.post('/api/authenticate', { email: email, password: password })
+  return this._http.post('http://192.168.1.69:3000/api/authenticate', { email: email, password: password })
     .map((response: Response) => {
       let user = response.json();
       if(user) {

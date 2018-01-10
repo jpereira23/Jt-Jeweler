@@ -12,14 +12,14 @@ export class DataService {
   constructor(private _http: Http) { }
 
   getUsers() {
-    return this._http.get("/api/users")
+  return this._http.get("http://192.168.1.69:3000/api/users")
       .map(result => this.result = result.json().data);
   }
 
   addUser(user: User) {
   var headers = new Headers();
   headers.append('Content-Type', 'application/json'); 
-  return this._http.post("api/adduser", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
+  return this._http.post("http://192.168.1.69:3000/api/adduser", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
   }
 
   updateUser(){
@@ -27,7 +27,7 @@ export class DataService {
     headers.append('Content-Type', 'application/json');
 
     var user = {firstName: "Eduardo", lastName: "Yuja", password: "lll", streetAddress:"1234 ABC St.", city: "Tracy", state: "Ca", wishList: [100002, 10003], order: [4, 5], email: "jpereira1@mail.csuchico.edu"};
-    return this._http.put("api/user/" + "5a45883ae48e9a1be8d652db", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
+    return this._http.put("http://192.168.1.69:3000/api/user/" + "5a45883ae48e9a1be8d652db", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
   }
 
   deleteUser()
@@ -35,17 +35,17 @@ export class DataService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this._http.delete("api/user/" + "5a45883ae48e9a1be8d652db", {headers: headers}).map(res => res.json());
+    return this._http.delete("http://192.168.1.69:3000/api/user/" + "5a45883ae48e9a1be8d652db", {headers: headers}).map(res => res.json());
   }
   
   addJewel(jewel: Jewel){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.post("api/addjewelry", JSON.stringify(jewel), {headers: headers}).map(res => res.json());
+    return this._http.post("http://192.168.1.69:3000/api/addjewelry", JSON.stringify(jewel), {headers: headers}).map(res => res.json());
   }
 
   getJewelry() {
-    return this._http.get("/api/jewelry")
+  return this._http.get("http://192.168.1.69:3000/api/jewelry")
       .map(result => this.result = result.json().data);
   }
 

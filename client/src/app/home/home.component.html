@@ -1,0 +1,11 @@
+JT Jewelry
+
+<div>
+
+<a routerLink="/signin">Sign In</a>
+<a routerLink="/signup">Sign Up</a>
+
+
+<div *ngIf="signedIn == true">
+  <span>{{ signedInUser.firstName }} is Signed In! </span>
+</div>

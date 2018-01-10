@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -34,7 +35,8 @@ import { AuthenticationService } from './authentication.service';
     HttpModule,
     routing,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FileUploadModule
   ],
   providers: [DataService,
               AuthenticationService], // <-Add DataService

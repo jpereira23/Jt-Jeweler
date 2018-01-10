@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { FileUploader } from 'ng2-file-upload';
 
 import { DataService } from '../data.service';
 import { Jewel } from '../models/jewel';
+
+const URL = 'http://192.168.1.69:3000/upload';
 
 @Component({
   selector: 'addJewel',
@@ -12,6 +15,7 @@ import { Jewel } from '../models/jewel';
 
 export class AddJewelryComponent {
   newJewel = new Jewel();
+  uploader: FileUploader = new FileUploader({url: URL});
   threeDimOne: number = 0.00;
   threeDimTwo: number = 0.00;
   threeDimThree: number = 0.00;
@@ -57,7 +61,12 @@ export class AddJewelryComponent {
     }
     this._dataService.addJewel(newJewel).subscribe();
 
-    this.router.navigate(['viewJewel');
+    this.router.navigate(['viewJewel']);
+  }
+
+  public upload()
+  {
+    const formData: any = new FormData();
   }
 }
 
