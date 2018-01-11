@@ -8,6 +8,7 @@ import { SignInComponent } from './signin/signin.component';
 import { EditJewelryComponent } from './editJewel/editjewel.component';
 import { AddJewelryComponent } from './addJewel/addjewel.component';
 import { ViewJewelryComponent } from './viewJewel/viewjewel.component';
+import { ManageAccountComponent } from './manageAccount/manageaccount.component';
 
 const appRoutes: Routes = [ 
   {
@@ -37,7 +38,12 @@ const appRoutes: Routes = [
   {
     path: 'editJewel',
     component: EditJewelryComponent
-  }
+  },
+  {
+    path: 'manageAccount',
+    component: ManageAccountComponent
+  },
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

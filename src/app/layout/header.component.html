@@ -1,0 +1,18 @@
+JT <br>
+Jewelry
+
+<div *ngIf="signedIn == false">
+
+  <a routerLink="/">Home</a>
+  <a routerLink="/signin">Sign In</a>
+  <a routerLink="/signup">Sign Up</a>
+</div>
+
+<div *ngIf="signedIn == true">
+
+  <a routerLink="/">Home</a>
+  <a href=""(click)="signOut()">Sign Out</a>
+  <a routerLink="/manageAccount">My Account</a>
+</div>
+<br><br><br>
+

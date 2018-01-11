@@ -28,8 +28,13 @@ export class AddJewelryComponent {
   detail3: string="";  
   imagesArray: Array<string> = [];
   videoUrl: string="";
+  aSize: string = "";
+  sizes: Array<any> = [];
+  yourSizes: Array<string> = [];
   constructor(private _dataService: DataService, private router: Router, private _http: Http)
   {
+    this._dataService.getSizes()
+      .subscribe(res => this.sizes = res);
   } 
 
   public onSubmit()
@@ -83,6 +88,14 @@ export class AddJewelryComponent {
     this.videoUrl = "multimedia/" + event.target.files[0].name;
   }
 
-
+  public addingSize()
+  {
+    //this.sizes.push(this.aSize);
+    var size = {
+      name: this.aSize
+    };
+    this.sizes.push(size);
+    this._dataService.addSize(size).subscribe();
+  }
 }
 

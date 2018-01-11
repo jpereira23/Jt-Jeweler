@@ -1,11 +1,17 @@
-JT Jewelry
+
 
 <div>
-
-<a routerLink="/signin">Sign In</a>
-<a routerLink="/signup">Sign Up</a>
-
-
-<div *ngIf="signedIn == true">
-  <span>{{ signedInUser.firstName }} is Signed In! </span>
+  <strong>Introducing a New Line of Jewelry</strong>
 </div>
+
+<div>
+  <a href="">Rings</a>
+  <a href="">Earings</a>
+  <a href="">Bands</a>
+  <a href="">Pendants</a>
+  <a href="">Bracelets</a>
+</div>
+
+<ul>
+  <li *ngFor="let jewel of jewelry"><img src={{jewel.images[0]}} style="height:100px;width:100px">{{ jewel.jewelName }}</li>
+</ul>

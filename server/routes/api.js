@@ -69,16 +69,10 @@ router.post('/adduser', (req, res) => {
 
 // Edit a user
 router.put('/user/:id', (req, res) => {
-    var user = req.body;
-    var updTask = {};
-
-    if(user.firstName)
-    {
-      updTask.firstName = user.firstName;
-    } 
+     
     connection((db) => {
     db.collection('user')
-      .update({_id: ObjectID(req.params.id)}, updTask, {}, function(err, user){
+      .update({_id: ObjectID(req.body._id)}, {'firstName:': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders }, { $multi: true }, function(err, user){
         if(err)
         {
           res.send(err);
@@ -90,6 +84,7 @@ router.put('/user/:id', (req, res) => {
       });
     });
 }); 
+
 
 // Remove a user
 router.delete('/user/:id', (req, res) => {
@@ -189,7 +184,7 @@ router.put('/jewel/:id', (req, res) => {
   
   connection((db) => {
     db.collection('jewelry')
-      .update({'_id': ObjectID(editedJewel._id)}, {'jewelName': req.body.jewelName, 'price': req.body.price, 'quantity': req.body.quantity, 'sizes': req.body.sizes, 'colors': req.body.colors, 'isFemale': req.body.isFemale, 'isMale': req.body.isMale, 'category': req.body.category, 'images': req.body.images, 'popularRank': req.body.popularRank, 'itemCode': req.body.itemCode, 'centerStone': req.body.centerStone, 'weightOneDim': req.body.weightOneDim, 'weightThreeDim': req.body.weightThreeDim, 'shape': req.body.shape, 'clarity': req.body.clarity, 'metal': req.body.metal, 'details': req.body.details, 'formalDescription': req.body.formalDescription, 'video': req.body.video },{ $multi: true } , function(err, jewel){
+      .update({'_id': ObjectID(req.body._id)}, {'jewelName': req.body.jewelName, 'price': req.body.price, 'quantity': req.body.quantity, 'sizes': req.body.sizes, 'colors': req.body.colors, 'isFemale': req.body.isFemale, 'isMale': req.body.isMale, 'category': req.body.category, 'images': req.body.images, 'popularRank': req.body.popularRank, 'itemCode': req.body.itemCode, 'centerStone': req.body.centerStone, 'weightOneDim': req.body.weightOneDim, 'weightThreeDim': req.body.weightThreeDim, 'shape': req.body.shape, 'clarity': req.body.clarity, 'metal': req.body.metal, 'details': req.body.details, 'formalDescription': req.body.formalDescription, 'video': req.body.video },{ $multi: true } , function(err, jewel){
         if(err)
         {
           res.send(err);
@@ -225,6 +220,44 @@ router.delete('/jewel/:id', (req, res) => {
 
 });
 
+/**
+ * Sizes stuff
+ *
+ */
+
+router.post('/addsize', (req, res) => {
+  var size = req.body;
+    connection((db) => {
+      db.collection('sizes')
+        .save(size, function(err, size){
+          if(err)
+          {
+            res.send(err);
+          }
+          else
+          {
+            res.json(size);
+          }
+        });
+    });
+
+});
+
+
+router.get('/size', (req, res) => {
+    connection((db) => {
+        db.collection('sizes')
+            .find()
+            .toArray()
+            .then((size) => {
+                response.data = size;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
 
 
 

@@ -12,7 +12,8 @@ import { SignInComponent } from './signin/signin.component';
 import { AddJewelryComponent } from './addJewel/addjewel.component';
 import { EditJewelryComponent } from './editJewel/editjewel.component';
 import { ViewJewelryComponent } from './viewJewel/viewjewel.component';
-
+import { ManageAccountComponent } from './manageAccount/manageaccount.component';
+import { HeaderComponent } from './layout/header.component';
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
@@ -28,7 +29,9 @@ import { AuthenticationService } from './authentication.service';
     SignInComponent,
     AddJewelryComponent,
     EditJewelryComponent,
-    ViewJewelryComponent
+    ViewJewelryComponent,
+    ManageAccountComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -36,10 +39,10 @@ import { AuthenticationService } from './authentication.service';
     routing,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule
+    FileUploadModule,
   ],
   providers: [DataService,
-              AuthenticationService], // <-Add DataService
+  AuthenticationService], // <-Add DataService  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 // Import the DataService
 import { DataService } from '../data.service';
 import { User } from '../models/user';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   moduleId: module.id,
@@ -18,57 +19,25 @@ export class HomeComponent {
   users: Array<any>;
   signedIn = false  ;
   signedInUser: User;
+  jewelry: Array<any>;
+
   // Create an instance of the DataService through dependency injection
-  constructor(private _dataService: DataService, private route: ActivatedRoute) {
-    /*
-    if(this.route.params)
-    {
-    this.route.queryParams.subscribe(params => {
-        this.firstName = params["firstName"];
-      });
-    }
-    */
+  constructor(private _dataService: DataService, private route: ActivatedRoute, private authenticationService: AuthenticationService) {
+  
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser'));
     if(this.signedInUser != null)
     {
       this.signedIn = true;
       console.log('signed in user is ' + this.signedInUser.firstName);    
     }
-    else
-    {
-      console.log("its null");
-    }
+    
     // Access the Data Service's getUsers() method we defined
     this._dataService.getUsers()
         .subscribe(res => this.users = res);
+
+    this._dataService.getJewelry()
+      .subscribe(res => this.jewelry = res);
     
   } 
-  /*
-  delegateForUsers(users)
-  {
-    this.users = users;
-
-    var i;
-    for(i = 0; i < this.users.length; i++)
-    {
-      if(this.firstName != null && this.users[i].firstName == this.firstName)
-      {
-        this.signedIn = true;
-        this.signedInUser = this.users[i];
-
-      }
-    } 
-  }
-  */
-  onUpdate(){
-    console.log("updating");
-    this._dataService.updateUser().subscribe();
-  }
-
-  onDelete(){
-    console.log("deleting");
-    this._dataService.deleteUser().subscribe();
-  }
-  
   
 }

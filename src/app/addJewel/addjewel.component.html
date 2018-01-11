@@ -72,7 +72,14 @@ Add Jewelry page
     <label for="formalDescription">Formal Description of Jewelry:</label>
     <input type="text" class="form-control" id="formalDescription" name="formalDescription" ngControl="formalDescription" [(ngModel)]="newJewel.formalDescription" (ngModelChange)="newJewel.formalDescription" #formalDescription="ngModel" placeHolder="Formal Description">
   </div>
-  
+  <div>
+    <label for="aSize">Sizes:</label>
+    <input type="text" class="form-control" id="aSize" name="aSize" ngControl="aSize" [value]="aSize" (input)="aSize=$event.target.value" placeHolder="Add Size" />
+    <button type="button" class="addSize" (click)="addingSize()">Add Size</button>
+    <ul>
+      <li *ngFor="let size of sizes; let i = index"><input type="checkbox" name="size" [(ngModel)]="size.quantity">{{ size.name }}<div *ngIf="0">, Quantity: <input type="text" name="quanitity" ngControl=""></div></li>
+    </ul>
+  </div>
   <div>
     <label for="images">Add Image:</label>
     <input type="file" ng2FileSelect [uploader]="uploader" (change)="uploading($event)" />

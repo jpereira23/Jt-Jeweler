@@ -1,0 +1,40 @@
+My Account
+
+
+<div>
+  <strong>Personal Information</strong>
+</div>
+
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="firstName">First name</label>
+    <input type="text" class="form-control" id="firstName" name="firstName" ngControl="firstName" [(ngModel)]="signedInUser.firstName" (ngModelChange)="signedInUser.firstName" #firstName="ngModel" />
+  </div>
+  <div>
+    <label for="lastName">Last name</label>
+    <input type="text" class="form-control" id="lastName" name="lastName" ngControl="lastName" [(ngModel)]="signedInUser.lastName" (ngModelChange)="signedInUser.lastName" #lastName="ngModel" />
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" name="email" ngControl="email" [(ngModel)]="signedInUser.email" (ngModelChange)="signedInUser.email" #email="ngModel" />
+  </div>
+  <div>
+    <label for="streetAddress">Address</label>
+    <input type="text" class="form-control" id="streetAddress" name="streetAddress" ngControl="streetAddress" [(ngModel)]="signedInUser.streetAddress" (ngModelChange)="signedInUser.streetAddress" #streetAddress="ngModel" />
+  </div>
+   <div>
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" name="city" ngControl="city" [(ngModel)]="signedInUser.city" (ngModelChange)="signedInUser.city" #city="ngModel" />
+  </div>
+  <div>
+    <label for="state">State</label>
+    <input type="text" class="form-control" id="state" name="state" ngControl="state" [(ngModel)]="signedInUser.state" (ngModelChange)="signedInUser.state" #state="ngModel" />
+  </div>
+
+  <button type="submit">Save Changes</button>
+</form>
+
+<div *ngIf="updated == true">
+  <span>Changes have been saved.</span>
+</div>
+

@@ -22,12 +22,11 @@ export class DataService {
     return this._http.post("http://192.168.1.69:3000/api/adduser", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
   }
 
-  updateUser(){
+  updateUser(user){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    var user = {firstName: "Eduardo", lastName: "Yuja", password: "lll", streetAddress:"1234 ABC St.", city: "Tracy", state: "Ca", wishList: [100002, 10003], order: [4, 5], email: "jpereira1@mail.csuchico.edu"};
-    return this._http.put("http://192.168.1.69:3000/api/user/" + "5a45883ae48e9a1be8d652db", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
+    return this._http.put("http://192.168.1.69:3000/api/user/" + user._id, JSON.stringify(user), {headers: headers}).map(res => res.json()); 
   }
 
   deleteUser()
@@ -61,6 +60,17 @@ export class DataService {
     headers.append('Content-Type', 'application/json');
     console.log(jewel.itemCode); 
     return this._http.put("http://192.168.1.69:3000/api/jewel/" + jewel._id, JSON.stringify(jewel), {headers: headers}).map(res => res.json()); 
+  }
+
+  addSize(size){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("http://192.168.1.69:3000/api/addsize/", JSON.stringify(size), {headers: headers}).map(res => res.json());
+  }
+
+  getSizes(){
+    return this._http.get("http://192.168.1.69:3000/api/size")
+      .map(result => this.result = result.json().data);
   }
 }
 
