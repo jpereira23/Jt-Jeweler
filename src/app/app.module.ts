@@ -14,6 +14,7 @@ import { EditJewelryComponent } from './editJewel/editjewel.component';
 import { ViewJewelryComponent } from './viewJewel/viewjewel.component';
 import { ManageAccountComponent } from './manageAccount/manageaccount.component';
 import { HeaderComponent } from './layout/header.component';
+import { AdminHeaderComponent } from './layout/adminHeader.component';
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
@@ -31,7 +32,8 @@ import { AuthenticationService } from './authentication.service';
     EditJewelryComponent,
     ViewJewelryComponent,
     ManageAccountComponent,
-    HeaderComponent
+    HeaderComponent,
+    AdminHeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,10 @@ export class DataService {
 
   constructor(private _http: Http) { }
 
+  /**
+   * This is for users
+   */
+
   getUsers() {
   return this._http.get("http://192.168.1.69:3000/api/users")
       .map(result => this.result = result.json().data);
@@ -36,7 +40,11 @@ export class DataService {
     return this._http.delete("http://192.168.1.69:3000/api/user/" + "5a45883ae48e9a1be8d652db", {headers: headers}).map(res => res.json());
   }
   
-  addJewel(jewel: Jewel){
+  /**
+   * This is for jewels
+   */
+
+  addJewel(jewel){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this._http.post("http://192.168.1.69:3000/api/addjewelry", JSON.stringify(jewel), {headers: headers}).map(res => res.json());
@@ -62,6 +70,9 @@ export class DataService {
     return this._http.put("http://192.168.1.69:3000/api/jewel/" + jewel._id, JSON.stringify(jewel), {headers: headers}).map(res => res.json()); 
   }
 
+  /** 
+   * This is for sizes
+   */
   addSize(size){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -71,6 +82,38 @@ export class DataService {
   getSizes(){
     return this._http.get("http://192.168.1.69:3000/api/size")
       .map(result => this.result = result.json().data);
+  }
+
+  /**
+   * This is for images
+   */
+
+  addImage(image)
+  {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("http://192.168.1.69:3000/api/addimage/", JSON.stringify(image), {headers: headers}).map(res => res.json());
+  }
+
+  getImages(){
+    return this._http.get("http://192.168.1.69:3000/api/image/")
+    .map(result => this.result = result.json().data);
+  }
+
+  /**
+   * This is for videos
+   */
+
+  addVideo(video)
+  {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("http://192.168.1.69:3000/api/addvideo/", JSON.stringify(video), {headers: headers}).map(res => res.json());
+  }
+
+  getVideos(){
+    return this._http.get("http://192.168.1.69:3000/api/video/")
+    .map(result => this.result = result.json().data);
   }
 }
 

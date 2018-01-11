@@ -27,15 +27,21 @@ export class AddJewelryComponent {
   detail2: string="";
   detail3: string="";  
   imagesArray: Array<string> = [];
+  globalImages: Array<any> = [];
   videoUrl: string="";
   aSize: string = "";
   sizes: Array<any> = [];
   yourSizes: Array<string> = [];
+  imageErrorMessage: string = "";
+  imageError: boolean = false;
+  videoErrorMessage: string = "";
+  videoError: boolean = false;
+
   constructor(private _dataService: DataService, private router: Router, private _http: Http)
   {
     this._dataService.getSizes()
       .subscribe(res => this.sizes = res);
-  } 
+ } 
 
   public onSubmit()
   {
@@ -45,13 +51,18 @@ export class AddJewelryComponent {
     this.detailsArray.push(this.detail1);
     this.detailsArray.push(this.detail2);
     this.detailsArray.push(this.detail3);
-    
+    for(var i = 0; i < this.sizes.length; i++)
+    {
+      if(this.sizes[i].isUsed == true)
+      {
+        this.yourSizes.push(this.sizes[i]);
+      }
+    }    
     var newJewel = {
       jewelName: this.newJewel.jewelName,
       price: this.newJewel.price,
       quantity: this.newJewel.quantity,
-      sizes: [],
-      colors: [],
+      sizes: this.yourSizes,
       isFemale: this.newJewel.isFemale, 
       isMale: this.newJewel.isMale, 
       category: "N/A",
@@ -90,12 +101,81 @@ export class AddJewelryComponent {
 
   public addingSize()
   {
-    //this.sizes.push(this.aSize);
     var size = {
-      name: this.aSize
+      name: this.aSize,
+      isUsed: false,
+      quantity: 0 
     };
     this.sizes.push(size);
     this._dataService.addSize(size).subscribe();
   }
+
+  public uploadRequest(item)
+  {
+    this._dataService.getImages()
+      .subscribe(res => this.uploadRequestDelegate(item, res));
+  }
+
+  public uploadRequestDelegate(item, images)
+  {
+
+    var isCanceled: boolean = false;
+    for(var i = 0; i < images.length; i++)
+    {
+      var name = "multimedia/" + item.file.name;
+
+      if(name == images[i].name)
+      {
+        item.remove();
+        isCanceled = true;
+        this.imageErrorMessage = "You are trying to add a duplicate image."
+        this.imageError = true;
+      }
+    }    
+    if(isCanceled == false)
+    {
+      item.upload();
+      var image = {
+        name: "multimedia/" +item.file.name
+      }
+      this._dataService.addImage(image).subscribe();
+      this.imageErrorMessage = "";
+      this.imageError = false; 
+    }
+  }
+  
+  public videoUploadRequest(item)
+  {
+    this._dataService.getVideos()
+      .subscribe(res => this.videoUploadRequestDelegate(item, res));
+  } 
+
+  public videoUploadRequestDelegate(item, videos)
+  { 
+    var isCanceled: boolean = false;
+    for(var i = 0; i < videos.length; i++)
+    {
+      var name = "multimedia/" + item.file.name;
+
+      if(name == videos[i].name)
+      {
+        item.remove();
+        isCanceled = true;
+        this.videoErrorMessage = "You are trying to add a duplicate video."
+        this.videoError = true;
+      }
+    }    
+    if(isCanceled == false)
+    {
+      item.upload();
+      var video = {
+        name: "multimedia/" +item.file.name
+      }
+      this._dataService.addVideo(video).subscribe();
+      this.videoErrorMessage = "";
+      this.videoError = false; 
+    }
+  }
+
 }
 

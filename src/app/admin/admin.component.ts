@@ -25,7 +25,7 @@ export class AdminComponent {
 
   onUpdate(){
     console.log("updating");
-    this._dataService.updateUser().subscribe();
+    //this._dataService.updateUser().subscribe();
   }
 
   onDelete(){

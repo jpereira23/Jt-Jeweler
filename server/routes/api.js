@@ -259,6 +259,81 @@ router.get('/size', (req, res) => {
     });
 });
 
+/**
+ * Images stuff
+ */
+
+router.post('/addimage', (req, res) => {
+  var image = req.body;
+  connection((db) => {
+    db.collection('images')
+    .save(image, function(err, image){
+      if(err)
+      {
+        res.send(err);
+      }
+      else
+      {
+        res.json(image);
+      }
+    });
+  });
+});
+
+router.get('/image', (req, res) => {
+    connection((db) => {
+        db.collection('images')
+            .find()
+            .toArray()
+            .then((image) => {
+                response.data = image;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
+/**
+ * Videos stuff
+ *
+ */
+
+router.post('/addvideo', (req, res) => {
+  var video = req.body;
+  connection((db) => {
+    db.collection('videos')
+    .save(video, function(err, video){
+      if(err)
+      {
+        res.send(err);
+      }
+      else
+      {
+        res.json(video);
+      }
+    });
+  });
+});
+
+router.get('/video', (req, res) => {
+    connection((db) => {
+        db.collection('videos')
+            .find()
+            .toArray()
+            .then((video) => {
+                response.data = video;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
+
+
 
 
 module.exports = router;
