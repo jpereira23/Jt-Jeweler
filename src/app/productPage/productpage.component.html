@@ -1,0 +1,73 @@
+
+<div *ngIf="loading == true">
+  <img src={{jewelryToBePreviewed.images[0]}} style="height:100px;width:100px" />
+  <div>
+    <strong> {{ jewelryToBePreviewed.jewelName }}</strong>
+  </div>
+  <div>
+    <span>${{ jewelryToBePreviewed.price }}</span>
+  </div>
+  <div>
+    <span>{{ jewelryToBePreviewed.formalDescription }}</span>
+  </div>
+  <div>
+    <select>
+      <option>
+        Select Size
+      </option>
+      <option *ngFor="let size of jewelryToBePreviewed.sizes" value="size">
+        {{size.name}}
+      </option>
+    </select>
+  </div>
+  <div>
+    <button>Add to Bag</button>
+  </div>
+  <div>
+    --------------------------------------------------------------------------
+    <div>
+      <strong>Product Details</strong>
+    </div>
+    <div>
+      <span>Item {{ jewelryToBePreviewed.itemCode }}</span>
+    </div>
+    <div>
+      <span>Center Stone: {{ jewelryToBePreviewed.centerStone }}</span>
+    </div>
+    <div>
+      <span>Weight: {{ jewelryToBePreviewed.weightOneDim }}ct({{ jewelryToBePreviewed.weightThreeDim[0] }}x{{ jewelryToBePreviewed.weightThreeDim[1] }}x{{ jewelryToBePreviewed.weightThreeDim[2] }}mm)</span>
+    </div>
+    <div>
+      <span>Shape: {{ jewelryToBePreviewed.shape }}</span>
+    </div>
+    <div>
+      <span>Clarity: {{ jewelryToBePreviewed.clarity }} </span>
+    </div>
+    <div>
+      <span>Metal: {{ jewelryToBePreviewed.metal }} </span>
+    </div>
+    <div>
+      <span>Details: {{ jewelryToBePreviewed.details[0] }}</span>
+      <div> {{ jewelryToBePreviewed.details[1] }}</div>
+      <div> {{ jewelryToBePreviewed.details[2] }}</div>
+    </div>
+    <div> 
+      <span>Center Diamond is GIA certified</span>
+    </div>
+    <div>
+      <video src={{jewelryToBePreviewed.video}} controls style="height:100px;width:100px;">Your browser does not support the tag.</video>
+  </div>
+  <div>
+    --------------------------------------------------------------------------
+    <div>
+      <strong>You May Also Like</strong>
+      <div *ngFor="let jewel of jewelry">
+        <div><img src={{jewel.images[0]}} style="height:100px;width:100px;" /></div>
+        <div><span>{{ jewel.jewelName }}</span></div>
+        <div><span>${{ jewel.price }}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

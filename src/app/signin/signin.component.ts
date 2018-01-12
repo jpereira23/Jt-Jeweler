@@ -39,6 +39,7 @@ export class SignInComponent {
         }
         else
         {  
+          console.log("Fuck"); 
           this.router.navigate(['']);
         }
       },

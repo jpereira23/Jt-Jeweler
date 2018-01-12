@@ -1,0 +1,9 @@
+<div>
+  <div>
+    <strong>{{ filter }}s</strong>
+  </div>
+  <div>
+    <span *ngFor="let jewel of filteredJewelry;let i = index"><div (click)="viewProductPage(i)"><div><img src={{jewel.images[0]}} style="height:100px;width:100px"></div><div>{{ jewel.jewelName }}</div><div>${{ jewel.price }}</div></div></span>
+
+  </div>
+</div>

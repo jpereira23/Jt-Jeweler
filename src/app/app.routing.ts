@@ -9,7 +9,8 @@ import { EditJewelryComponent } from './editJewel/editjewel.component';
 import { AddJewelryComponent } from './addJewel/addjewel.component';
 import { ViewJewelryComponent } from './viewJewel/viewjewel.component';
 import { ManageAccountComponent } from './manageAccount/manageaccount.component';
-
+import { ProductPageComponent } from './productPage/productpage.component';
+import { CategoryComponent } from './category/category.component';
 const appRoutes: Routes = [ 
   {
     path: '',
@@ -42,6 +43,14 @@ const appRoutes: Routes = [
   {
     path: 'manageAccount',
     component: ManageAccountComponent
+  },
+  {
+    path: 'productPage',
+    component: ProductPageComponent
+  },
+  {
+    path: 'category',
+    component: CategoryComponent
   },
 
 ];

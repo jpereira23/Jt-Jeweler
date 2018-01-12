@@ -36,7 +36,7 @@ export class AddJewelryComponent {
   imageError: boolean = false;
   videoErrorMessage: string = "";
   videoError: boolean = false;
-
+  categoriesArray: Array<string> = ["Ring", "Earring", "Band", "Pendant", "Bracelet"];
   constructor(private _dataService: DataService, private router: Router, private _http: Http)
   {
     this._dataService.getSizes()
@@ -65,7 +65,7 @@ export class AddJewelryComponent {
       sizes: this.yourSizes,
       isFemale: this.newJewel.isFemale, 
       isMale: this.newJewel.isMale, 
-      category: "N/A",
+      category: this.newJewel.category,
       images: this.imagesArray,
       popularRank: 0,
       itemCode: this.newJewel.itemCode,

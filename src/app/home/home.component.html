@@ -3,15 +3,17 @@
 <div>
   <strong>Introducing a New Line of Jewelry</strong>
 </div>
+<br><br><br><br>
+<div>
+  <span (click)="changeFilter('Ring')">Rings</span>
+  <span (click)="changeFilter('Earring')">Earings</span>
+  <span (click)="changeFilter('Band')">Bands</span>
+  <span (click)="changeFilter('Pendant')">Pendants</span>
+  <span (click)="changeFilter('Bracelet')">Bracelets</span>
+</div>
+<br><br><br><br>
 
 <div>
-  <a href="">Rings</a>
-  <a href="">Earings</a>
-  <a href="">Bands</a>
-  <a href="">Pendants</a>
-  <a href="">Bracelets</a>
+  <strong>Featured Products</strong>
+  <span *ngFor="let jewel of jewelry;let i = index"><div (click)="viewProductPage(i)"><div><img src={{jewel.images[0]}} style="height:100px;width:100px"></div><div>{{ jewel.jewelName }}</div><div>${{ jewel.price }}</div></div></span>
 </div>
-
-<ul>
-  <li *ngFor="let jewel of jewelry"><img src={{jewel.images[0]}} style="height:100px;width:100px">{{ jewel.jewelName }}</li>
-</ul>

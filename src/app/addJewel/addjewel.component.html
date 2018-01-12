@@ -12,6 +12,18 @@ Add Jewelry page
   </div>
 
   <div>
+    <label for="category">Pick Category:</label>
+    <select name="category" [(ngModel)]="newJewel.category">
+      <option>
+        Type Jewelry
+      </option>
+      <option *ngFor="let category of categoriesArray" value={{category}}>
+        {{category}}
+      </option>
+    </select>
+  </div>
+
+  <div>
     <label for="isFemale">Female:</label>
     <input type="radio"  class="form-control" id="isFemale" name="isFemale" ngControl="isFemale" [(ngModel)]="newJewel.isFemale" (ngModelChange)="newJewel.isFemale" #isFemale="ngModel" [value]="true">
   </div>
