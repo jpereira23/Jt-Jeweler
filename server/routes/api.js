@@ -69,7 +69,7 @@ router.post('/adduser', (req, res) => {
 
 // Edit a user
 router.put('/user/:id', (req, res) => {
-     
+    console.log(req.body.orders.length);      
     connection((db) => {
     db.collection('user')
       .update({_id: ObjectID(req.body._id)}, {'firstName:': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders }, { $multi: true }, function(err, user){
@@ -332,7 +332,75 @@ router.get('/video', (req, res) => {
     });
 });
 
+/**
+ * order stuff
+ */
 
+router.put('/updateordernumber/:id', (req, res) => {
+  console.log("FUCKING WORK"); 
+  connection((db) => {
+    db.collection('ordernumber')
+    .update({'_id': ObjectID(req.body._id)}, {'orderNum': req.body.orderNum},{ $multi: true } , function(err, ordernumber){
+      if(err)
+      {
+        res.send(err);
+        console.log("Did not work");
+      }
+      else
+      {
+        console.log("it worked");
+        res.json(ordernumber);
+      }
+    });
+  });
+});
+
+router.get('/ordernumber', (req, res) => {
+  connection((db) => {
+    db.collection('ordernumber')
+    .find()
+    .toArray()
+    .then((ordernumber) => {
+      response.data = ordernumber;
+      res.json(response);
+    })
+    .catch((err) => {
+      sendError(err, res);
+    }); 
+  });
+});
+router.get('/order', (req, res) => {
+  connection((db) => {
+    db.collection('order')
+      .find()
+      .toArray()
+      .then((order) => {
+        response.data = order;
+        res.json(response);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
+router.post('/addorder', (req, res) => {
+  var order = req.body;
+  console.log("order is added");
+  connection((db) => {
+    db.collection('order')
+    .save(order, function(err, order){
+      if(err)
+      {
+        res.send(err);
+      }
+      else
+      {
+        res.json(order); 
+      }
+    });
+  });
+});
 
 
 

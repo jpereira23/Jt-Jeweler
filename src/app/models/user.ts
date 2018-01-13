@@ -1,4 +1,5 @@
 export class User {
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -10,6 +11,7 @@ export class User {
   orders: number[];
   constructor()
   {
+    this._id = ""; 
     this.firstName = "";
     this.lastName = "";
     this.email = "";

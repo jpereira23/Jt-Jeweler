@@ -11,6 +11,7 @@ import { ViewJewelryComponent } from './viewJewel/viewjewel.component';
 import { ManageAccountComponent } from './manageAccount/manageaccount.component';
 import { ProductPageComponent } from './productPage/productpage.component';
 import { CategoryComponent } from './category/category.component';
+import { ShoppingCartComponent } from './shoppingCart/shoppingcart.component';
 const appRoutes: Routes = [ 
   {
     path: '',
@@ -51,6 +52,10 @@ const appRoutes: Routes = [
   {
     path: 'category',
     component: CategoryComponent
+  },
+  {
+    path: 'shoppingCart',
+    component: ShoppingCartComponent
   },
 
 ];

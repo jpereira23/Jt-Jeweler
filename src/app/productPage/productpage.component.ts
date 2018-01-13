@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { DataService } from '../data.service';
+import { CartService } from '../cart.service';
 @Component({
   selector: 'productPage',
   templateUrl: './productpage.component.html',
@@ -13,9 +14,10 @@ export class ProductPageComponent {
   itemCode: string; 
   loading = false;
   jewelryToBePreviewed: any;
-  constructor(private _dataService: DataService, private route: ActivatedRoute, private router: Router) 
+  quantity: number = 0;
+  constructor(private cartService: CartService, private _dataService: DataService, private route: ActivatedRoute, private router: Router) 
   {
-
+    
     this.route.queryParams.subscribe(params => {
       this.itemCode = params["itemCode"];
     });
@@ -34,7 +36,14 @@ export class ProductPageComponent {
       {
         this.loading = true;
         this.jewelryToBePreviewed = this.jewelry[i];
+        this.jewelryToBePreviewed.quantity = 1; 
       }
     }
   } 
+  
+  addItem()
+  {
+    this.cartService.addItem(this.jewelryToBePreviewed); 
+    location.reload();
+  }
 }

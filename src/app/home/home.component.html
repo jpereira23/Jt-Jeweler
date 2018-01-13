@@ -1,10 +1,10 @@
 
 
-<div>
+<div style="text-align:center;">
   <strong>Introducing a New Line of Jewelry</strong>
 </div>
 <br><br><br><br>
-<div>
+<div style="text-align:center;">
   <span (click)="changeFilter('Ring')">Rings</span>
   <span (click)="changeFilter('Earring')">Earings</span>
   <span (click)="changeFilter('Band')">Bands</span>
@@ -15,5 +15,5 @@
 
 <div>
   <strong>Featured Products</strong>
-  <span *ngFor="let jewel of jewelry;let i = index"><div (click)="viewProductPage(i)"><div><img src={{jewel.images[0]}} style="height:100px;width:100px"></div><div>{{ jewel.jewelName }}</div><div>${{ jewel.price }}</div></div></span>
+  <span *ngFor="let jewel of jewelry;let i = index"><div (click)="viewProductPage(i)"><div><img src={{jewel.images[0]}} style="height:100px;width:100px"></div><div>{{ jewel.jewelName }}</div><div>${{ jewel.price }}</div></div><div><button (click)="addItem(i)">Add To Cart</button></div></span>
 </div>

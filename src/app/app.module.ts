@@ -17,11 +17,13 @@ import { HeaderComponent } from './layout/header.component';
 import { AdminHeaderComponent } from './layout/adminHeader.component';
 import { ProductPageComponent } from './productPage/productpage.component';
 import { CategoryComponent } from './category/category.component';
+import { ShoppingCartComponent } from './shoppingCart/shoppingcart.component';
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { AuthenticationService } from './authentication.service';
+import { CartService } from './cart.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { AuthenticationService } from './authentication.service';
     HeaderComponent,
     AdminHeaderComponent,
     ProductPageComponent,
-    CategoryComponent
+    CategoryComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { AuthenticationService } from './authentication.service';
     FileUploadModule,
   ],
   providers: [DataService,
-  AuthenticationService], // <-Add DataService  
+  AuthenticationService,
+  CartService], // <-Add DataService  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

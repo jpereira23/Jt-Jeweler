@@ -29,7 +29,6 @@ export class DataService {
   updateUser(user){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
     return this._http.put("http://192.168.1.69:3000/api/user/" + user._id, JSON.stringify(user), {headers: headers}).map(res => res.json()); 
   }
 
@@ -115,6 +114,40 @@ export class DataService {
     return this._http.get("http://192.168.1.69:3000/api/video/")
     .map(result => this.result = result.json().data);
   }
+
+  /**
+   * This is for orders
+   */
+
+   addOrder(order)
+   {
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      console.log("How we doing"); 
+      return this._http.post("http://192.168.1.69:3000/api/addorder/", JSON.stringify(order), {headers: headers}).map(res => res.json()); 
+   }
+
+    getOrders()
+    {
+      return this._http.get("http://192.168.1.69:3000/api/order/")
+      .map(result => this.result = result.json().data); 
+    }
+
+
+    updateOrderNumber(ordernumber)
+    {
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this._http.put("http://192.168.1.69:3000/api/updateordernumber/" + ordernumber._id, JSON.stringify(ordernumber), {headers: headers}).map(res => res.json()); 
+  
+    }
+
+    getOrderNumber()
+    {
+      return this._http.get("http://192.168.1.69:3000/api/ordernumber/")
+      .map(result => this.result = result.json().data); 
+    }
+    
 }
 
 

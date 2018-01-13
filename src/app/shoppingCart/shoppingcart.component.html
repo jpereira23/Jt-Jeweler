@@ -1,0 +1,34 @@
+<div>
+  <strong>Shopping Bag</strong>
+</div>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th width="50%">Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+      <tbody>
+        <tr *ngFor="let jewel of jewelry; let i = index">
+          <td><img src={{jewel.images[0]}} style="height:100px;width:100px" /><strong>{{ jewel.jewelName }}</strong></td>
+          <td><input type="number" min="1" name="quantity" ngControl="quantity" [(ngModel)]="jewelry[i].quantity" (ngModelChange)="jewelry[i].quantity" #quantity="ngModel"  /> </td>
+          <td>$ {{ jewel.price }}<br><div (click)="removeItem(i)">Remove</div></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<div style="position:absolute;right:0px;">
+  <strong>Subtotal: ${{ order.runningTotal }}</strong>
+</div>
+<br>
+<div style="position:absolute;right:0px;">
+Shopping and tax will be calculated in checkout
+</div>
+<br>
+<div style="position: absolute;right:0px;">
+  <button (click)="checkOut()">Checkout</button><br>
+  <button>Continue Shopping</button><br>
+</div>
+

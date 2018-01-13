@@ -37,5 +37,6 @@ export class ManageAccountComponent {
     this._dataService.updateUser(editUser).subscribe();
     this._authenticationService.logout();
     this.updated = true;
+    this._authenticationService.login(editUser.email, editUser.password);
   }
 }

@@ -1,5 +1,10 @@
-JT <br>
+<div>JT <br>
 Jewelry
+
+<div (click)="shoppingCart()" style="position:absolute;display:inline;right:0px;">
+  Shopping Cart({{ numOfItems }})
+</div>
+</div>
 
 <div *ngIf="signedIn == false">
 

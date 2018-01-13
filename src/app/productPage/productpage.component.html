@@ -19,9 +19,11 @@
         {{size.name}}
       </option>
     </select>
+     <input type="number" min="1" name="quantity" ngControl="quantity" [(ngModel)]="jewelryToBePreviewed.quantity" (ngModelChange)="jewelryToBePreviewed.quantity" #quantity="ngModel" />
+
   </div>
   <div>
-    <button>Add to Bag</button>
+    <button (click)="addItem()">Add to Bag</button>
   </div>
   <div>
     --------------------------------------------------------------------------

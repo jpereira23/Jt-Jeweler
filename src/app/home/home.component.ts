@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 // Import the DataService
 import { DataService } from '../data.service';
+import { CartService } from '../cart.service';
 import { User } from '../models/user';
 import { AuthenticationService } from '../authentication.service';
 import { Router, NavigationExtras } from '@angular/router';
@@ -24,7 +25,7 @@ export class HomeComponent {
   filteredJewelry: Array<any>;
   filter: string = "any";
   // Create an instance of the DataService through dependency injection
-  constructor(private _dataService: DataService, private route: ActivatedRoute, private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private _dataService: DataService, private route: ActivatedRoute, private authenticationService: AuthenticationService, private router: Router, private _cartService: CartService) {
   
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser'));
     if(this.signedInUser != null)
@@ -66,4 +67,11 @@ export class HomeComponent {
     
     this.router.navigate(['category'], navigationExtras);    
   } 
+
+  addItem(i)
+  {
+    this.jewelry[i].quantity = 1;
+    this._cartService.addItem(this.jewelry[i]);
+    location.reload();
+  }
 }

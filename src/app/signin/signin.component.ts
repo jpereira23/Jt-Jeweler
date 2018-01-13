@@ -14,7 +14,7 @@ import { AuthenticationService } from '../authentication.service';
 })
 
 export class SignInComponent {
-  signedIn = new User();
+  signedIn = new User;
   users: Array<any>;
   home: HomeComponent; 
 
@@ -39,7 +39,6 @@ export class SignInComponent {
         }
         else
         {  
-          console.log("Fuck"); 
           this.router.navigate(['']);
         }
       },

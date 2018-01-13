@@ -25,4 +25,17 @@ constructor(private _http: Http) {
   {
     localStorage.removeItem('currentUser');
   } 
+
+  loggedIn()
+  {
+    var aUsr = JSON.parse(localStorage.getItem('currentUser'));
+    if(aUsr == null)
+    {
+      return false;
+    }    
+    else
+    {
+      return true;
+    }   
+  }
 }
