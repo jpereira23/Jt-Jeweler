@@ -13,10 +13,17 @@ import { User } from '../models/user';
 export class ManageAccountComponent {
   signedInUser: any;
   updated: boolean = false;
-
+  personalInformation = true;
+  orderHistory = false;
+  previewedOrder: any = null;
   constructor(private _dataService: DataService, private _authenticationService: AuthenticationService)
   {
       this.signedInUser = JSON.parse(localStorage.getItem('currentUser'));
+
+      if(this.signedInUser.orders.length > 0)
+      {
+        this.previewedOrder = this.signedUser.orders[0];
+      }
   }
 
   public onSubmit()
@@ -39,4 +46,18 @@ export class ManageAccountComponent {
     this.updated = true;
     this._authenticationService.login(editUser.email, editUser.password);
   }
+
+  personalInformationFunc()
+  {
+    this.personalInformation = true;
+    this.orderHistory = false;
+  }
+
+  orderHistoryFunc()
+  {
+    this.personalInformation = false;
+    this.orderHistory = true;
+  }
+
+  
 }
