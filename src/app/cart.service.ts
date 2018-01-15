@@ -69,7 +69,6 @@ export class CartService {
     {
       this.order.isUser = true;
       var user:User = JSON.parse(localStorage.getItem('currentUser'));
-      this.order.user = user._id;
       if(user.orders == null)
       {
         user.orders = []; 
@@ -84,7 +83,6 @@ export class CartService {
     }
     else
     {
-      console.log("fuck off");
       this.dataService.addOrder(this.order);
     }
     localStorage.removeItem('currentOrder'); 

@@ -25,6 +25,13 @@
   <div>
     <button (click)="addItem()">Add to Bag</button>
   </div>
+  <div (click)="addToWishlist()" *ngIf="wishListSuccess == false">
+    <span>Add To Wishlist</span>
+  </div>
+  <div *ngIf="wishListSuccess == true">
+    This item has been added to your Wishlist.<br>
+    <span>View Wishlist</span>
+  </div>
   <div>
     --------------------------------------------------------------------------
     <div>

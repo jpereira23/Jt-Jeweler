@@ -51,7 +51,8 @@ export class HomeComponent {
     var jewel = this.jewelry[i];
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "itemCode": jewel.itemCode
+        "itemCode": jewel.itemCode,
+        "signedIn": this.signedIn
       }
     };
     this.router.navigate(['productPage'], navigationExtras);  

@@ -7,8 +7,15 @@
   <span (click)="orderHistoryFunc()">Order History</span>
   <div *ngIf="orderHistory == true">
     <ul>
-      <li *ngFor="let order of signedInUser.orders">{{ order }}</li>
+      <li *ngFor="let order of signedInUser.orders; let i = index" (click)="selectPreviewedOrder(i)">{{ order }}</li>
     </ul>
+  </div><br>
+  <span (click)="wishListFunc()">Wishlist</span>
+
+  <br><br><br>
+  <div>
+    <span>Questions?</span><br>
+    <span>If you have any questions, or comments, feel free to <a routerLink="/contactUs">contact us.</a></span>
   </div>
 </div>
 <div style="position:absolute;display:inline;right:30%;" *ngIf="personalInformation == true">
@@ -50,14 +57,29 @@
   </div>
 </div>
 
-<div style="position:absolute;display:inline;right:30%;" *ngIf="orderHistory == true">
+<div style="position:absolute;display:inline;right:50%;" *ngIf="orderHistory == true">
   <div>
     <strong>Order History</strong>
+    <span>Order  #{{ previewedOrder.orderNumber }}</span>
   </div>
-    <div *ngFor="let order of previewedOrder.jewelry">
-
-  </div>
-  
+  <div *ngFor="let order of previewedOrder.jewelry; let i = index" (click)="selectCurrentOrder(i)">
+    <img src={{order.images[0]}} style="height:100px;width:100px;" /> <span>${{ order.price }}</span><br>
+    <span><strong>{{ order.jewelName }}</strong></span><br>
+    <span>Size: {{ order.sizes[0].name }}</span>
   </div>
   
 </div>
+
+<div style="position:absolute;display:inline;right:30%;" *ngIf="wishList == true">
+  <div>
+    <strong>Wish List</strong>
+  </div>
+  <div *ngFor="let wish of signedInUser.wishList">
+    <img src={{wish.images[0]}} style="height:100px;width:100px;" /> <span>${{ wish.price }}</span><br>
+    <span><strong>{{ wish.jewelName }}</strong></span><br>
+    <!--<span>Size: {{ wish.sizes[0].name }}</span> -->
+
+  </div>
+
+</div>
+  
