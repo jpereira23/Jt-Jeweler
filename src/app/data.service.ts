@@ -28,6 +28,7 @@ export class DataService {
 
   updateUser(user){
     var headers = new Headers();
+    console.log("Waiting");
     headers.append('Content-Type', 'application/json');
     return this._http.put("http://192.168.1.69:3000/api/user/" + user._id, JSON.stringify(user), {headers: headers}).map(res => res.json()); 
   }

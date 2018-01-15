@@ -13,12 +13,38 @@ import { User } from '../models/user';
 export class ManageAccountComponent {
   signedInUser: any;
   updated: boolean = false;
-
+  personalInformation = true;
+  orderHistory = false;
+  wishList = false;
+  previewedOrderNumber: number = null;
+  previewedOrder: any = null;
+  orders: Array<any> = []; 
   constructor(private _dataService: DataService, private _authenticationService: AuthenticationService)
   {
       this.signedInUser = JSON.parse(localStorage.getItem('currentUser'));
+
+      if(this.signedInUser.orders.length > 0)
+      {
+        this.previewedOrderNumber = this.signedInUser.orders[0];
+        console.log(this.previewedOrderNumber);
+        this._dataService.getOrders()
+          .subscribe(res => this.delegateToGetOrders(res)); 
+      }
   }
 
+
+  public delegateToGetOrders(orders)
+  {
+    this.orders = orders;
+
+    for(var i = 0; i < this.orders.length; i++)
+    {
+      if(this.orders[i].orderNumber == this.previewedOrderNumber)
+      {
+        this.previewedOrder = this.orders[i];
+      }
+    }
+  }
   public onSubmit()
   {
     var editUser = {
@@ -39,4 +65,39 @@ export class ManageAccountComponent {
     this.updated = true;
     this._authenticationService.login(editUser.email, editUser.password);
   }
+
+  personalInformationFunc()
+  {
+    this.personalInformation = true;
+    this.orderHistory = false;
+    this.wishList = false;
+  }
+
+  orderHistoryFunc()
+  {
+    this.personalInformation = false;
+    this.orderHistory = true;
+    this.wishList = false;
+  }
+
+  wishListFunc()
+  {
+    this.personalInformation = false;
+    this.orderHistory = false;
+    this.wishList = true;
+  }
+
+  public selectPreviewedOrder(index)
+  {
+    this.previewedOrderNumber = this.signedInUser.orders[index];
+    
+    for(var i = 0; i < this.orders.length; i++)
+    {
+      if(this.orders[i].orderNumber == this.previewedOrderNumber)
+      {
+        this.previewedOrder = this.orders[i];
+      }
+    }
+  }
+  
 }

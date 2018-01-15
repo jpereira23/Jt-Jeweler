@@ -37,7 +37,6 @@ export class SignUpComponent {
     if(this.checkDuplicateEmail(this.newUser.email) == false)
     {
       var newUser = {
-        _id: null,
         firstName: this.newUser.firstName,
         lastName: this.newUser.lastName,
         password: this.newUser.password,

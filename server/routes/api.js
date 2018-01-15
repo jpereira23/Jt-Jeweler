@@ -57,10 +57,12 @@ router.post('/adduser', (req, res) => {
         .save(user, function(err, user){
           if(err)
           {
+            console.log(err);
             res.send(err);
           }
           else
           {
+            console.log("Successful");
             res.json(user);
           }
         });
@@ -75,10 +77,12 @@ router.put('/user/:id', (req, res) => {
       .update({_id: ObjectID(req.body._id)}, {'firstName:': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders }, { $multi: true }, function(err, user){
         if(err)
         {
+          console.log(err);
           res.send(err);
         }
         else
         {
+          console.log("Successfully updated user");
           res.json(user);
         }
       });

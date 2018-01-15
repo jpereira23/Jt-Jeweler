@@ -1,40 +1,85 @@
-My Account
+<strong>My Account</strong>
 
+<div style="position:absolute;display:inline;left:15px;">
+  <br>
+  <span (click)="personalInformationFunc()">Personal Information</span>
+  <br>
+  <span (click)="orderHistoryFunc()">Order History</span>
+  <div *ngIf="orderHistory == true">
+    <ul>
+      <li *ngFor="let order of signedInUser.orders; let i = index" (click)="selectPreviewedOrder(i)">{{ order }}</li>
+    </ul>
+  </div><br>
+  <span (click)="wishListFunc()">Wishlist</span>
 
-<div>
-  <strong>Personal Information</strong>
+  <br><br><br>
+  <div>
+    <span>Questions?</span><br>
+    <span>If you have any questions, or comments, feel free to <a routerLink="/contactUs">contact us.</a></span>
+  </div>
+</div>
+<div style="position:absolute;display:inline;right:30%;" *ngIf="personalInformation == true">
+  <div>
+    <strong>Personal Information</strong>
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="firstName">First name</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" ngControl="firstName" [(ngModel)]="signedInUser.firstName" (ngModelChange)="signedInUser.firstName" #firstName="ngModel" />
+    </div>
+    <div>
+      <label for="lastName">Last name</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" ngControl="lastName" [(ngModel)]="signedInUser.lastName" (ngModelChange)="signedInUser.lastName" #lastName="ngModel" />
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" name="email" ngControl="email" [(ngModel)]="signedInUser.email" (ngModelChange)="signedInUser.email" #email="ngModel" />
+    </div>
+    <div>
+      <label for="streetAddress">Address</label>
+      <input type="text" class="form-control" id="streetAddress" name="streetAddress" ngControl="streetAddress" [(ngModel)]="signedInUser.streetAddress" (ngModelChange)="signedInUser.streetAddress" #streetAddress="ngModel" />
+    </div>
+    <div>
+      <label for="city">City</label>
+      <input type="text" class="form-control" id="city" name="city" ngControl="city" [(ngModel)]="signedInUser.city" (ngModelChange)="signedInUser.city" #city="ngModel" />
+    </div>
+    <div>
+      <label for="state">State</label>
+      <input type="text" class="form-control" id="state" name="state" ngControl="state" [(ngModel)]="signedInUser.state" (ngModelChange)="signedInUser.state" #state="ngModel" />
+    </div>
+
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <div *ngIf="updated == true">
+    <span>Changes have been saved.</span>
+  </div>
 </div>
 
-<form (ngSubmit)="onSubmit()">
+<div style="position:absolute;display:inline;right:50%;" *ngIf="orderHistory == true">
   <div>
-    <label for="firstName">First name</label>
-    <input type="text" class="form-control" id="firstName" name="firstName" ngControl="firstName" [(ngModel)]="signedInUser.firstName" (ngModelChange)="signedInUser.firstName" #firstName="ngModel" />
+    <strong>Order History</strong>
+    <span>Order  #{{ previewedOrder.orderNumber }}</span>
   </div>
-  <div>
-    <label for="lastName">Last name</label>
-    <input type="text" class="form-control" id="lastName" name="lastName" ngControl="lastName" [(ngModel)]="signedInUser.lastName" (ngModelChange)="signedInUser.lastName" #lastName="ngModel" />
+  <div *ngFor="let order of previewedOrder.jewelry; let i = index" (click)="selectCurrentOrder(i)">
+    <img src={{order.images[0]}} style="height:100px;width:100px;" /> <span>${{ order.price }}</span><br>
+    <span><strong>{{ order.jewelName }}</strong></span><br>
+    <span>Size: {{ order.sizes[0].name }}</span>
   </div>
-  <div>
-    <label for="email">Email</label>
-    <input type="text" class="form-control" id="email" name="email" ngControl="email" [(ngModel)]="signedInUser.email" (ngModelChange)="signedInUser.email" #email="ngModel" />
-  </div>
-  <div>
-    <label for="streetAddress">Address</label>
-    <input type="text" class="form-control" id="streetAddress" name="streetAddress" ngControl="streetAddress" [(ngModel)]="signedInUser.streetAddress" (ngModelChange)="signedInUser.streetAddress" #streetAddress="ngModel" />
-  </div>
-   <div>
-    <label for="city">City</label>
-    <input type="text" class="form-control" id="city" name="city" ngControl="city" [(ngModel)]="signedInUser.city" (ngModelChange)="signedInUser.city" #city="ngModel" />
-  </div>
-  <div>
-    <label for="state">State</label>
-    <input type="text" class="form-control" id="state" name="state" ngControl="state" [(ngModel)]="signedInUser.state" (ngModelChange)="signedInUser.state" #state="ngModel" />
-  </div>
-
-  <button type="submit">Save Changes</button>
-</form>
-
-<div *ngIf="updated == true">
-  <span>Changes have been saved.</span>
+  
 </div>
 
+<div style="position:absolute;display:inline;right:30%;" *ngIf="wishList == true">
+  <div>
+    <strong>Wish List</strong>
+  </div>
+  <div *ngFor="let wish of signedInUser.wishList">
+    <img src={{wish.images[0]}} style="height:100px;width:100px;" /> <span>${{ wish.price }}</span><br>
+    <span><strong>{{ wish.jewelName }}</strong></span><br>
+    <!--<span>Size: {{ wish.sizes[0].name }}</span> -->
+
+  </div>
+
+</div>
+  
