@@ -32,8 +32,6 @@ export class SignUpComponent {
 
   public onSubmit()
   {
-
-     
     if(this.checkDuplicateEmail(this.newUser.email) == false)
     {
       var newUser = {
@@ -50,6 +48,7 @@ export class SignUpComponent {
       this.emailError = false;
       this.firstNameError = false;
       this._dataService.checkEmail(newUser).subscribe();
+      console.log("WELL"); 
       this.router.navigate(['signin']);
     }
       

@@ -34,7 +34,7 @@ export class DataService {
   checkEmail(user)
   {
     var headers = new Headers(); 
-    headers.append('Content-Type', 'applcatio/json');
+    headers.append('Content-Type', 'application/json');
     return this._http.post("http://192.168.1.69:3000/api/checkEmail/", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
   }
 

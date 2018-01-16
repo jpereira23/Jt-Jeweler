@@ -59,10 +59,13 @@ router.post('/checkEmail', (req, res) => {
   crypto.randomBytes(48, function(err, buffer) {
     token = buffer.toString('hex');
     var transporter = nodemailer.createTransport({
-      service: 'SendGrid',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
-        user: 'jt-jewelery',
-        pass: 'Portugal!1'
+        type: 'OAuth2',
+        clientId: '162628555345-v85tu2hh6dp9bm57ot8duqs2f96088nv.apps.googleusercontent.com',
+        clientSecret: 'Mv-F-cpmw9fYBTai5UadWqbt',
       }
     }); 
 
@@ -70,7 +73,13 @@ router.post('/checkEmail', (req, res) => {
       from: 'jefferypereira3@gmail.com',
       to: 'jpereira1@mail.csuchico.edu',
       subject: 'Welcome to JT Jewlery - Verify your account',
-      html: '<body><span>Welcome to JT Jewelery ' + req.body.firstName + req.body.lastName + ',</span><br><span>Here is a link to verify your account</span><br><a href="http://192.168.1.69:4200/confirmAccount?id=' + token + '">Verify Account</a></body>'
+      html: '<body><span>Welcome to JT Jewelery ' + req.body.firstName + ' ' + req.body.lastName + ',</span><br><span>Here is a link to verify your account</span><br><a href="http://192.168.1.69:4200/confirmAccount?id=' + token + '">Verify Account</a></body>',
+      auth: { 
+        user: 'jefferypereira3@gmail.com', 
+        refreshToken: '1/47UqC3mM14Zf5YJ3cuwLo0zLGdcqv_-ps2Co5KBnshFk4N_UWzZdI0g2VAU2WgOC', 
+        accessToken: 'ya29.GltEBYvAgDdu49C1PMAhBZySbxzd3SdE8n8i6swdEHjcvN18YhkDUEG9fsJLjw_h-Y5uYe8Ulv1qYvOsEKB2R-lw3WhB3uPGYHJ0gqVl8tZmG71IXsKPwr2tsB0J',
+        expires: 3600
+      }
     };
     user.token = token;
     transporter.sendMail(mailOptions, function(error, info){
