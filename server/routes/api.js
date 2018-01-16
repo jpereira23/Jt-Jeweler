@@ -111,6 +111,67 @@ router.post('/checkEmail', (req, res) => {
 
 });
 
+
+// Helping the user change their password when they forget
+
+router.post('/forgetPassword', (req, res) => {
+  var user = req.body;
+  crypto.randomBytes(48, function(err, buffer) {
+    token = buffer.toString('hex');
+    var transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+        type: 'OAuth2',
+        clientId: '162628555345-v85tu2hh6dp9bm57ot8duqs2f96088nv.apps.googleusercontent.com',
+        clientSecret: 'Mv-F-cpmw9fYBTai5UadWqbt',
+      }
+    }); 
+
+    var mailOptions = {
+      from: 'jefferypereira3@gmail.com',
+      to: user.email,
+      subject: 'JT Jewlery - Password Recovery System',
+      html: 'Hello ' + req.body.firstName + ' ' + req.body.lastName + ',</span><br><span>At JT Jewelry we ensure our customers protectiona and security. Use this link to verify your account and change your password.</span><br><a href="http://192.168.1.69:4200/newForgottenPassword?id=' + token + '">Verify Account</a></body>',
+      auth: { 
+        user: 'jefferypereira3@gmail.com', 
+        refreshToken: '1/47UqC3mM14Zf5YJ3cuwLo0zLGdcqv_-ps2Co5KBnshFk4N_UWzZdI0g2VAU2WgOC', 
+        accessToken: 'ya29.GltEBYvAgDdu49C1PMAhBZySbxzd3SdE8n8i6swdEHjcvN18YhkDUEG9fsJLjw_h-Y5uYe8Ulv1qYvOsEKB2R-lw3WhB3uPGYHJ0gqVl8tZmG71IXsKPwr2tsB0J',
+        expires: 3600
+      }
+    };
+    user.token = token;
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error)
+      {
+        console.log(error);
+        res.json({yo: 'error'});
+      }
+      else
+      {
+        connection((db) => {
+          db.collection('user')
+            .update({'_id': ObjectID(req.body._id)}, {'firstName:': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders, 'token': req.body.token }, { $multi: true }, function(err, user){
+              if(err)
+              {
+                console.log(err);
+                res.send(err);
+              }
+              else
+              {
+                console.log("Successfully updated user");
+                res.json(user);
+              }
+
+            });
+        }); 
+      };
+    });
+  });
+
+});
+
 // Helping with removing one of the temporary users
 
 router.get('/tempUsers', (req, res) => {

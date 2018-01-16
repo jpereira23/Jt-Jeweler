@@ -15,6 +15,9 @@ import { ShoppingCartComponent } from './shoppingCart/shoppingcart.component';
 import { ContactUsComponent } from './contactUs/contactus.component';
 import { ConfirmAccountComponent } from './confirmAccount/confirmaccount.component';
 import { ChangePasswordComponent } from './changePassword/changepassword.component'; 
+import { ForgetPasswordComponent } from './forgetPassword/forgetpassword.component';
+import { NewForgottenPasswordComponent } from './newForgottenPassword/newforgottenpassword.component';
+
 const appRoutes: Routes = [ 
   {
     path: '',
@@ -71,6 +74,14 @@ const appRoutes: Routes = [
   {
     path: 'changePassword',
     component: ChangePasswordComponent
+  },
+  {
+    path: 'forgetPassword',
+    component: ForgetPasswordComponent
+  },  
+  {
+    path: 'newForgottenPassword',
+    component: NewForgottenPasswordComponent
   }
 
 ];

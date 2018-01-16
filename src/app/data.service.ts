@@ -15,6 +15,13 @@ export class DataService {
    * This is for users
    */
 
+
+  forgotPassword(user)
+  {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("http://192.168.1.69:3000/api/forgetPassword/", JSON.stringify(user), { headers: headers}).map(res => res.json()); 
+  }
   getTempUsers() {
     return this._http.get("http://192.168.1.69:3000/api/tempUsers")
       .map(result => this.result = result.json().data);

@@ -10,6 +10,6 @@ Sign In Page
     <label for="password">Password:</label>
     <input type="password" class="form-control" id="password" name="password" ngControl="password" [(ngModel)]="signedIn.password" (ngModelChange)="signedIn.password" #email="ngModel" placeHolder="12345" required/>
   </div>
-
+  <a routerLink="/forgetPassword">Forgot Password?</a>
   <button type="submit">Sign In</button>
 </form>

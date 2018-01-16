@@ -21,6 +21,9 @@ import { ShoppingCartComponent } from './shoppingCart/shoppingcart.component';
 import { ContactUsComponent } from './contactUs/contactus.component';
 import { ConfirmAccountComponent } from './confirmAccount/confirmaccount.component';
 import { ChangePasswordComponent } from './changePassword/changepassword.component'; 
+import { ForgetPasswordComponent } from './forgetPassword/forgetpassword.component';
+import { NewForgottenPasswordComponent } from './newForgottenPassword/newforgottenpassword.component';
+
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
@@ -47,7 +50,9 @@ import { WishListService } from './wishlist.service';
     ShoppingCartComponent, 
     ContactUsComponent,
     ConfirmAccountComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ForgetPasswordComponent,
+    NewForgottenPasswordComponent
   ],
   imports: [
     BrowserModule,
