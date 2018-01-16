@@ -71,7 +71,7 @@ router.post('/checkEmail', (req, res) => {
 
     var mailOptions = {
       from: 'jefferypereira3@gmail.com',
-      to: 'jpereira1@mail.csuchico.edu',
+      to: user.email,
       subject: 'Welcome to JT Jewlery - Verify your account',
       html: '<body><span>Welcome to JT Jewelery ' + req.body.firstName + ' ' + req.body.lastName + ',</span><br><span>Here is a link to verify your account</span><br><a href="http://192.168.1.69:4200/confirmAccount?id=' + token + '">Verify Account</a></body>',
       auth: { 
@@ -172,9 +172,10 @@ router.post('/adduser', (req, res) => {
 // Edit a user
 router.put('/user/:id', (req, res) => {
     console.log(req.body.orders.length);      
+    console.log(req.body.password); 
     connection((db) => {
     db.collection('user')
-      .update({_id: ObjectID(req.body._id)}, {'firstName:': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders }, { $multi: true }, function(err, user){
+      .update({'_id': ObjectID(req.body._id)}, {'firstName:': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders, 'token': req.body.token }, { $multi: true }, function(err, user){
         if(err)
         {
           console.log(err);

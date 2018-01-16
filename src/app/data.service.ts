@@ -41,7 +41,18 @@ export class DataService {
   addUser(user: User) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json'); 
-    return this._http.post("http://192.168.1.69:3000/api/adduser", JSON.stringify(user), {headers: headers}).map(res => res.json());  
+    var addUser = { 
+      firstName: user.firstName,
+      lastName: user.lastName, 
+      password: user.password,
+      email: user.email,
+      streetAddress: user.streetAddress,
+      city: user.city,
+      state: user.state, 
+      wishList: user.wishList,
+      orders: user.orders,
+    }
+    return this._http.post("http://192.168.1.69:3000/api/adduser", JSON.stringify(addUser), {headers: headers}).map(res => res.json());  
  
   }
 
