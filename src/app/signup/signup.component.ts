@@ -49,7 +49,7 @@ export class SignUpComponent {
       } 
       this.emailError = false;
       this.firstNameError = false;
-      this._dataService.addUser(newUser).subscribe();
+      this._dataService.checkEmail(newUser).subscribe();
       this.router.navigate(['signin']);
     }
       

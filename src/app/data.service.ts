@@ -3,7 +3,7 @@ import { User } from './models/user';
 import { Jewel } from './models/jewel';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+import { forkJoin } from 'rxjs/observable/forkJoin';
 @Injectable()
 export class DataService {
 
@@ -15,15 +15,34 @@ export class DataService {
    * This is for users
    */
 
+  getTempUsers() {
+    return this._http.get("http://192.168.1.69:3000/api/tempUsers")
+      .map(result => this.result = result.json().data);
+  }
+
+  deleteTempUser(user)
+  {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.delete("http://192.168.1.69:3000/api/tempUser/" + user._id, {headers: headers}).map(res => res.json()); 
+  }
   getUsers() {
   return this._http.get("http://192.168.1.69:3000/api/users")
       .map(result => this.result = result.json().data);
   }
 
+  checkEmail(user)
+  {
+    var headers = new Headers(); 
+    headers.append('Content-Type', 'applcatio/json');
+    return this._http.post("http://192.168.1.69:3000/api/checkEmail/", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
+  }
+
   addUser(user: User) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json'); 
-    return this._http.post("http://192.168.1.69:3000/api/adduser", JSON.stringify(user), {headers: headers}).map(res => res.json()); 
+    return this._http.post("http://192.168.1.69:3000/api/adduser", JSON.stringify(user), {headers: headers}).map(res => res.json());  
+ 
   }
 
   updateUser(user){

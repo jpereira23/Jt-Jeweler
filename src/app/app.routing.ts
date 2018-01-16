@@ -13,6 +13,7 @@ import { ProductPageComponent } from './productPage/productpage.component';
 import { CategoryComponent } from './category/category.component';
 import { ShoppingCartComponent } from './shoppingCart/shoppingcart.component';
 import { ContactUsComponent } from './contactUs/contactus.component';
+import { ConfirmAccountComponent } from './confirmAccount/confirmaccount.component';
 const appRoutes: Routes = [ 
   {
     path: '',
@@ -62,6 +63,10 @@ const appRoutes: Routes = [
     path: 'contactUs',
     component: ContactUsComponent
   }, 
+  {
+    path: 'confirmAccount',
+    component: ConfirmAccountComponent
+  },
 
 ];
 

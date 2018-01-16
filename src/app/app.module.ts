@@ -19,6 +19,7 @@ import { ProductPageComponent } from './productPage/productpage.component';
 import { CategoryComponent } from './category/category.component';
 import { ShoppingCartComponent } from './shoppingCart/shoppingcart.component';
 import { ContactUsComponent } from './contactUs/contactus.component';
+import { ConfirmAccountComponent } from './confirmAccount/confirmaccount.component';
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
@@ -43,7 +44,8 @@ import { WishListService } from './wishlist.service';
     ProductPageComponent,
     CategoryComponent,
     ShoppingCartComponent, 
-    ContactUsComponent
+    ContactUsComponent,
+    ConfirmAccountComponent
   ],
   imports: [
     BrowserModule,

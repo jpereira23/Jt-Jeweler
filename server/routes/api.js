@@ -5,6 +5,9 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const jwt = require('jsonwebtoken');
 const Q = require('q');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+
 // Connect
 const connection = (closure) => {
     return MongoClient.connect('mongodb://localhost:27017/jt-jewelry', (err, client) => {
@@ -47,6 +50,94 @@ router.get('/users', (req, res) => {
             });
     });
 });
+// Confirmation of adding a user
+
+
+router.post('/checkEmail', (req, res) => {
+  var user = req.body;
+  var token = "";
+  crypto.randomBytes(48, function(err, buffer) {
+    token = buffer.toString('hex');
+    var transporter = nodemailer.createTransport({
+      service: 'SendGrid',
+      auth: {
+        user: 'jt-jewelery',
+        pass: 'Portugal!1'
+      }
+    }); 
+
+    var mailOptions = {
+      from: 'jefferypereira3@gmail.com',
+      to: 'jpereira1@mail.csuchico.edu',
+      subject: 'Welcome to JT Jewlery - Verify your account',
+      html: '<body><span>Welcome to JT Jewelery ' + req.body.firstName + req.body.lastName + ',</span><br><span>Here is a link to verify your account</span><br><a href="http://192.168.1.69:4200/confirmAccount?id=' + token + '">Verify Account</a></body>'
+    };
+    user.token = token;
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error)
+      {
+        console.log(error);
+        res.json({yo: 'error'});
+      }
+      else
+      {
+        connection((db) => {
+          db.collection('tempUser')
+            .save(user, function(err, user){
+              if(err)
+              {
+                console.log(err);
+                res.send(err);
+              }
+              else
+              {
+                console.log("Successful");
+                res.json(user);
+              }
+            });
+        }); 
+      };
+    });
+  });
+
+});
+
+// Helping with removing one of the temporary users
+
+router.get('/tempUsers', (req, res) => {
+  connection((db) => {
+    db.collection('tempUser')
+      .find()
+      .toArray()
+      .then((users) => {
+        response.data = users;
+        res.json(response);
+      })
+      .catch((err) => {
+        sendError(err, res);
+    });
+  });
+});
+
+// Remove one of the temporary users
+router.delete('/tempUser/:id', (req, res) => {
+  var user = req.body;
+  connection((db) => {
+    db.collection('tempUser')
+      .remove({_id: ObjectID(req.body._id)}, function(err, user) {
+        if(err)
+        {
+          res.send(err);
+        }
+        else
+        {
+          res.json(user); 
+        }
+      });
+  });
+});
+
+
 
 // Add a user
 router.post('/adduser', (req, res) => {
@@ -405,7 +496,6 @@ router.post('/addorder', (req, res) => {
     });
   });
 });
-
 
 
 module.exports = router;
