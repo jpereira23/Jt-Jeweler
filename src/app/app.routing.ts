@@ -14,6 +14,7 @@ import { CategoryComponent } from './category/category.component';
 import { ShoppingCartComponent } from './shoppingCart/shoppingcart.component';
 import { ContactUsComponent } from './contactUs/contactus.component';
 import { ConfirmAccountComponent } from './confirmAccount/confirmaccount.component';
+import { ChangePasswordComponent } from './changePassword/changepassword.component'; 
 const appRoutes: Routes = [ 
   {
     path: '',
@@ -67,6 +68,10 @@ const appRoutes: Routes = [
     path: 'confirmAccount',
     component: ConfirmAccountComponent
   },
+  {
+    path: 'changePassword',
+    component: ChangePasswordComponent
+  }
 
 ];
 

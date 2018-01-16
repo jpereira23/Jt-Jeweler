@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../data.service';
 import { AuthenticationService } from '../authentication.service';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './manageaccount.component.html',
@@ -19,7 +20,7 @@ export class ManageAccountComponent {
   previewedOrderNumber: number = null;
   previewedOrder: any = null;
   orders: Array<any> = []; 
-  constructor(private _dataService: DataService, private _authenticationService: AuthenticationService)
+  constructor(private _dataService: DataService, private _authenticationService: AuthenticationService, private router: Router)
   {
       this.signedInUser = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -98,6 +99,11 @@ export class ManageAccountComponent {
         this.previewedOrder = this.orders[i];
       }
     }
+  }
+
+  public changePassword()
+  {
+    this.router.navigate(['changePassword']); 
   }
   
 }

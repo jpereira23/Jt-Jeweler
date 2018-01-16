@@ -48,7 +48,9 @@
       <label for="state">State</label>
       <input type="text" class="form-control" id="state" name="state" ngControl="state" [(ngModel)]="signedInUser.state" (ngModelChange)="signedInUser.state" #state="ngModel" />
     </div>
-
+    <div>
+      <button (click)="changePassword()">Change Password</button>
+    </div>
     <button type="submit">Save Changes</button>
   </form>
 
