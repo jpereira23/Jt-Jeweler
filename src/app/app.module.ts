@@ -31,6 +31,7 @@ import { DataService } from './data.service';
 import { AuthenticationService } from './authentication.service';
 import { CartService } from './cart.service';
 import { WishListService } from './wishlist.service';
+import { LayoutService } from './layout.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { WishListService } from './wishlist.service';
   providers: [DataService,
   AuthenticationService,
   CartService,
-  WishListService], // <-Add DataService  
+  WishListService,
+  LayoutService], // <-Add DataService  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

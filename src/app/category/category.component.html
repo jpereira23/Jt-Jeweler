@@ -2,8 +2,20 @@
   <div>
     <strong>{{ filter }}s</strong>
   </div>
+  <div style="position:absolute;display:inline;right:10%;">
+    <select name="theFilter" [(ngModel)]="theFilter" (change)="filterData()">
+      <option disabled="disabled" selected="selected">
+        Sort By:
+      </option>
+      <option *ngFor="let category of filters" value={{category}}>
+        {{category}}
+      </option>
+    </select>
+  </div>
+
+
   <div>
-    <span *ngFor="let jewel of filteredJewelry;let i = index"><div (click)="viewProductPage(i)"><div><img src={{jewel.images[0]}} style="height:100px;width:100px"></div><div>{{ jewel.jewelName }}</div><div>${{ jewel.price }}</div></div></span>
+    <span *ngFor="let jewel of filteredJewelry;let i = index"><div (click)="viewProductPage(i)"><div><img src={{jewel.images[0]}} style="height:100px;width:100px"></div><div>{{ jewel.jewelName }}</div><div>${{ jewel.price }}</div></div><div><button (click)="addToCart(i)">Add To Bag</button></div></span>
 
   </div>
 </div>

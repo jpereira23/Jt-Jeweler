@@ -152,7 +152,7 @@ router.post('/forgetPassword', (req, res) => {
       {
         connection((db) => {
           db.collection('user')
-            .update({'_id': ObjectID(req.body._id)}, {'firstName:': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders, 'token': req.body.token }, { $multi: true }, function(err, user){
+            .update({'_id': ObjectID(req.body._id)}, {'firstName': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders, 'token': req.body.token }, { $multi: true }, function(err, user){
               if(err)
               {
                 console.log(err);
@@ -236,7 +236,7 @@ router.put('/user/:id', (req, res) => {
     console.log(req.body.password); 
     connection((db) => {
     db.collection('user')
-      .update({'_id': ObjectID(req.body._id)}, {'firstName:': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders, 'token': req.body.token }, { $multi: true }, function(err, user){
+      .update({'_id': ObjectID(req.body._id)}, {'firstName': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders, 'token': req.body.token }, { $multi: true }, function(err, user){
         if(err)
         {
           console.log(err);
@@ -276,19 +276,20 @@ router.delete('/user/:id', (req, res) => {
 router.post('/authenticate', (req, res) => {
   var user = req.body;
   var deferred = Q.defer();
-  console.log("Fuck....");
   connection((db) => {
     db.collection('user')
-      .findOne({ email: user.email }, (err, aUser) => {
+      .findOne({ 'email': user.email }, (err, aUser) => {
         if(err){
+          console.log("Hmm");
           res.send(err);
         }
-        console.log('requested password is ' + user.password);
-        console.log('password in system is ' + aUser.password);
+
+        console.log(aUser);
         if(user && user.password == aUser.password)
         {
-          console.log('user first name is ' + aUser.firstName);
+          console.log('user first name is ' + aUser.lastName);
           // authentication should have succeeded
+          /*
           deferred.resolve({
             _id: aUser._id,
             email: aUser.email, 
@@ -296,11 +297,13 @@ router.post('/authenticate', (req, res) => {
             lastName: aUser.lastName,
             token: jwt.sign({ sub: aUser._id }, config.secret)
           });
+          */
           res.json(aUser);
         }
         else
         {
           //authentication failed
+          console.log("Fucker"); 
           res.send(err);
         }
     });    

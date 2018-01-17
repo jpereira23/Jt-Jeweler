@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 // Import the DataService
@@ -16,7 +16,7 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 
 export class HomeComponent {
-  
+  @Input('aWord') theWord: string;   
   // Define a users property to hold our user data
   users: Array<any>;
   signedIn = false  ;

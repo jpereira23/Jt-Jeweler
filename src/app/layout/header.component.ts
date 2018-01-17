@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { CartService } from '../cart.service';
+import { LayoutService } from '../layout.service';
 
 import { Router } from '@angular/router';
 @Component({
@@ -14,7 +15,7 @@ export class HeaderComponent {
   signedIn: boolean = false;
   signedInUser: any;
   numOfItems: number = 0;
-  constructor(private authenticationService: AuthenticationService, private cartService: CartService, private router: Router)
+  constructor(private authenticationService: AuthenticationService, private cartService: CartService, private router: Router, private layoutService: LayoutService)
   {
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser')); 
     this.numOfItems = this.cartService.getNumItems(); 
@@ -25,10 +26,16 @@ export class HeaderComponent {
     }
   }
 
+  ngOnInit(){
+    this.layoutService.getData().subscribe(data => {
+        this.signedIn = data;
+        })
+  }
+
   signOut()
   {
     this.authenticationService.logout();
-    location.reload(); 
+    this.signedIn = false;
   }
 
   shoppingCart()

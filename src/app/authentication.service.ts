@@ -14,6 +14,7 @@ constructor(private _http: Http) {
     .map((response: Response) => {
       let user = response.json();
       if(user) {
+        console.log("first name is " + user.firstName); 
         localStorage.setItem('currentUser', JSON.stringify(user));
       }
 

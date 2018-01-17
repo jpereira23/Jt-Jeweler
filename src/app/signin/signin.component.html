@@ -12,4 +12,8 @@ Sign In Page
   </div>
   <a routerLink="/forgetPassword">Forgot Password?</a>
   <button type="submit">Sign In</button>
+  <div *ngIf="isError == true"> 
+    {{ isMessage }}
+  </div>
+
 </form>

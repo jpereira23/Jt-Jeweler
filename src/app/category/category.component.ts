@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 
 import { DataService } from '../data.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'category',
@@ -13,7 +14,9 @@ export class CategoryComponent {
   filter: string = "any";
   jewelry: Array<any>;
   filteredJewelry: Array<any> = []; 
-  constructor(private _dataService: DataService, private route: ActivatedRoute, private router: Router)
+  filters: Array<string> = ["High To Low", "Low To High"];
+  theFilter: string = "";
+  constructor(private _dataService: DataService, private route: ActivatedRoute, private router: Router, private cartService: CartService)
   {
     this.route.queryParams.subscribe(params => {
       this.filter = params["filter"];
@@ -22,7 +25,29 @@ export class CategoryComponent {
     this._dataService.getJewelry()
       .subscribe(res => this.delegateForJewelry(res));
   }
+  
+  public highToLow(element, index, array)
+  {
+    return(element.price > element.price);
+  }
+  public filterData()
+  {
+    if(this.theFilter == this.filters[0])
+    {
+      this.jewelry.filter(this.highToLow);
+    }
+    else if(this.theFilter == this.filters[1])
+    {
+      console.log("It is Low To High");
+    }
+  }
 
+  public addToCart(index)
+  {
+    var jewel = this.filteredJewelry[index];
+    this.cartService.addItem(jewel);
+    location.reload();
+  }
   viewProductPage(i)
   {
     var jewel = this.filteredJewelry[i];

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { WishListService } from '../wishlist.service';
 import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
+import { LayoutService } from '../layout.service'; 
 @Component({
   selector: 'productPage',
   templateUrl: './productpage.component.html',
@@ -17,7 +18,7 @@ export class ProductPageComponent {
   jewelryToBePreviewed: any;
   quantity: number = 0;
   wishListSuccess:boolean = false;
-  constructor(private cartService: CartService, private _dataService: DataService, private route: ActivatedRoute, private router: Router, private wishListService: WishListService) 
+  constructor(private cartService: CartService, private _dataService: DataService, private route: ActivatedRoute, private router: Router, private wishListService: WishListService, private layoutService: LayoutService) 
   {
     this.route.queryParams.subscribe(params => {
       this.itemCode = params["itemCode"];

@@ -6,7 +6,7 @@ import { AuthenticationService } from '../authentication.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-root',
+  selector: 'manageAccount',
   templateUrl: './manageaccount.component.html',
   styleUrls: ['./manageaccount.component.css']
 })
