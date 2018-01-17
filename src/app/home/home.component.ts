@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 // Import the DataService
@@ -15,15 +15,21 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent {
-  @Input('aWord') theWord: string;   
-  // Define a users property to hold our user data
+export class HomeComponent{
   users: Array<any>;
   signedIn = false  ;
   signedInUser: User;
   jewelry: Array<any>;
   filteredJewelry: Array<any>;
   filter: string = "any";
+  config: SwiperOptions = {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 30
+  };
+
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService, private route: ActivatedRoute, private authenticationService: AuthenticationService, private router: Router, private _cartService: CartService) {
   
@@ -37,15 +43,18 @@ export class HomeComponent {
     // Access the Data Service's getUsers() method we defined
     this._dataService.getUsers()
         .subscribe(res => this.users = res);
-
     this._dataService.getJewelry()
-      .subscribe(res => this.jewelry = res);
+      .subscribe(res => this.delegateForJewelry(res));
+
 
     this.filteredJewelry = this.jewelry;
     this.filter = "any";
     
   } 
-
+  delegateForJewelry(jewelry)
+  {
+    this.jewelry = jewelry;
+  }
   viewProductPage(i)
   {
     var jewel = this.jewelry[i];

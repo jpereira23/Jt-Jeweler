@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
+import { SwiperModule } from 'angular2-useful-swiper';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -62,6 +63,7 @@ import { LayoutService } from './layout.service';
     FormsModule,
     ReactiveFormsModule,
     FileUploadModule,
+    SwiperModule
   ],
   providers: [DataService,
   AuthenticationService,

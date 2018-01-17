@@ -25,20 +25,18 @@ export class CategoryComponent {
     this._dataService.getJewelry()
       .subscribe(res => this.delegateForJewelry(res));
   }
-  
-  public highToLow(element, index, array)
-  {
-    return(element.price > element.price);
-  }
+ 
   public filterData()
   {
     if(this.theFilter == this.filters[0])
     {
-      this.jewelry.filter(this.highToLow);
+      this.filteredJewelry.sort((a,b)=>b.price-a.price); 
+      console.log("Hello");
     }
     else if(this.theFilter == this.filters[1])
     {
-      console.log("It is Low To High");
+      this.filteredJewelry.sort((a,b)=>a.price-b.price); 
+      console.log("Goodbye"); 
     }
   }
 

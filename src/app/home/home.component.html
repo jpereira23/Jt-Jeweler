@@ -1,6 +1,5 @@
 
 
-  {{theWord}}
 <div style="text-align:center;">
 </div>
 <br><br><br><br>
@@ -15,5 +14,20 @@
 
 <div>
   <strong>Featured Products</strong>
-  <span *ngFor="let jewel of jewelry;let i = index"><div (click)="viewProductPage(i)"><div><img src={{jewel.images[0]}} style="height:100px;width:100px"></div><div>{{ jewel.jewelName }}</div><div>${{ jewel.price }}</div></div><div><button (click)="addItem(i)">Add To Cart</button></div></span>
+  <span *ngFor="let jewel of jewelry;let i = index">
+    <div>
+    <img src={{jewel.images[0]}} style="height:100px;width:100px;">
+    </div>
+  <div (click)="viewProductPage(i)">
+    <div>
+      {{ jewel.jewelName }}
+    </div>
+    <div>
+      ${{ jewel.price }}
+    </div>
+  </div>
+  <div>
+    <button (click)="addItem(i)">Add To Cart</button>
+  </div>
+  </span>
 </div>
