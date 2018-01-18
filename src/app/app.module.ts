@@ -24,6 +24,7 @@ import { ConfirmAccountComponent } from './confirmAccount/confirmaccount.compone
 import { ChangePasswordComponent } from './changePassword/changepassword.component'; 
 import { ForgetPasswordComponent } from './forgetPassword/forgetpassword.component';
 import { NewForgottenPasswordComponent } from './newForgottenPassword/newforgottenpassword.component';
+import { RelatedItemComponent } from './relatedItems/relateditems.component';
 
 
 // Import the Http Module and our Data Service
@@ -54,7 +55,8 @@ import { LayoutService } from './layout.service';
     ConfirmAccountComponent,
     ChangePasswordComponent,
     ForgetPasswordComponent,
-    NewForgottenPasswordComponent
+    NewForgottenPasswordComponent,
+    RelatedItemComponent
   ],
   imports: [
     BrowserModule,

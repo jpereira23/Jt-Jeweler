@@ -19,7 +19,7 @@
         {{size.name}}
       </option>
     </select>
-     <input type="number" min="1" name="quantity" ngControl="quantity" [(ngModel)]="jewelryToBePreviewed.quantity" (ngModelChange)="jewelryToBePreviewed.quantity" #quantity="ngModel" />
+    <input type="number" min="1" name="quantity" ngControl="quantity" [(ngModel)]="jewelryToBePreviewed.quantity" (ngModelChange)="jewelryToBePreviewed.quantity" #quantity="ngModel" />
 
   </div>
   <div>
@@ -67,16 +67,7 @@
       <video src={{jewelryToBePreviewed.video}} controls style="height:100px;width:100px;">Your browser does not support the tag.</video>
   </div>
   <div>
-    --------------------------------------------------------------------------
-    <div>
-      <strong>You May Also Like</strong>
-      <div *ngFor="let jewel of jewelry">
-        <div><img src={{jewel.images[0]}} style="height:100px;width:100px;" /></div>
-        <div><span>{{ jewel.jewelName }}</span></div>
-        <div><span>${{ jewel.price }}</span></div>
-      </div>
-    </div>
-  </div>
+  <related-item></related-item>
 </div>
 
 

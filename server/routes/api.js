@@ -236,7 +236,7 @@ router.put('/user/:id', (req, res) => {
     console.log(req.body.password); 
     connection((db) => {
     db.collection('user')
-      .update({'_id': ObjectID(req.body._id)}, {'firstName': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders, 'token': req.body.token }, { $multi: true }, function(err, user){
+      .update({'_id': ObjectID(req.body._id)}, {'firstName': req.body.firstName, 'lastName': req.body.lastName, 'password': req.body.password, 'email': req.body.email, 'streetAddress': req.body.streetAddress, 'city': req.body.city, 'state': req.body.state, 'wishList': req.body.wishList, 'orders': req.body.orders, 'token': req.body.token, 'currentOrder': req.body.currentOrder }, { $multi: true }, function(err, user){
         if(err)
         {
           console.log(err);

@@ -28,8 +28,4 @@ export class AdminComponent {
     //this._dataService.updateUser().subscribe();
   }
 
-  onDelete(){
-    console.log("deleting");
-    this._dataService.deleteUser().subscribe();
-  }
 }

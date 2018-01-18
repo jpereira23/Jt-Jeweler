@@ -1,0 +1,10 @@
+    --------------------------------------------------------------------------
+    <div>
+      <strong>You May Also Like</strong>
+      <div *ngFor="let jewel of jewelry">
+        <div><img src={{jewel.images[0]}} style="height:100px;width:100px;" /></div>
+        <div><span>{{ jewel.jewelName }}</span></div>
+        <div><span>${{ jewel.price }}</span></div>
+      </div>
+    </div>
+

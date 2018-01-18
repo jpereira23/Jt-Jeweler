@@ -4,11 +4,7 @@
 </div>
 <br><br><br><br>
 <div style="text-align:center;">
-  <span (click)="changeFilter('Ring')">Rings</span>
-  <span (click)="changeFilter('Earring')">Earings</span>
-  <span (click)="changeFilter('Band')">Bands</span>
-  <span (click)="changeFilter('Pendant')">Pendants</span>
-  <span (click)="changeFilter('Bracelet')">Bracelets</span>
+  <span *ngFor="let category of categories; let i = index" (click)="changeFilter(i)">{{category}}s </span>
 </div>
 <br><br><br><br>
 

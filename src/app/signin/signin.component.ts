@@ -52,6 +52,7 @@ export class SignInComponent {
           data => { 
           this.isError = false;
           this.isMessage = "";
+          
           if(this.signedIn.email.toLowerCase() == 'admin@gmail.com')
           {
             this.router.navigate(['admin']);
