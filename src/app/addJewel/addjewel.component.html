@@ -52,9 +52,9 @@ Add Jewelry page
   <div>
 
     <label for="weightThreeDim">Weight(3D) of Jewelry:</label>
-    <input type="number" min="0" step="any" class="form-control" id="weightThreeDim" name="weightThreeDim" ngControl="weightThreeDim" [value]="threeDimOne" (input)="threeDimOne=$event.target.value" placeHolder="0.00"> x
-    <input type="number" min="0" step="any" class="form-control" id="weightThreeDim" name="weightThreeDim" ngControl="weightThreeDim" [value]="threeDimTwo" (input)="threeDimTwo=$event.target.value" placeHolder="0.00"> x
-    <input type="number" min="0" step="any" class="form-control" id="weightThreeDim" name="weightThreeDim" ngControl="weightThreeDim" [value]="threeDimThree" (input)="threeDimThree=$event.target.value" placeHolder="0.00">
+    <input type="number" min="0" step="any" class="form-control" id="dimensionOne" name="dimensionOne" ngControl="dimensionOne" [(ngModel)]="newJewel.weight3d.dimensionOne" (ngModelChange)="newJewel.weight3d.dimensionOne" #dimensionOne="ngModel"> x
+    <input type="number" min="0" step="any" class="form-control" id="dimensionTwo" name="dimensionTwo" ngControl="dimensionTwo" [(ngModel)]="newJewel.weight3d.dimensionTwo" (ngModelChange)="newJewel.weight3d.dimensionTwo" #dimensionTwo="ngModel"> x
+    <input type="number" min="0" step="any" class="form-control" id="dimensionThree" name="dimensionThree" ngControl="dimensionThree" [(ngModel)]="newJewel.weight3d.dimensionThree" (ngModelChange)="newJewel.weight3d.dimensionThree" #dimensionThree="ngModel">
   </div>
 
   <div>
@@ -69,9 +69,9 @@ Add Jewelry page
   
   <div>
     <label for="details">Details of Jewelry:</label>
-    <input type="text" class="form-control" id="detail1" name="detail1" ngControl="detail1" [value]="detail1" (input)="detail1=$event.target.value" placeHolder="First Detail">
-    <input type="text" class="form-control" id="detail2" name="detail2" ngControl="detail2" [value]="detail2" (input)="detail2=$event.target.value" placeHolder="Second Detail">
-    <input type="text" class="form-control" id="detail3" name="detail3" ngControl="detail3" [value]="detail3" (input)="detail3=$event.target.value" placeHolder="Third Detail">
+    <input type="text" class="form-control" id="detailOne" name="detailOne" ngControl="detailOne" [(ngModel)]="newJewel.detaillist.detailOne" (ngModelChange)="newJewel.detaillist.detailOne" #detailOne="ngModel">
+    <input type="text" class="form-control" id="detailTwo" name="detailTwo" ngControl="detailTwo" [(ngModel)]="newJewel.detaillist.detailTwo" (ngModelChange)="newJewel.detaillist.detailTwo" #detailTwo="ngModel">
+    <input type="text" class="form-control" id="detailThree" name="detailThree" ngControl="detailThree" [(ngModel)]="newJewel.detaillist.detailThree" (ngModelChange)="newJewel.detaillist.detailThree" #detailThree="ngModel">
   </div>
 
   <div>
@@ -80,10 +80,10 @@ Add Jewelry page
   </div>
   <div>
     <label for="aSize">Sizes:</label>
-    <input type="text" class="form-control" id="aSize" name="aSize" ngControl="aSize" [value]="aSize" (input)="aSize=$event.target.value" placeHolder="Add Size" />
+    <input type="number" class="form-control" id="aSize" name="aSize" ngControl="aSize" [value]="aSize" (input)="aSize=$event.target.value" placeHolder="Add Size" />
     <button type="button" class="addSize" (click)="addingSize()">Add Size</button>
     <ul>
-      <li *ngFor="let size of sizes; let i = index"><input type="checkbox" name="size" [(ngModel)]="size.isUsed">{{ size.name }}<span *ngIf="size.isUsed == true">, Quantity: <input type="text" name="quanitity" ngControl="quantity" [(ngModel)]="size.quantity" (ngModelChange)="size.quantity" #quantity="ngModel" /></span></li>
+      <li *ngFor="let size of sizes; let i = index"><input type="checkbox" name="size" [(ngModel)]="size.isUsed"> {{ size.size }}<span *ngIf="size.isUsed == true">, Quantity: <input type="text" name="quanitity" ngControl="quantity" [(ngModel)]="size.quantity" (ngModelChange)="size.quantity" #quantity="ngModel" /></span></li>
     </ul>
   </div>
   <div>

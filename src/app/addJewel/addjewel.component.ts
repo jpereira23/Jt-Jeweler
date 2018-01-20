@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
-import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { DataService } from '../data.service';
 import { Jewel } from '../models/jewel';
+import { Size } from '../models/size';
+import { AdminSize } from '../models/adminSize';
+import { JewelSize } from '../models/jewelSize';
+import { Weight3D } from '../models/weight3d';
+import { DetailList } from '../models/detaillist';
 
 const URL = 'http://192.168.1.69:3000/upload';
 
@@ -18,105 +22,113 @@ export class AddJewelryComponent {
   newJewel = new Jewel();
   uploader: FileUploader = new FileUploader({url: URL});
   videoUploader: FileUploader = new FileUploader({url: URL});
-  threeDimOne: number = 0.00;
-  threeDimTwo: number = 0.00;
-  threeDimThree: number = 0.00;
-  threeDimArray: Array<number> = [];
-  detailsArray: Array<string> = [];
-  detail1: string="";
-  detail2: string="";
-  detail3: string="";  
+  weight3d = new Weight3D();
+  detailList = new DetailList();
   imagesArray: Array<string> = [];
-  globalImages: Array<any> = [];
   videoUrl: string="";
   aSize: string = "";
-  sizes: Array<any> = [];
-  yourSizes: Array<string> = [];
+  sizes: Array<AdminSize> = [];
+  jewelSizes: Array<JewelSize> = [];
   imageErrorMessage: string = "";
   imageError: boolean = false;
   videoErrorMessage: string = "";
   videoError: boolean = false;
   categoriesArray: Array<string> = ["Ring", "Earring", "Band", "Pendant", "Bracelet"];
-  constructor(private _dataService: DataService, private router: Router, private _http: Http)
+
+  /** 
+   * constructor(), is used to intitalize _dataService and router, and also get us the sizes we need for adding the jewel
+   *
+   * @param _dataService, represents a DataService so we can use it to add Jewels and Sizes to the database 
+   * @param router, represents a router so we can route to the ViewJewel page after we are doing adding the jewel
+   */ 
+  constructor(private _dataService: DataService, private router: Router)
   {
     this._dataService.getSizes()
-      .subscribe(res => this.sizes = res);
- } 
+      .subscribe(res => this.getSizeOnDelegate(res));
+  } 
 
+  /** 
+   * getSizeOnDelegate(sizesArray: Array<Size>), a method used as a delgate to delegate the sizes from the database to the sizes: Array<AdminSize> variable
+   *
+   * @param sizesArray, sizesArray represents the response from the DataService when we try and get sizes from the database
+   */ 
+  private getSizeOnDelegate(sizesArray: Array<Size>)
+  {
+    for(var i = 0; i < sizesArray.length; i++)
+    {
+      this.sizes.push(sizesArray[i].adminSize());
+    }
+  }
+
+  /** 
+   *  onSubmit(), this function is used to submit a piece of jewelry to the database after the form has been complete
+   */
   public onSubmit()
   {
-    this.threeDimArray.push(this.threeDimOne);
-    this.threeDimArray.push(this.threeDimTwo);
-    this.threeDimArray.push(this.threeDimThree);
-    this.detailsArray.push(this.detail1);
-    this.detailsArray.push(this.detail2);
-    this.detailsArray.push(this.detail3);
     for(var i = 0; i < this.sizes.length; i++)
     {
       if(this.sizes[i].isUsed == true)
       {
-        this.yourSizes.push(this.sizes[i]);
+        this.jewelSizes.push(this.sizes[i].jewelSize());
       }
     }    
-    var newJewel = {
-      jewelName: this.newJewel.jewelName,
-      price: this.newJewel.price,
-      quantity: this.newJewel.quantity,
-      sizes: this.yourSizes,
-      isFemale: this.newJewel.isFemale, 
-      isMale: this.newJewel.isMale, 
-      category: this.newJewel.category,
-      images: this.imagesArray,
-      popularRank: 0,
-      itemCode: this.newJewel.itemCode,
-      centerStone: this.newJewel.centerStone,
-      weightOneDim: this.newJewel.weightOneDim,
-      weightThreeDim: this.threeDimArray,
-      shape: this.newJewel.shape,
-      clarity: this.newJewel.clarity,
-      metal: this.newJewel.metal,
-      details: this.detailsArray,
-      formalDescription: this.newJewel.formalDescription,
-      video: this.videoUrl
-    }
-    this._dataService.addJewel(newJewel).subscribe();
+    
+    this._dataService.addJewel(this.newJewel.compactJewel(this.imagesArray, this.videoUrl, this.jewelSizes)).subscribe();
 
     this.router.navigate(['viewJewel']);
   }
 
-  public upload()
-  {
-    const formData: any = new FormData();
-  }
-
+  /**
+   * uploading(event: any), is used to append an array to the imagesArray so we can communicate with the newJewel
+   * 
+   * @param event, is a type of Event that will capture the true value of the thing being uploaded
+   */
   public uploading(event: any)
   {
     this.imagesArray.push("multimedia/" + event.target.files[0].name);
   }
 
+  /** 
+   * uploadingVideo(event: any), is used to give the videoUrl the actualy video url that was uploaded
+   *
+   * @param even, is a type of Event that will capture the true value of the thing being uploaded
+   */
   public uploadingVideo(event: any)
   {
     this.videoUrl = "multimedia/" + event.target.files[0].name;
   }
 
+  /** 
+   * addingSize(), is a function that will take the size and its quantity and add it to the array
+   * 
+   */
   public addingSize()
   {
-    var size = {
-      name: this.aSize,
-      isUsed: false,
-      quantity: 0 
-    };
-    this.sizes.push(size);
-    this._dataService.addSize(size).subscribe();
+    var size = new Size();
+    size.size = +this.aSize;
+
+    this.sizes.push(size.adminSize());
+    this._dataService.addSize(size.compactSize()).subscribe();
   }
 
-  public uploadRequest(item)
+  /**
+   * uploadRequest(item: any), is function that handles an upload of an image
+   *
+   * @param item, is the item being uploaded
+   */
+  public uploadRequest(item: any)
   {
     this._dataService.getImages()
       .subscribe(res => this.uploadRequestDelegate(item, res));
   }
 
-  public uploadRequestDelegate(item, images)
+  /**
+   * uploadRequestDelegate(item, images), is a function that proceses the uploaded item and makes sure it hasnt been uploaded already
+   *
+   * @param item, is the item being uploaded
+   * @param images, are the images we are checking against
+   */
+  public uploadRequestDelegate(item: any, images: Array<any>)
   {
 
     var isCanceled: boolean = false;
@@ -143,13 +155,24 @@ export class AddJewelryComponent {
       this.imageError = false; 
     }
   }
-  
-  public videoUploadRequest(item)
+
+  /**
+   * videoUploadRequest(item: any), used to upload a video
+   * 
+   * @param item, the item to be uploaded
+   */ 
+  public videoUploadRequest(item: any)
   {
     this._dataService.getVideos()
       .subscribe(res => this.videoUploadRequestDelegate(item, res));
   } 
 
+  /**
+   * videoUploadRequestDelegate(item, videos), used to check the uploaded video to prevent duplicates
+   *
+   * @param item, is the item we are uploading
+   * @param videos, is the array of videos we are checking against
+   */
   public videoUploadRequestDelegate(item, videos)
   { 
     var isCanceled: boolean = false;
