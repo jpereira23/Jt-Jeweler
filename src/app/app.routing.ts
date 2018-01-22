@@ -17,6 +17,7 @@ import { ConfirmAccountComponent } from './confirmAccount/confirmaccount.compone
 import { ChangePasswordComponent } from './changePassword/changepassword.component'; 
 import { ForgetPasswordComponent } from './forgetPassword/forgetpassword.component';
 import { NewForgottenPasswordComponent } from './newForgottenPassword/newforgottenpassword.component';
+import { SearchComponent } from './search/search.component';
 
 const appRoutes: Routes = [ 
   {
@@ -82,6 +83,10 @@ const appRoutes: Routes = [
   {
     path: 'newForgottenPassword',
     component: NewForgottenPasswordComponent
+  },
+  {
+    path: 'searching',
+    component: SearchComponent
   }
 
 ];

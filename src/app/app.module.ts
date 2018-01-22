@@ -25,7 +25,7 @@ import { ChangePasswordComponent } from './changePassword/changepassword.compone
 import { ForgetPasswordComponent } from './forgetPassword/forgetpassword.component';
 import { NewForgottenPasswordComponent } from './newForgottenPassword/newforgottenpassword.component';
 import { RelatedItemComponent } from './relatedItems/relateditems.component';
-
+import { SearchComponent } from './search/search.component';
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
@@ -56,7 +56,8 @@ import { LayoutService } from './layout.service';
     ChangePasswordComponent,
     ForgetPasswordComponent,
     NewForgottenPasswordComponent,
-    RelatedItemComponent
+    RelatedItemComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

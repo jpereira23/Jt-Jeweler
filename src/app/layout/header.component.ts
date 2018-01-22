@@ -3,7 +3,7 @@ import { AuthenticationService } from '../authentication.service';
 import { CartService } from '../cart.service';
 import { LayoutService } from '../layout.service';
 import { DataService } from '../data.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras} from '@angular/router';
 @Component({
   moduleId: module.id,
   selector: 'layout-header',
@@ -15,6 +15,7 @@ export class HeaderComponent {
   signedIn: boolean = false;
   signedInUser: any;
   numOfItems: number = 0;
+  search: string = ""; 
   constructor(private authenticationService: AuthenticationService, private cartService: CartService, private router: Router, private layoutService: LayoutService, private dataService: DataService)
   {
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser')); 
@@ -65,8 +66,13 @@ export class HeaderComponent {
     this.signedIn = false;
   }
 
-  shoppingCart()
+  searching()
   {
-    this.router.navigate(['shoppingCart']);  
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "search": this.search
+      }
+    }
+    this.router.navigate(['searching'], navigationExtras);
   }
 }

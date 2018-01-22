@@ -1,8 +1,10 @@
 <div class="header-body">
-<div id="shoppingSection" (click)="shoppingCart()">
-  Shopping Cart({{ numOfItems }})
-</div>
 
+<a routerLink="/shoppingCart" class="shoppingSection" >
+  Shopping Cart({{ numOfItems }})
+</a>
+
+  <input [(ngModel)]="search" (ngModelChange)="searching()" class="search-bar" type="text" placeholder="Search" />
 
 <div class="logo-header">JT</div>
 <div class="logo-footer">PRIVATE JEWELERS</div>
