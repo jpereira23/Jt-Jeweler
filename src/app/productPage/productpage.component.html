@@ -11,16 +11,19 @@
     <span>{{ jewelryToBePreviewed.formalDescription }}</span>
   </div>
   <div>
-    <select>
+    <select [(ngModel)]="userJewel.selectedSize">
       <option>
         Select Size
       </option>
-      <option *ngFor="let size of jewelryToBePreviewed.sizes" value="size">
-        {{size.name}}
+      <option [disabled]="size.quantity == 0" *ngFor="let size of jewelryToBePreviewed.sizes" value={{size.size}}>
+        {{size.size}}
       </option>
     </select>
     <input type="number" min="1" name="quantity" ngControl="quantity" [(ngModel)]="jewelryToBePreviewed.quantity" (ngModelChange)="jewelryToBePreviewed.quantity" #quantity="ngModel" />
 
+  </div>
+  <div *ngIf="sizeSelected == true">
+    A Size needs to be selected in order for you to add an item to the bag.
   </div>
   <div>
     <button (click)="addItem()">Add to Bag</button>
@@ -44,7 +47,7 @@
       <span>Center Stone: {{ jewelryToBePreviewed.centerStone }}</span>
     </div>
     <div>
-      <span>Weight: {{ jewelryToBePreviewed.weightOneDim }}ct({{ jewelryToBePreviewed.weightThreeDim[0] }}x{{ jewelryToBePreviewed.weightThreeDim[1] }}x{{ jewelryToBePreviewed.weightThreeDim[2] }}mm)</span>
+      <span>Weight: {{ jewelryToBePreviewed.weightOneDim }}ct({{ jewelryToBePreviewed.weight3d.dimensionOne }}x{{ jewelryToBePreviewed.weight3d.dimensionTwo }}x{{ jewelryToBePreviewed.weight3d.dimensionThree }}mm)</span>
     </div>
     <div>
       <span>Shape: {{ jewelryToBePreviewed.shape }}</span>
@@ -56,9 +59,9 @@
       <span>Metal: {{ jewelryToBePreviewed.metal }} </span>
     </div>
     <div>
-      <span>Details: {{ jewelryToBePreviewed.details[0] }}</span>
-      <div> {{ jewelryToBePreviewed.details[1] }}</div>
-      <div> {{ jewelryToBePreviewed.details[2] }}</div>
+      <span>Details: {{ jewelryToBePreviewed.detaillist.detailOne }}</span>
+      <div> {{ jewelryToBePreviewed.detaillist.detailTwo }}</div>
+      <div> {{ jewelryToBePreviewed.detaillist.detailThree }}</div>
     </div>
     <div> 
       <span>Center Diamond is GIA certified</span>

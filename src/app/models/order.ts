@@ -1,8 +1,9 @@
-import { Jewel } from './jewel';
+import { UserJewel } from './userjewel';
+
 export class Order {
   _id: string;
   isUser: boolean;
-  jewelry: Array<Jewel>;
+  jewelry: Array<UserJewel>;
   runningTotal: number;
   user: string;
   orderNumber: number;
@@ -34,6 +35,29 @@ export class Order {
       }
 
       return compactOrder;
+  }
+
+  /**
+   * convertJSON(order:any), function that takes given JSON into order class
+   *
+   * @param order, given JSON
+   */ 
+  public convertJSON(order: any)
+  {
+    this._id = order._id;
+    this.isUser = order.isUser;
+    var tempArray: Array<UserJewel> = [];
+
+    for(var i = 0; i < order.jewelry.length; i++)
+    {
+      var aJewel = new UserJewel();
+      aJewel.convertJSON(order.jewelry[i]); 
+      tempArray.push(aJewel);
+    } 
+    this.jewelry = tempArray; 
+    this.runningTotal = order.runningTotal;
+    this.user = order.user;
+    this.orderNumber = order.orderNumber;
   }
 }
 

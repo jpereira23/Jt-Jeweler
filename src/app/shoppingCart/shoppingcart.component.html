@@ -11,10 +11,20 @@
         <th>Price</th>
       </tr>
       <tbody>
-        <tr *ngFor="let jewel of jewelry; let i = index">
-          <td><img src={{jewel.images[0]}} style="height:100px;width:100px" /><strong>{{ jewel.jewelName }}</strong></td>
-          <td><input type="number" min="1" name="quantity" ngControl="quantity" [(ngModel)]="jewelry[i].quantity" (ngModelChange)="jewelry[i].quantity" #quantity="ngModel"  /> </td>
-          <td>$ {{ jewel.price }}<br><div (click)="removeItem(i)">Remove</div></td>
+        <tr *ngFor="let jewel of order.jewelry; let i = index">
+          <td><img src={{jewel.jewel.images[0]}} style="height:100px;width:100px" /><strong>{{ jewel.jewel.jewelName }}</strong></td>
+          <td><input type="number" min="1" name="quantity" ngControl="quantity" [(ngModel)]="jewel.jewel.quantity" (ngModelChange)="jewel.jewel.quantity" #quantity="ngModel"  /> </td>
+          <td>
+            <select [(ngModel)]="jewel.selectedSize">
+              <option>
+               {{ jewel.selectedSize }}
+              </option>
+              <option [disabled]="size.quantity == 0" *ngFor="let size of jewel.jewel.sizes" value={{size.size}}>
+               {{ size.size }}
+              </option>
+            </select>
+          </td>
+          <td>$ {{ jewel.jewel.price }}<br><div (click)="removeItem(i)">Remove</div></td>
         </tr>
       </tbody>
     </table>
@@ -30,5 +40,8 @@ Shopping and tax will be calculated in checkout
 <div style="position: absolute;right:0px;">
   <button (click)="checkOut()">Checkout</button><br>
   <button>Continue Shopping</button><br>
+  <div *ngIf="sizesSelectedError == true">
+    One of the items in your bag are missing a size.
+  </div>
 </div>
 

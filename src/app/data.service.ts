@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { User } from './models/user'; 
 import { Order } from './models/order';
 import { Jewel } from './models/jewel';
+import { Size } from './models/size'; 
+import { Weight3D } from './models/weight3d'; 
+import { DetailList } from './models/detaillist'; 
+
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { forkJoin } from 'rxjs/observable/forkJoin';
@@ -72,7 +76,7 @@ export class DataService {
   }
 
   getJewelry() {
-    return this._http.get(this.url + this.routesArray[8]).map(result => this.result = result.json().data);
+    return this._http.get(this.url + this.routesArray[8]).map(result => this.result = this.jewelryConvert(result.json().data));
   }
 
   deleteJewel(jewel) {
@@ -91,8 +95,10 @@ export class DataService {
   }
 
   getSizes(){
-    return this._http.get(this.url + this.routesArray[11]).map(result => this.result = result.json().data);
+    return this._http.get(this.url + this.routesArray[11]).map(result => this.result = this.sizesConvert(result.json().data));
   }
+
+  
 
   /**
    * This is for images
@@ -104,6 +110,10 @@ export class DataService {
 
   getImages(){
     return this._http.get(this.url + this.routesArray[13]).map(result => this.result = result.json().data);
+  }
+
+  deleteImage(imagename: string){ 
+    return this._http.delete(this.url + this.routesArray[13] + "/" + imagename, {headers: this.headers}).map(res => res.json());
   }
 
   /**
@@ -137,6 +147,71 @@ export class DataService {
 
     getOrderNumber() {
       return this._http.get(this.url + this.routesArray[19]).map(result => this.result = result.json().data);
+    }
+
+    /*
+    ordersConvert(aResult: Array<any>)
+    {
+      var orders: Array<Order> = [];
+      for(var i = 0; i < aResult.length; i++)
+      {
+        var order = new Order();
+        order._id = 
+      }
+    }
+    */
+
+    sizesConvert(aResult: Array<any>)
+    {
+      var sizes: Array<Size> = [];
+      for(var i = 0; i < aResult.length; i++)
+      {
+        var size = new Size();
+        size.size = aResult[i].size;
+        size._id = aResult[i]._id;
+        sizes.push(size);
+      }
+      return sizes;
+    }
+
+    jewelryConvert(aResult: Array<any>)
+    {
+      var jewelry: Array<Jewel> = [];
+      for(var i = 0; i < aResult.length; i++)
+      {
+        var jewel = new Jewel();
+        jewel._id = aResult[i]._id;
+        jewel.jewelName = aResult[i].jewelName;
+        jewel.price = aResult[i].price;
+        jewel.quantity = aResult[i].quantity;
+        jewel.sizes = aResult[i].sizes;
+        jewel.colors = aResult[i].colors;
+        jewel.isFemale = aResult[i].isFemale; 
+        jewel.isMale = aResult[i].isMale;
+        jewel.category = aResult[i].category;
+        jewel.images = aResult[i].images;
+        jewel.popularRank = aResult[i].popularRank;
+        jewel.itemCode = aResult[i].itemCode;
+        jewel.centerStone = aResult[i].weightOneDim;
+        var weight3d = new Weight3D();
+        weight3d.dimensionOne = aResult[i].weight3d.dimensionOne;
+        weight3d.dimensionTwo = aResult[i].weight3d.dimensionTwo;
+        weight3d.dimensionThree = aResult[i].weight3d.dimensionThree;
+        jewel.weight3d = weight3d;
+        jewel.shape = aResult[i].shape; 
+        jewel.clarity = aResult[i].clarity;
+        jewel.metal = aResult[i].metal;
+        var detaillist = new DetailList();
+        detaillist.detailOne = aResult[i].detaillist.detailOne;
+        detaillist.detailTwo = aResult[i].detaillist.detailTwo;
+        detaillist.detailOne = aResult[i].detaillist.detailOne;
+        jewel.detaillist = detaillist;
+        jewel.formalDescription = aResult[i].formalDescription;
+        jewel.video = aResult[i].video;
+        jewelry.push(jewel);
+      }   
+      return jewelry;
+
     }
     
 }

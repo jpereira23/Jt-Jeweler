@@ -7,6 +7,7 @@ import { CartService } from '../cart.service';
 import { User } from '../models/user';
 import { Router, NavigationExtras } from '@angular/router';
 import { Jewel } from '../models/jewel';
+import { UserJewel } from '../models/userjewel';
 
 @Component({
   moduleId: module.id,
@@ -92,8 +93,11 @@ export class HomeComponent{
    */
   public addItem(i: number)
   {
-    this.jewelry[i].quantity = 1;
-    this._cartService.addItem(this.jewelry[i]);
+    var aJewel: Jewel = this.jewelry[i];
+    aJewel.quantity = 1;
+    var userJewel: UserJewel = aJewel.convertUserJewel();
+    console.log("jewelry name is " + aJewel.jewelName);
+    this._cartService.addItem(userJewel);
     /**       URGENT WE NEED TO CHANGE THIS         **/
 
     location.reload();

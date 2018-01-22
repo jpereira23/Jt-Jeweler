@@ -5,18 +5,18 @@ import { Http, Headers, Response } from '@angular/http';
 import { User } from './models/user';
 import 'rxjs/add/operator/map';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { Order } from './models/order'; 
+import { UserJewel } from './models/userjewel'; 
+
 @Injectable()
 export class CartService {
-  order: any = null;
+  order = new Order();
+
+  /** 
+   * constructor(), this is used to check if there is an order log created if not than we initialize one
+   */
   constructor(private dataService: DataService, private authenticationService: AuthenticationService)
   {
-    this.order = {
-      isUser: false,
-      jewelry: [],
-      runningTotal: 0,
-      user: "",
-      orderNumber: 0
-    }   
     var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
     if(aOrder == null)
     {
@@ -24,45 +24,90 @@ export class CartService {
     } 
     else
     {
-      this.order = aOrder;
+      this.order = new Order();
+      this.order.convertJSON(aOrder);
     }
   }
   
-  getNumItems()
+  /** 
+   * getNumItems(), used to return the number of orders in the current log
+   */
+  public getNumItems()
   {
     return this.order.jewelry.length; 
   }
-  addItem(jewel)
+  
+  /** 
+   * addItem(jewel: UserJewel), is used to add a jewel to the order log
+   *
+   * @param, is a jewel that has a selected item in it
+   */
+  public addItem(jewel: UserJewel)
   {
-    this.order = JSON.parse(localStorage.getItem('currentOrder'));
-    this.order.runningTotal += (jewel.price * jewel.quantity);
+    var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
+    this.order = new Order();
+    this.order.convertJSON(aOrder);
+    this.order.runningTotal += (jewel.jewel.price * jewel.jewel.quantity);
     this.order.jewelry.push(jewel);
     localStorage.removeItem('currentOrder');
     localStorage.setItem('currentOrder', JSON.stringify(this.order));
   }
 
-  removeItem(jewel)
+  /** 
+   * removeItem(jewel: UserJewel), this function is used to remove an item whenever the remove button is clicked in the shopping cart
+   *
+   * @param jewel, this is a UserJewel that we use to check to see if its there and remove it
+   */
+  removeItem(jewel: UserJewel)
   {
-    this.order = JSON.parse(localStorage.getItem('currentOrder'));
+    var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
+    this.order = new Order();
+    this.order.convertJSON(aOrder); 
     for(var i = 0; i < this.order.jewelry.length; i++)
     {
-      if(this.order.jewelry[i].itemCode == jewel.itemCode)
+      console.log("ths.order.jewel.itemCode = " + this.order.jewelry[i].jewel.itemCode);
+      console.log("jewel.jewel.itemCode = " + jewel.jewel.itemCode);
+      if(this.order.jewelry[i].jewel.itemCode === jewel.jewel.itemCode)
       {
-        this.order.runningTotal -= jewel.price;
+        if(this.order.runningTotal > 0)
+        {
+          this.order.runningTotal -= jewel.jewel.price;
+        }
+        else
+        {
+          this.order.runningTotal = 0;
+        }
+        
         this.order.jewelry.splice(i, 1);
+
+    console.log("a length" + this.order.jewelry.length); 
       }
     }
+    console.log(this.order.jewelry.length); 
     localStorage.removeItem('currentOrder');
     localStorage.setItem('currentOrder', JSON.stringify(this.order));
   }
   
-  checkOut()
+
+  /** 
+   *  checkOut(), function that will retrieve the order number and inititate the delegate
+   */
+  checkOut(order: Order)
   {
+    this.order = order;
     this.dataService.getOrderNumber().subscribe(res => this.checkOutDelegate(res));
   }
-
-  checkOutDelegate(orderNumber)
+  
+  /**
+   * checkOutDelegate(orderNumber: number), this is a delegate that gets the order number, increments it and add an order to the user(updates it), updates the ordernumber
+   * and adds an order to the global orders
+   *
+   * @param orderNumber, the order number we retrieve from the database
+   */
+  checkOutDelegate(orderNumber: number)
   {
+
+    var thearguments: Array<any> = [];
     orderNumber[0].orderNum += 1;
     this.order.orderNumber = orderNumber[0].orderNum;
     if(this.authenticationService.loggedIn() == true)
@@ -73,18 +118,36 @@ export class CartService {
       {
         user.orders = []; 
       }
-      console.log(user.orders.length);
-      console.log(this.order.orderNumber); 
       user.orders.push(this.order.orderNumber);
-      console.log(user.orders[0]);
       localStorage.removeItem('currentUser');
       localStorage.setItem('currentUser', JSON.stringify(user));
-      forkJoin([this.dataService.updateOrderNumber(orderNumber[0]),this.dataService.updateUser(user), this.dataService.addOrder(this.order)]).subscribe();
+      thearguments.push(this.dataService.updateOrderNumber(orderNumber[0]));
+      thearguments.push(this.dataService.updateUser(user));
+      thearguments.push(this.dataService.addOrder(this.order));
     }
     else
     {
-      this.dataService.addOrder(this.order);
+      thearguments.push(this.dataService.addOrder(this.order)); 
     }
+
+    for(var i = 0; i < this.order.jewelry.length; i++)
+    {
+    var aJewel = this.order.jewelry[i];
+      for(var j = 0; j < aJewel.jewel.sizes.length; j++)
+      {
+        var aSelectedSize = aJewel.selectedSize;
+        var aSize = aJewel.jewel.sizes[j].size;
+        console.log("selected size is " + aSelectedSize);
+        if(aSelectedSize == aSize)
+        {
+          aJewel.jewel.sizes[j].quantity -= 1;
+          console.log("Making it here");
+          thearguments.push(this.dataService.editJewel(aJewel.jewel));
+        }
+      }  
+    }
+
+    forkJoin(thearguments).subscribe();
     localStorage.removeItem('currentOrder'); 
 
   }

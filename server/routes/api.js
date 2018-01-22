@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const Q = require('q');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const fs = require('fs'); 
 
 // Connect
 const connection = (closure) => {
@@ -353,7 +354,7 @@ router.put('/jewel/:id', (req, res) => {
   
   connection((db) => {
     db.collection('jewelry')
-      .update({'_id': ObjectID(req.body._id)}, {'jewelName': req.body.jewelName, 'price': req.body.price, 'quantity': req.body.quantity, 'sizes': req.body.sizes, 'colors': req.body.colors, 'isFemale': req.body.isFemale, 'isMale': req.body.isMale, 'category': req.body.category, 'images': req.body.images, 'popularRank': req.body.popularRank, 'itemCode': req.body.itemCode, 'centerStone': req.body.centerStone, 'weightOneDim': req.body.weightOneDim, 'weightThreeDim': req.body.weightThreeDim, 'shape': req.body.shape, 'clarity': req.body.clarity, 'metal': req.body.metal, 'details': req.body.details, 'formalDescription': req.body.formalDescription, 'video': req.body.video },{ $multi: true } , function(err, jewel){
+      .update({'_id': ObjectID(req.body._id)}, {'jewelName': req.body.jewelName, 'price': req.body.price, 'quantity': req.body.quantity, 'sizes': req.body.sizes, 'colors': req.body.colors, 'isFemale': req.body.isFemale, 'isMale': req.body.isMale, 'category': req.body.category, 'images': req.body.images, 'popularRank': req.body.popularRank, 'itemCode': req.body.itemCode, 'centerStone': req.body.centerStone, 'weightOneDim': req.body.weightOneDim, 'weight3d': req.body.weight3d, 'shape': req.body.shape, 'clarity': req.body.clarity, 'metal': req.body.metal, 'detaillist': req.body.detaillist, 'formalDescription': req.body.formalDescription, 'video': req.body.video },{ $multi: true } , function(err, jewel){
         if(err)
         {
           res.send(err);
@@ -367,6 +368,23 @@ router.put('/jewel/:id', (req, res) => {
       });
     });
 }); 
+
+// Get one jewel
+router.get('jewel/:id', (req, res) => { 
+  connection((db) => {
+    db.collection('jewelry')
+      .findOne({ _id: req.body._id }, (err, aJewel) => {
+        if(err){
+          res.send(err);
+        }
+        else
+        {
+          response.data = aJewel;
+          res.json(aJewel); 
+        }
+    });  
+  });
+});
 
 // Remove a jewel
 router.delete('/jewel/:id', (req, res) => {
@@ -463,6 +481,30 @@ router.get('/image', (req, res) => {
             });
     });
 });
+
+router.delete('/image/:id', (req, res) => {
+  connection((db) => {
+    db.collection('images')
+      .remove({_id: req.body.id}, function(err, imagename) {
+        if(err)
+        {
+          res.send(err);
+        }
+        else
+        {
+          res.json(imagename); 
+          var predir = '../../src/';
+          fs.unlink(predir + req.body.name, (err) => {
+            if(err) throw err;
+            console.log("It worked!"); 
+          }); 
+          console.log("success");
+        }
+      });
+  });
+});
+
+
 
 /**
  * Videos stuff

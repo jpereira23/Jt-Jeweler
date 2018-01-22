@@ -5,6 +5,7 @@ import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
 import { LayoutService } from '../layout.service'; 
 import { Jewel } from '../models/jewel';
+import { UserJewel } from '../models/userjewel';
 
 @Component({
   selector: 'productPage',
@@ -17,7 +18,9 @@ export class ProductPageComponent {
   itemCode: string; 
   loading: boolean = false;
   jewelryToBePreviewed: Jewel;
+  userJewel = new UserJewel();
   wishListSuccess:boolean = false;
+  sizeSelected: boolean = false;
 
   /**
    * this constructor is used to retrieve the route from whereever the product is clicked and obtain information to seek
@@ -61,11 +64,20 @@ export class ProductPageComponent {
    */
   addItem()
   {
-    this.cartService.addItem(this.jewelryToBePreviewed); 
+    if(this.userJewel.selectedSize != 0)
+    {
+      this.userJewel.jewel = this.jewelryToBePreviewed;
+      this.cartService.addItem(this.userJewel); 
+      this.sizeSelected = false; 
 
+      /**       URGENT WE NEED TO CHANGE THIS         **/
+      location.reload();
 
-    /**       URGENT WE NEED TO CHANGE THIS         **/
-    location.reload();
+    }
+    else
+    {
+      this.sizeSelected = true;
+    }
   }
 
   /**

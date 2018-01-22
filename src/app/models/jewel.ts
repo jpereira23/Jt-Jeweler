@@ -1,6 +1,7 @@
 import { Weight3D } from './weight3d';
 import { DetailList } from './detaillist';
 import { JewelSize } from './jewelSize';
+import { UserJewel } from './userjewel'; 
 export class Jewel {
   _id: string;
   jewelName: string;
@@ -51,6 +52,17 @@ export class Jewel {
     this.formalDescription = "";
     this.video = "";
   }   
+
+  /**
+   * convertUserJewel(), this is a function that will take this jewel and convert it into a UserJewel
+   */
+  public convertUserJewel()
+  { 
+    var userJewel = new UserJewel();
+    userJewel.jewel = this;    
+    
+    return userJewel;
+  }
   /**
    * compactJewel(), is used to make a Jewel without an id so we can add it to the database without generating an id for us
    *
@@ -85,4 +97,37 @@ export class Jewel {
 
     return newJewel;
   }
+
+  public convertJSON(jsonJewel: any)
+  {
+    this._id = jsonJewel._id;
+    this.jewelName = jsonJewel.jewelName;
+    this.price = jsonJewel.price;
+    this.quantity = jsonJewel.quantity;
+    this.sizes = jsonJewel.sizes;
+    this.colors = jsonJewel.colors;
+    this.isFemale = jsonJewel.isFemale;
+    this.isMale = jsonJewel.isMale;
+    this.category = jsonJewel.category;
+    this.images = jsonJewel.images;
+    this.popularRank = jsonJewel.popularRank;
+    this.itemCode = jsonJewel.itemCode;
+    this.centerStone = jsonJewel.centerStone;
+    var weight3d = new Weight3D();
+    weight3d.dimensionOne = jsonJewel.weight3d.dimensionOne;
+    weight3d.dimensionTwo = jsonJewel.weight3d.dimensionTwo;
+    weight3d.dimensionThree = jsonJewel.weight3d.dimensionThree;
+    this.weight3d = weight3d;
+    this.shape = jsonJewel.shape;
+    this.clarity = jsonJewel.clarity;
+    this.metal = jsonJewel.metal;
+    var detaillist = new DetailList();
+    detaillist.detailOne = jsonJewel.detaillist.detailOne;
+    detaillist.detailTwo = jsonJewel.detaillist.detailTwo;
+    detaillist.detailOne = jsonJewel.detaillist.detailOne;
+    this.detaillist = detaillist;
+    this.formalDescription = jsonJewel.formalDescription;
+    this.video = jsonJewel.video;
+  }
+   
 }
