@@ -81,7 +81,7 @@ export class WishListService {
    */
   removeWish(jewel: Jewel)
   {
-    var user = newe User();
+    var user = new User();
     user.convertJSON(JSON.parse(localStorage.getItem('currentUser')));
     if(user != null && user.wishList != null && user.wishList.length > 0)
     {

@@ -13,7 +13,7 @@
       <tbody>
         <tr *ngFor="let jewel of order.jewelry; let i = index">
           <td><img src={{jewel.jewel.images[0]}} style="height:100px;width:100px" /><strong>{{ jewel.jewel.jewelName }}</strong></td>
-          <td><input type="number" min="1" name="quantity" ngControl="quantity" [(ngModel)]="jewel.jewel.quantity" (ngModelChange)="jewel.jewel.quantity" #quantity="ngModel"  /> </td>
+          <td><input type="number" min="1" name="quantity" ngControl="quantity" (change)="changeQuantity()" [(ngModel)]="jewel.jewel.quantity" (ngModelChange)="jewel.jewel.quantity" #quantity="ngModel"  /> </td>
           <td>
             <select [(ngModel)]="jewel.selectedSize">
               <option>
@@ -24,13 +24,13 @@
               </option>
             </select>
           </td>
-          <td>$ {{ jewel.jewel.price }}<br><div (click)="removeItem(i)">Remove</div></td>
+          <td>$ {{ jewel.jewel.price * jewel.jewel.quantity }}<br><div (click)="removeItem(i)">Remove</div></td>
         </tr>
       </tbody>
     </table>
 </div>
 <div style="position:absolute;right:0px;">
-  <strong>Subtotal: ${{ order.runningTotal }}</strong>
+  <strong>Subtotal: ${{ runningTotal }}</strong>
 </div>
 <br>
 <div style="position:absolute;right:0px;">

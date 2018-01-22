@@ -14,6 +14,7 @@ import { Order } from '../models/order';
 
   export class ShoppingCartComponent {
     order: Order = new Order();
+    runningTotal: number = 0;
     sizesSelectedError: boolean = false;
     /**
      * constructor(), is used to get the current order
@@ -25,6 +26,7 @@ import { Order } from '../models/order';
     {
       var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
       this.order.convertJSON(aOrder);
+      this.runningTotal = this.order.runningTotal; 
     }
 
     /**
@@ -56,6 +58,17 @@ import { Order } from '../models/order';
       {
         this.cartService.checkOut(this.order); 
         this.router.navigate(['/']);  
+      }
+    }
+    /** 
+     * changeQuantity(), keeps track of running when the quantity of the value is incremented
+     */
+    changeQuantity()
+    {
+      this.runningTotal = 0;
+      for(var index = 0; index < this.order.jewelry.length; index++)
+      {
+        this.runningTotal += this.order.jewelry[index].jewel.price * this.order.jewelry[index].jewel.quantity;
       }
     }
   }
