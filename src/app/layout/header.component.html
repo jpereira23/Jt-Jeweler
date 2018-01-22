@@ -1,23 +1,24 @@
-<div>JT <br>
-Jewelry
-
-<div (click)="shoppingCart()" style="position:absolute;display:inline;right:0px;">
+<div class="header-body">
+<div id="shoppingSection" (click)="shoppingCart()">
   Shopping Cart({{ numOfItems }})
 </div>
+
+
+<div class="logo-header">JT</div>
+<div class="logo-footer">PRIVATE JEWELERS</div>
+<div class="line"></div>
+<div id="links" *ngIf="signedIn == false">
+
+  <a  routerLinkActive="router-link-active" routerLink="/">Home</a>
+  <a  routerLinkActive="router-link-active" routerLink="/signin">Sign In</a>
+  <a  routerLinkActive="router-link-active"routerLink="/signup">Sign Up</a>
 </div>
 
-<div *ngIf="signedIn == false">
+<div id="links" *ngIf="signedIn == true">
 
-  <a routerLink="/">Home</a>
-  <a routerLink="/signin">Sign In</a>
-  <a routerLink="/signup">Sign Up</a>
-</div>
-
-<div *ngIf="signedIn == true">
-
-  <a routerLink="/">Home</a>
-  <a href="#" (click)="signOut()">Sign Out</a>
-  <a routerLink="/manageAccount">My Account</a>
+  <a  routerLinkActive="router-link-active" routerLink="/">Home</a>
+  <a  routerLinkActive="router-link-active" (click)="signOut()">Sign Out</a>
+  <a  routerLinkActive="router-link-active" routerLink="/manageAccount">My Account</a>
 </div>
 <br><br><br>
-
+</div>
