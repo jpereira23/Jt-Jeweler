@@ -192,17 +192,19 @@ router.get('/tempUsers', (req, res) => {
 
 // Remove one of the temporary users
 router.delete('/tempUser/:id', (req, res) => {
-  var user = req.body;
+  console.log("its deleting");
+  var tempUser = req.body;
   connection((db) => {
     db.collection('tempUser')
-      .remove({_id: ObjectID(req.body._id)}, function(err, user) {
+      .remove({_id: ObjectID(req.params.id)}, function(err, tempUser) {
         if(err)
         {
           res.send(err);
         }
         else
         {
-          res.json(user); 
+          console.log("ballistic report"); 
+          res.json(tempUser); 
         }
       });
   });
