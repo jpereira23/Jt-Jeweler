@@ -1,11 +1,10 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/router';
 
 // Import the DataService
 import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
 import { User } from '../models/user';
-import { Router, NavigationExtras } from '@angular/router';
 import { Jewel } from '../models/jewel';
 import { UserJewel } from '../models/userjewel';
 

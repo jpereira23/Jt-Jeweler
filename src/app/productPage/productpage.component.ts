@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { NavigationExtras, ActivatedRoute, Params, Router} from '@angular/router';
 import { WishListService } from '../wishlist.service';
 import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
@@ -31,7 +31,7 @@ export class ProductPageComponent {
    * @param route, represents a ActivatedRoute for when we retrieve a route
    * @param wishListService, represents a WishListService for when we click to add something to the wish list
    */
-  constructor(private cartService: CartService, private _dataService: DataService, private route: ActivatedRoute, private wishListService: WishListService) 
+  constructor(private cartService: CartService, private _dataService: DataService, private route: ActivatedRoute, private wishListService: WishListService, private router: Router) 
   {
     this.route.queryParams.subscribe(params => {
       this.itemCode = params["itemCode"];
@@ -90,4 +90,17 @@ export class ProductPageComponent {
       this.wishListSuccess = true; 
     }  
   }
+
+  
+  public wishList()
+  {
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          "wishList": true
+        }
+      };
+      this.router.navigate(['manageAccount'], navigationExtras); 
+  }
 }
+
+

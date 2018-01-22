@@ -38,7 +38,10 @@ import { Order } from '../models/order';
       this.cartService.removeItem(this.order.jewelry[i]);
       location.reload();
     }
-
+    
+    /**
+     * checkOut, this function prepares everything for the CartService checkOut function
+     */
     checkOut()
     {
       this.sizesSelectedError = false;

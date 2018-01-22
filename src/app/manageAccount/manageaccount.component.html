@@ -65,9 +65,9 @@
     <span>Order  #{{ previewedOrder.orderNumber }}</span>
   </div>
   <div *ngFor="let order of previewedOrder.jewelry; let i = index" (click)="selectCurrentOrder(i)">
-    <img src={{order.images[0]}} style="height:100px;width:100px;" /> <span>${{ order.price }}</span><br>
-    <span><strong>{{ order.jewelName }}</strong></span><br>
-    <span>Size: {{ order.sizes[0].name }}</span>
+    <img src={{order.jewel.images[0]}} style="height:100px;width:100px;" /> <span>${{ order.jewel.price }}</span><br>
+    <span><strong>{{ order.jewel.jewelName }}</strong></span><br>
+    <span>Size: {{ order.jewel.sizes[0].name }}</span>
   </div>
   
 </div>
@@ -76,10 +76,11 @@
   <div>
     <strong>Wish List</strong>
   </div>
-  <div *ngFor="let wish of signedInUser.wishList">
-    <img src={{wish.images[0]}} style="height:100px;width:100px;" /> <span>${{ wish.price }}</span><br>
+  <div *ngFor="let wish of signedInUser.wishList; let i = index">
+    <img src={{wish.images[0]}} style="height:100px;width:100px;" /> <span>${{ wish.price }}</span><br><button (click)="addToCart(i)">Add to Bag</button>
     <span><strong>{{ wish.jewelName }}</strong></span><br>
     <!--<span>Size: {{ wish.sizes[0].name }}</span> -->
+    <div (click)="removeItem(i)">remove</div>
 
   </div>
 
