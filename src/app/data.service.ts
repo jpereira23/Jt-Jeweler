@@ -31,36 +31,23 @@ export class DataService {
     return this._http.post(this.url + this.routesArray[0], JSON.stringify(user), { headers: this.headers}).map(res => res.json()); 
   }
   getTempUsers() {
-    return this._http.get(this.url + this.routesArray[1]).map(result => this.result = result.json().data);
+    return this._http.get(this.url + this.routesArray[1]).map(result => this.result = this.userConvert(result.json().data));
   }
 
   deleteTempUser(user) {
     return this._http.delete(this.url + this.routesArray[2] + "/" + user._id, {headers: this.headers}).map(res => res.json());
   }
   getUsers() {
-    return this._http.get(this.url + this.routesArray[3]).map(result => this.result = result.json().data);
+    return this._http.get(this.url + this.routesArray[3]).map(result => this.result = this.userConvert(result.json().data));
   }
 
   checkEmail(user)
   {
-    return this._http.post(this.url + this.routesArray[4], JSON.stringify(user), { headers: this.headers}).map(res => res.json()); 
+    return this._http.post(this.url + this.routesArray[4], JSON.stringify(user.compactUser()), { headers: this.headers}).map(res => res.json()); 
   }
 
   addUser(user: User) {
-    var addUser = { 
-      firstName: user.firstName,
-      lastName: user.lastName, 
-      password: user.password,
-      email: user.email,
-      streetAddress: user.streetAddress,
-      city: user.city,
-      state: user.state, 
-      wishList: user.wishList,
-      orders: user.orders,
-    }
-
-    return this._http.post(this.url + this.routesArray[5], JSON.stringify(addUser), { headers: this.headers}).map(res => res.json()); 
- 
+     return this._http.post(this.url + this.routesArray[5], JSON.stringify(user.compactUser()), { headers: this.headers}).map(res => res.json()); 
   }
 
   updateUser(user){
@@ -212,6 +199,20 @@ export class DataService {
       }   
       return jewelry;
 
+    }
+
+    userConvert(aResult: Array<any>)
+    {
+      var users: Array<User> = [];
+      for(var i = 0; i < aResult.length; i++)
+      {
+        var aUser = new User();
+        aUser.convertJSON(aResult[i]); 
+        console.log("aUser.firstName is " + aUser.firstName);
+        console.log("aUser.lastName is " + aUser.lastName);
+        users.push(aUser);
+      }
+      return users;
     }
     
 }

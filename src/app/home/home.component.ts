@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/route
 // Import the DataService
 import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
+import { LayoutService } from '../layout.service';
 import { User } from '../models/user';
 import { Jewel } from '../models/jewel';
 import { UserJewel } from '../models/userjewel';
@@ -36,7 +37,7 @@ export class HomeComponent{
    * @param router, refernces router so it can allow us to change routes on the fly 
    * @param _cartService, allows us to access the CartService and addItems when we click Add to Shopping Bag
    */
-  constructor(private _dataService: DataService, private router: Router, private _cartService: CartService) {
+  constructor(private _dataService: DataService, private router: Router, private _cartService: CartService, private layoutService: LayoutService) {
   
     // Access all the jewelry that is created
     this._dataService.getJewelry()
@@ -97,7 +98,6 @@ export class HomeComponent{
     var userJewel: UserJewel = aJewel.convertUserJewel();
     console.log("jewelry name is " + aJewel.jewelName);
     this._cartService.addItem(userJewel);
-    /**       URGENT WE NEED TO CHANGE THIS         **/
 
     location.reload();
   }

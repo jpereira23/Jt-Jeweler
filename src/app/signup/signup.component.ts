@@ -14,15 +14,24 @@ import { User } from '../models/user';
 
 export class SignUpComponent {
   newUser = new User();
-  users: Array<any>
-  emailError = false;
-  firstNameError = false; 
-  lastNameError = false;
-  passwordError = false;
+  users: Array<User>;
+  emailError:boolean = false;
+  firstNameError:boolean = false; 
+  lastNameError:boolean = false;
+  passwordError:boolean = false;
   emailMessage: string;
   firstNameMessage: string;
   lastNameMessage: string;
   passwordMessage: string;
+
+
+  /** 
+   * constructor(), this function is used to intitialize the _dataService, authenticationService and router to its null values and also to get the users from the db
+   *
+   * @param _dataService, references a DataService that will get us the users and send in a new user
+   * @param authenticationService, references a AuthenticationService to logout on intialization because it doesnt make sense to signup when you are logged in
+   * @param router, references a Router so taht we can route to sign in page once you are done signing up
+   */
   constructor(private _dataService: DataService, private authenticationService: AuthenticationService, private router: Router) {
     this._dataService.getUsers()
         .subscribe(res => this.users = res);
@@ -30,6 +39,9 @@ export class SignUpComponent {
   }
 
 
+  /**
+   * onSubmit(), is used to submit the entered form in the signup page
+   */
   public onSubmit()
   {
     if(this.checkDuplicateEmail(this.newUser.email) == false)
@@ -42,13 +54,12 @@ export class SignUpComponent {
         streetAddress: this.newUser.streetAddress,
         city: this.newUser.city,
         state: this.newUser.state,
-        wishList: this.newUser.wishList,
-        orders: this.newUser.orders,
-      } 
+      }
+      var aUser = new User();
+      aUser.intitializeNewUser(newUser);
       this.emailError = false;
       this.firstNameError = false;
-      this._dataService.checkEmail(newUser).subscribe();
-      console.log("WELL"); 
+      this._dataService.checkEmail(aUser).subscribe();
       this.router.navigate(['signin']);
     }
       
@@ -56,6 +67,7 @@ export class SignUpComponent {
   
   /**
    * function to check for duplicate emails and returns true if there is a duplicate and false otherwise
+   *
    * @param email, takes in an email to check against
    */
   private checkDuplicateEmail(email: string)

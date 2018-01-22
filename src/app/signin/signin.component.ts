@@ -21,7 +21,6 @@ export class SignInComponent {
   isError: boolean = false;
   isMessage: string = "";
   constructor(private _dataService: DataService, private router: Router, private authenticationService: AuthenticationService, private layoutService: LayoutService){
-    console.log("hmmm....");
     this._dataService.getUsers().subscribe(res => this.delegateForUsers(res));
   }
   

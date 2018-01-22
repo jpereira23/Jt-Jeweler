@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from '../data.service';
 import { forkJoin } from 'rxjs/observable/forkJoin'; 
+import { User } from '../models/user';
 
 @Component({
   moduleId: module.id,
@@ -13,8 +14,14 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 
   export class ConfirmAccountComponent {
     token: string = "";
-    users: Array<any> = [];
-    user: any = null;
+    user = new User();
+    
+    /**
+     * constructor(), used to intitialize route and _dataService to null values 
+     *
+     * @param route, is referencing the ActivatedRoute so we can get the id from the email
+     * @parma _dataService, is referencing the DataService so we can get the temp users and remove the user and add a user
+     */
     constructor(private route: ActivatedRoute, private _dataService: DataService)
     {
       this.route.queryParams.subscribe(params => {
@@ -26,14 +33,23 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
       
     }
 
-    public getTempUserDelegate(users)
+    /** 
+     * getTempUserDelegate(users: Array<User>), is used as the delegate to set the proper user from all the temp users
+     *
+     * @param users, an array of Users that we get from temp users database
+     */
+    public getTempUserDelegate(users: Array<User>)
     {
-      console.log(users.length);
-      this.users = users;
       for(var i = 0; i < users.length; i++)
       {
+        console.log("users.length is " + users.length);
+        console.log("users[i].firstName is " + users[i].firstName);
+        console.log("users[i].lastName is " + users[i].lastName);
+        console.log("users[i].token is " + users[i].token);
+        console.log("this.token is " + this.token);
         if(users[i].token == this.token)
         {
+          console.log("hello"); 
           this.user = users[i];
         }
       }

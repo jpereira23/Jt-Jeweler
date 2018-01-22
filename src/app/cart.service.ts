@@ -119,6 +119,7 @@ export class CartService {
         user.orders = []; 
       }
       user.orders.push(this.order.orderNumber);
+      user.currentOrder = null;
       localStorage.removeItem('currentUser');
       localStorage.setItem('currentUser', JSON.stringify(user));
       thearguments.push(this.dataService.updateOrderNumber(orderNumber[0]));
