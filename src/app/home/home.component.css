@@ -186,7 +186,6 @@ span{
 }
 
 .category-image-wrapper :hover{
-  display: block;
   background-color: #ffffff;
   -moz-border-radius: 200px;
   border-radius: 200px;

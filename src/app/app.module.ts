@@ -4,6 +4,7 @@ import { routing } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SwiperModule } from 'angular2-useful-swiper';
+import { ModalModule } from 'angular2-modal';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
