@@ -11,14 +11,14 @@
 <div class="line"></div>
 <div id="links" *ngIf="signedIn == false">
 
-  <a  routerLinkActive="router-link-active" routerLink="/">Home</a>
+  <a  class="link" routerLink="/">Home</a>
   <a  routerLinkActive="router-link-active" routerLink="/signin">Sign In</a>
   <a  routerLinkActive="router-link-active"routerLink="/signup">Sign Up</a>
 </div>
 
 <div id="links" *ngIf="signedIn == true">
 
-  <a  routerLinkActive="router-link-active" routerLink="/">Home</a>
+  <a  routerLink="/">Home</a>
   <a  routerLinkActive="router-link-active" (click)="signOut()">Sign Out</a>
   <a  routerLinkActive="router-link-active" routerLink="/manageAccount">My Account</a>
 </div>

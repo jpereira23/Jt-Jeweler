@@ -10,7 +10,7 @@
   padding: 175px 419px 0px;
   width: 461px;
   height: 134px;
-  font-family: PlayfairDisplay;
+  font-family: 'Playfair Display';
   font-size: 50px;
   font-weight: bold;
   text-align: center;
@@ -32,6 +32,18 @@
   line-height:2.0;
   text-align: center;
   color: #ffffff;
+}
+
+.learn-more-header :hover{
+  width:265px;
+  height: 40px;
+  font-family: 'Hind';
+  font-size: 12px; 
+  font-weight: 600;
+  line-height:2.0;
+  text-align: center;
+  color: #ffffff;
+  background-color: #dba741;
 }
 
 .learn-more{
@@ -58,11 +70,10 @@
 }
 
 .title-featured{
-
   padding: 10px 522px 0px; 
   width: 257px;
   height: 40px;
-  font-family: PlayfairDisplay;
+  font-family: 'Playfair Display';
   font-size: 30px;
   font-weight: bold;
   text-align: center;
@@ -86,22 +97,23 @@
   width: 300px;
   height: 454px;
   background-color: #ffffff;
-
+  font-family: 'Playfair Display';
 }
 
 .item-name{
-  font-family: PlayfairDisplay;
+  font-family: 'Playfair Display';
   font-size: 20px;
   font-weight:bold;
   color: #1d1d1d;
   padding: 22px 44px;
   text-align: center;
 }
-
+span{ 
+  font-family: 'Playfair Display';
+}
 .item-price{
-  font-family: PlayfairDisplay;
+  font-family: 'Playfair Display';
   font-size: 15px;
-  font-weight: none;
   text-align:center;
   color: #1d1d1d; 
 }
@@ -117,6 +129,17 @@
   color: #e2af4c;
 }
 
+.item-button-wrapper :hover{
+
+  font-family: 'Hind';
+  font-size: 12px; 
+  font-weight: 600;
+  line-height:2.0;
+  text-align: center;
+  color: #ffffff;
+  background-color: #e2af4c;
+}
+ 
 .item-button{
 
   font-family: 'Hind';
@@ -129,7 +152,11 @@
   color: #e2af4c;
   border: solid 1px #e2af4c;
 }
+
+.item-button :hover{
+}
 .category-wrapper{
+  padding: 0px 0px 100px;
   width: 1300px;
   background-color: rgba(0, 0, 0, 0.02);
 
@@ -158,11 +185,21 @@
   border-radius: 200px;
 }
 
+.category-image-wrapper :hover{
+  display: block;
+  background-color: #ffffff;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+  border: solid 2px #e2af4c
+
+}
+
+
 .swiper-pagination{ 
 }
 
 .category-element{
-  font-family: PlayfairDisplay;
+  font-family: 'Playfair Display';
   font-size: 30px;
   font-weight:bold;
   text-align: center;

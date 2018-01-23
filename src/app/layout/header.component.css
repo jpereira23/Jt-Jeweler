@@ -5,11 +5,10 @@
 }
 
 .line { 
-  margin: auto;
+  margin: 10px 180px;
   width: 940px;
   height: 1px;
   background-color: rgba(255, 223, 223, 0.5);
-  left: 50%;
 }
 
 .logo-header {
@@ -20,9 +19,16 @@
   color: #e2af4c;
 }
 
+a.link :hover{
+  color: #e2af4c;
+}
 :host .router-link-active
 {
   color: #e2af4c; 
+}
+
+.router-link-active :visted{
+  color: #bbbbbb;
 }
 .logo-footer {
   font-family: Avenir;
@@ -87,4 +93,6 @@ a.shoppingSection{
   text-decoration: none;
   color:#bbbbbb;
 }
+
+
 
