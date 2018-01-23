@@ -19,15 +19,15 @@ import { UserJewel } from '../models/userjewel';
 export class HomeComponent{
   jewelry: Array<Jewel>;
   categories: Array<string> = ["Ring", "Earring", "Band", "Pendant", "Bracelet"];
-  /*
+  categoryImages: Array<string> = ["multimedia/Ring.png", "multimedia/Earring.png", "multimedia/Band.png", "multimedia/Necklace.png", "multimedia/Bracelet.png"];
   config: SwiperOptions = {
     pagination: '.swiper-pagination',
     paginationClickable: true,
     nextButton: '.swiper-button-next',
     prevButton: '.swiper-button-prev',
-    spaceBetween: 30
+    spaceBetween: 30,
+    slidesPerColumnFill: 'row'
   };
-  */
   
   /**
    * Constructor for the home component, here is where we initialize DataService, ActivatedRouter, AuthenticationService, Router, CartService, and
