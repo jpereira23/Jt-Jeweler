@@ -1,3 +1,11 @@
+<div *ngIf="signedInUser != null && signedInUser.email != 'admin@gmail.com' || signedInUser == null">
+  <layout-header [numOfItems]="cartNumber"></layout-header> 
+</div>
+  
+<div *ngIf="signedInUser != null && signedInUser.email == 'admin@gmail.com'">
+  <layout-admin></layout-admin>
+</div>
+
 
 <div *ngIf="loading == true">
   <img src={{jewelryToBePreviewed.images[0]}} style="height:100px;width:100px" />

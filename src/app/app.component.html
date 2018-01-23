@@ -6,13 +6,7 @@
 <body>
   <div class="container">
 
-  <div *ngIf="signedInUser != null && signedInUser.email != 'admin@gmail.com' || signedInUser == null">
-    <layout-header></layout-header> 
-  </div>
   
-  <div *ngIf="signedInUser != null && signedInUser.email == 'admin@gmail.com'">
-    <layout-admin></layout-admin>
-  </div>
     <router-outlet ></router-outlet>
   </div>
 </body>

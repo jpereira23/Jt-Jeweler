@@ -14,6 +14,8 @@ import { Order } from '../models/order';
 
   export class ShoppingCartComponent {
     order: Order = new Order();
+    cartNumber: number = 0;
+ 
     runningTotal: number = 0;
     sizesSelectedError: boolean = false;
     /**
@@ -25,7 +27,13 @@ import { Order } from '../models/order';
     constructor(private cartService: CartService, private router: Router)
     {
       var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
-      this.order.convertJSON(aOrder);
+      if(aOrder != null)
+      {
+        this.order.convertJSON(aOrder);
+
+      }
+
+      this.cartNumber = this.order.jewelry.length;
       this.runningTotal = this.order.runningTotal; 
     }
 
@@ -38,7 +46,10 @@ import { Order } from '../models/order';
     {
       
       this.cartService.removeItem(this.order.jewelry[i]);
-      location.reload();
+      this.runningTotal -= this.order.jewelry[i].jewel.price; 
+      this.order = JSON.parse(localStorage.getItem('currentOrder'));
+      this.cartNumber = this.order.jewelry.length;
+ 
     }
     
     /**

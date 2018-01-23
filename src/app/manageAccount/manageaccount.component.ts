@@ -27,7 +27,9 @@ export class ManageAccountComponent {
   previewedOrderNumber: number = 0;
   previewedOrder: Order = new Order();
   orders: Array<Order> = []; 
-
+  order = new Order();
+  cartNumber: number = 0;
+ 
   /**
    * contructor(), this function is used to intialize _dataService, _authenticationService, router, route, wishListSerivce and _cartService to its null values. We also use it to get the signedInUser
    * and all the orders for the current user
@@ -60,6 +62,13 @@ export class ManageAccountComponent {
         this._dataService.getOrders()
           .subscribe(res => this.delegateToGetOrders(res)); 
       }
+      var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
+      if(aOrder != null)
+      {
+       this.order = aOrder;
+      }
+      this.cartNumber = this.order.jewelry.length;
+ 
   }
 
   /** 
@@ -183,9 +192,9 @@ export class ManageAccountComponent {
     aJewel.quantity = 1;
     var userJewel: UserJewel = aJewel.convertUserJewel();
     this._cartService.addItem(userJewel);
-    /**       URGENT WE NEED TO CHANGE THIS         **/
-
-    location.reload();
+    this.order = JSON.parse(localStorage.getItem('currentOrder'));
+    this.cartNumber = this.order.jewelry.length;
+ 
 
 
   }

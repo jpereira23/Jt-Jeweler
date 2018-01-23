@@ -6,6 +6,7 @@ import { CartService } from '../cart.service';
 import { LayoutService } from '../layout.service'; 
 import { Jewel } from '../models/jewel';
 import { UserJewel } from '../models/userjewel';
+import { Order } from '../models/order';
 
 @Component({
   selector: 'productPage',
@@ -21,7 +22,8 @@ export class ProductPageComponent {
   userJewel = new UserJewel();
   wishListSuccess:boolean = false;
   sizeSelected: boolean = false;
-
+  cartNumber: number = 0;
+  order = new Order(); 
   /**
    * this constructor is used to retrieve the route from whereever the product is clicked and obtain information to seek
    * the proper jewel for representation
@@ -38,6 +40,15 @@ export class ProductPageComponent {
     });
     this._dataService.getJewelry()
       .subscribe(res => this.delegateForJewelry(res));
+
+
+    var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
+    if(aOrder != null)
+    {
+      this.order = aOrder;
+    }
+    this.cartNumber = this.order.jewelry.length;
+ 
   }
 
   /**
@@ -70,9 +81,9 @@ export class ProductPageComponent {
       this.cartService.addItem(this.userJewel); 
       this.sizeSelected = false; 
 
-      /**       URGENT WE NEED TO CHANGE THIS         **/
-      location.reload();
 
+      this.order = JSON.parse(localStorage.getItem('currentOrder'));
+      this.cartNumber = this.order.jewelry.length;
     }
     else
     {

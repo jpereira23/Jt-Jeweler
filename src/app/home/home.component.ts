@@ -5,8 +5,10 @@ import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/route
 import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
 import { LayoutService } from '../layout.service';
+import { AuthenticationService } from '../authentication.service';
 import { User } from '../models/user';
 import { Jewel } from '../models/jewel';
+import { Order } from '../models/order'; 
 import { UserJewel } from '../models/userjewel';
 
 @Component({
@@ -28,6 +30,9 @@ export class HomeComponent{
     spaceBetween: 30,
     slidesPerColumnFill: 'row'
   };
+  signedInUser: User = null;
+  order = new Order();
+  cartNumber: number = 0;
   
   /**
    * Constructor for the home component, here is where we initialize DataService, ActivatedRouter, AuthenticationService, Router, CartService, and
@@ -37,11 +42,19 @@ export class HomeComponent{
    * @param router, refernces router so it can allow us to change routes on the fly 
    * @param _cartService, allows us to access the CartService and addItems when we click Add to Shopping Bag
    */
-  constructor(private _dataService: DataService, private router: Router, private _cartService: CartService, private layoutService: LayoutService) {
+  constructor(private _dataService: DataService, private router: Router, private _cartService: CartService, private layoutService: LayoutService, private authenticationService: AuthenticationService) {
   
     // Access all the jewelry that is created
     this._dataService.getJewelry()
       .subscribe(res => this.delegateForJewelry(res));
+
+    this.signedInUser = JSON.parse(localStorage.getItem('currentUser'));
+    var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
+    if(aOrder != null)
+    {
+      this.order = aOrder;
+    }
+    this.cartNumber = this.order.jewelry.length;
     
   } 
 
@@ -99,6 +112,10 @@ export class HomeComponent{
     console.log("jewelry name is " + aJewel.jewelName);
     this._cartService.addItem(userJewel);
 
-    location.reload();
+
+    this.order = JSON.parse(localStorage.getItem('currentOrder'));
+    this.cartNumber = this.order.jewelry.length;
+    
+
   }
 }

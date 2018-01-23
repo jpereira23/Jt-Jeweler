@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { CartService } from '../cart.service';
 import { LayoutService } from '../layout.service';
@@ -14,7 +14,7 @@ import { Router, NavigationExtras} from '@angular/router';
 export class HeaderComponent {
   signedIn: boolean = false;
   signedInUser: any;
-  numOfItems: number = 0;
+  @Input() numOfItems: number = 0;
   search: string = ""; 
   constructor(private authenticationService: AuthenticationService, private cartService: CartService, private router: Router, private layoutService: LayoutService, private dataService: DataService)
   {
