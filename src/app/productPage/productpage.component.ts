@@ -24,6 +24,16 @@ export class ProductPageComponent {
   sizeSelected: boolean = false;
   cartNumber: number = 0;
   order = new Order(); 
+
+  config: SwiperOptions = {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 30,
+    slidesPerColumnFill: 'row'
+  };
+
   /**
    * this constructor is used to retrieve the route from whereever the product is clicked and obtain information to seek
    * the proper jewel for representation

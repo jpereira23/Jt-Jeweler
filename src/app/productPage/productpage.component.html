@@ -6,79 +6,108 @@
   <layout-admin></layout-admin>
 </div>
 
+<div class="product-page-container" *ngIf="loading == true">
+  <div class="product-container">
+    <div class="product-image-section">
+    <swiper class="the-swiper" [config]="config">
+      <div class="swiper-wrapper">
+        <img class="swiper-slide" *ngFor="let theImage of jewelryToBePreviewed.images" src={{theImage}}>
+      </div>
+    </swiper>
+    </div>
 
-<div *ngIf="loading == true">
-  <img src={{jewelryToBePreviewed.images[0]}} style="height:100px;width:100px" />
-  <div>
-    <strong> {{ jewelryToBePreviewed.jewelName }}</strong>
+    <div class="product-container-details-section">
+      <div class="product-name">
+        {{ jewelryToBePreviewed.jewelName }}
+      </div>
+      <div class="product-price">
+        ${{ jewelryToBePreviewed.price }}
+      </div>
+      <div class="product-description">
+        {{ jewelryToBePreviewed.formalDescription }}
+      </div>
+      <div class="product-selectors">
+        <select class="product-size" [(ngModel)]="userJewel.selectedSize">
+          <option>
+            Select Size
+          </option>
+          <option [disabled]="size.quantity == 0" *ngFor="let size of jewelryToBePreviewed.sizes" value={{size.size}}>
+            {{size.size}}
+          </option>
+        </select>
+        <div class="spacer"></div>
+        <button class="quantity-plus">+</button>
+        <input class="product-quantity" type="text" name="quantity" ngControl="quantity" [(ngModel)]="jewelryToBePreviewed.quantity" (ngModelChange)="jewelryToBePreviewed.quantity" #quantity="ngModel" />
+        <button class="quantity-minus">-</button>
+        <div *ngIf="sizeSelected == true">
+          A Size needs to be selected in order for you to add an item to the bag.
+        </div>
+      </div>
+      <div class="product-add">
+        <button class="add-button" (click)="addItem()">ADD TO BAG</button>
+      </div>
+      <div class="product-add-wishlist">
+        <button class="button-add-wishlist" (click)="addToWishlist()" *ngIf="wishListSuccess == false">
+          Add To Wishlist
+        </button>
+      </div>
+      <div *ngIf="wishListSuccess == true">
+        This item has been added to your Wishlist.<br>
+        <div (click)="wishList()">View Wishlist</div>
+      </div>
+    </div>
   </div>
-  <div>
-    <span>${{ jewelryToBePreviewed.price }}</span>
-  </div>
-  <div>
-    <span>{{ jewelryToBePreviewed.formalDescription }}</span>
-  </div>
-  <div>
-    <select [(ngModel)]="userJewel.selectedSize">
-      <option>
-        Select Size
-      </option>
-      <option [disabled]="size.quantity == 0" *ngFor="let size of jewelryToBePreviewed.sizes" value={{size.size}}>
-        {{size.size}}
-      </option>
-    </select>
-    <input type="number" min="1" name="quantity" ngControl="quantity" [(ngModel)]="jewelryToBePreviewed.quantity" (ngModelChange)="jewelryToBePreviewed.quantity" #quantity="ngModel" />
 
+  <div class="line"></div>
+  <div class="details-container">
+    <div class="product-details-container">
+      <div class="details-title">
+        Product Details
+      </div>
+      <div class="all-details">
+        <div>
+          <span>Item {{ jewelryToBePreviewed.itemCode }}</span>
+        </div>
+        <div>
+          <span>Center Stone: {{ jewelryToBePreviewed.centerStone }}</span>
+        </div>
+        <div>
+          <span>Weight: {{ jewelryToBePreviewed.weightOneDim }}ct({{ jewelryToBePreviewed.weight3d.dimensionOne }}x{{ jewelryToBePreviewed.weight3d.dimensionTwo }}x{{ jewelryToBePreviewed.weight3d.dimensionThree }}mm)</span>
+        </div>
+        <div>
+          <span>Shape: {{ jewelryToBePreviewed.shape }}</span>
+        </div>
+        <div>
+          <span>Clarity: {{ jewelryToBePreviewed.clarity }} </span>
+        </div>
+        <div>
+          <span>Metal: {{ jewelryToBePreviewed.metal }} </span>
+        </div>
+        <div>
+          <span>Details: {{ jewelryToBePreviewed.detaillist.detailOne }}</span>
+          <div> {{ jewelryToBePreviewed.detaillist.detailTwo }}</div>
+          <div> {{ jewelryToBePreviewed.detaillist.detailThree }}</div>
+        </div>
+        <div> 
+         <span>Center Diamond is GIA certified</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-video-container">
+      <video class="video-wrapper" src={{jewelryToBePreviewed.video}} controls>Your browser does not support the tag.</video>
+    </div>
   </div>
-  <div *ngIf="sizeSelected == true">
-    A Size needs to be selected in order for you to add an item to the bag.
-  </div>
-  <div>
-    <button (click)="addItem()">Add to Bag</button>
-  </div>
-  <div (click)="addToWishlist()" *ngIf="wishListSuccess == false">
-    <span>Add To Wishlist</span>
-  </div>
-  <div *ngIf="wishListSuccess == true">
-    This item has been added to your Wishlist.<br>
-    <div (click)="wishList()">View Wishlist</div>
-  </div>
-  <div>
-    --------------------------------------------------------------------------
-    <div>
-      <strong>Product Details</strong>
-    </div>
-    <div>
-      <span>Item {{ jewelryToBePreviewed.itemCode }}</span>
-    </div>
-    <div>
-      <span>Center Stone: {{ jewelryToBePreviewed.centerStone }}</span>
-    </div>
-    <div>
-      <span>Weight: {{ jewelryToBePreviewed.weightOneDim }}ct({{ jewelryToBePreviewed.weight3d.dimensionOne }}x{{ jewelryToBePreviewed.weight3d.dimensionTwo }}x{{ jewelryToBePreviewed.weight3d.dimensionThree }}mm)</span>
-    </div>
-    <div>
-      <span>Shape: {{ jewelryToBePreviewed.shape }}</span>
-    </div>
-    <div>
-      <span>Clarity: {{ jewelryToBePreviewed.clarity }} </span>
-    </div>
-    <div>
-      <span>Metal: {{ jewelryToBePreviewed.metal }} </span>
-    </div>
-    <div>
-      <span>Details: {{ jewelryToBePreviewed.detaillist.detailOne }}</span>
-      <div> {{ jewelryToBePreviewed.detaillist.detailTwo }}</div>
-      <div> {{ jewelryToBePreviewed.detaillist.detailThree }}</div>
-    </div>
-    <div> 
-      <span>Center Diamond is GIA certified</span>
-    </div>
-    <div>
-      <video src={{jewelryToBePreviewed.video}} controls style="height:100px;width:100px;">Your browser does not support the tag.</video>
-  </div>
-  <div>
-  <related-item></related-item>
 </div>
 
 
+    <!--
+<div class="product-details-container">
+    <div>
+      <strong>Product Details</strong>
+    </div>
+    
+    <div>
+  </div>
+</div>
+  <related-item></related-item>
+    -->
