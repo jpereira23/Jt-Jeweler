@@ -16,8 +16,6 @@ export class AppComponent {
   signedInUser: any = null;
   constructor(private authenticationService: AuthenticationService){
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser')); 
-    this.order = JSON.parse(localStorage.getItem('currentOrder'));
-    this.cartNumber = this.order.jewelry.length;
     //console.log(this.signedInUser.email);
   }
 

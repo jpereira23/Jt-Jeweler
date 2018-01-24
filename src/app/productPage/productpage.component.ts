@@ -60,9 +60,11 @@ export class ProductPageComponent {
   {
     for(var i = 0; i < jewelry.length; i++)
     {
+      
       if(this.itemCode != null && jewelry[i].itemCode == this.itemCode)
       {
-        this.jewelryToBePreviewed = jewelry[i];
+        this.jewelryToBePreviewed = new Jewel();
+        this.jewelryToBePreviewed.convertJSON(jewelry[i]);
         this.jewelryToBePreviewed.quantity = 1; 
         this.loading = true;
       }
@@ -96,10 +98,16 @@ export class ProductPageComponent {
    */
   public addToWishlist()
   {
-    if(this.wishListService.addWish(this.jewelryToBePreviewed) == true)
+    var aUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(aUser != null && this.wishListService.addWish(this.jewelryToBePreviewed) == true)
     {
       this.wishListSuccess = true; 
     }  
+    else
+    {
+      console.log("Hello");
+      this.router.navigate(['signin']); 
+    }
   }
 
   

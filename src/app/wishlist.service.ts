@@ -58,15 +58,19 @@ export class WishListService {
   isItemInWishList(jewel: Jewel)
   {
     var user = new User();
-    user.convertJSON(JSON.parse(localStorage.getItem('currentUser')));
-
-    if(user != null && user.wishList != null && user.wishList.length > 0)
+    var tempUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(tempUser != null)
     {
-      for(var i = 0; i < user.wishList.length; i++)
+      user.convertJSON(JSON.parse(tempUser));
+
+      if(user != null && user.wishList != null && user.wishList.length > 0)
       {
-        if(user.wishList[i].jewelName == jewel.jewelName)
+        for(var i = 0; i < user.wishList.length; i++)
         {
-          return true;
+          if(user.wishList[i].jewelName == jewel.jewelName)
+          {
+            return true;
+          }
         }
       }
     }
