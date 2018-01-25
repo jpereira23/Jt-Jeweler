@@ -25,7 +25,7 @@ export class Jewel {
   detaillist: DetailList;
   formalDescription: string;
   video: string;
-  tags:string[];
+  keywords:string[]; 
   
   /** 
    * constructor(), is used to intialize jewelName, price, quantity, sizes, colors, isFemale, isMale, category, images, popularRank, itemCode, centerStone, weightOneDim, weightThreeDim, shape, clarity, metal, details, formalDescription and video to null values
@@ -54,7 +54,7 @@ export class Jewel {
     this.detaillist = new DetailList();
     this.formalDescription = "";
     this.video = "";
-    this.tags = [];
+    this.keywords = [];
   }   
 
   /**
@@ -98,7 +98,7 @@ export class Jewel {
       detaillist: this.detaillist,
       formalDescription: this.formalDescription,
       video: video,
-      tags: this.tags
+      keywords: this.keywords
     }
 
     return newJewel;
@@ -135,7 +135,7 @@ export class Jewel {
     this.detaillist = detaillist;
     this.formalDescription = jsonJewel.formalDescription;
     this.video = jsonJewel.video;
-    this.tags = jsonJewel.tags; 
+    this.keywords = jsonJewel.keywords;
   }
    
 }

@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Output,Component, Input, OnInit, EventEmitter} from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { CartService } from '../cart.service';
 import { LayoutService } from '../layout.service';
 import { DataService } from '../data.service';
 import { Router, NavigationExtras} from '@angular/router';
+
 @Component({
   moduleId: module.id,
   selector: 'layout-header',
@@ -16,6 +17,7 @@ export class HeaderComponent {
   signedInUser: any;
   @Input() numOfItems: number = 0;
   search: string = ""; 
+  @Output() aSearch: EventEmitter<string> = new EventEmitter<string>();
   constructor(private authenticationService: AuthenticationService, private cartService: CartService, private router: Router, private layoutService: LayoutService, private dataService: DataService)
   {
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser')); 
@@ -73,6 +75,8 @@ export class HeaderComponent {
         "search": this.search
       }
     }
+    console.log("hello word");
+    this.aSearch.next(this.search);
     this.router.navigate(['searching'], navigationExtras);
   }
 }

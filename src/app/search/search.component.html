@@ -1,3 +1,6 @@
-<div>
-  {{ search }}
+<layout-header (aSearch)="searchChanged($event)">
+</layout-header>
+
+<div *ngFor="let jewel of jewelry">
+  {{ jewel.jewelName }} 
 </div>

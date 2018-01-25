@@ -14,6 +14,8 @@ export class EditJewelryComponent {
   jewelryToBeEdited: any;
   loading = false;
   itemCode: string;
+  aKey: string = "";
+  keywords: Array<string> = [];
   constructor(private _dataService: DataService, private route: ActivatedRoute, private router: Router)
   {
     this.route.queryParams.subscribe(params => {
@@ -35,39 +37,22 @@ export class EditJewelryComponent {
       {
         this.loading = true;
         this.jewelryToBeEdited = this.jewelry[i];  
+        this.keywords = this.jewelry[i].keywords;
       }
     }
   }
 
   public onSubmit()
   {
-    console.log(this.jewelryToBeEdited.itemCode);
-    var editJewel = {
-      _id: this.jewelryToBeEdited._id,
-      jewelName: this.jewelryToBeEdited.jewelName,
-      price: this.jewelryToBeEdited.price,
-      quantity: this.jewelryToBeEdited.quantity,
-      sizes: this.jewelryToBeEdited.sizes,
-      colors: this.jewelryToBeEdited.colors,
-      isFemale: this.jewelryToBeEdited.isFemale,
-      isMale: this.jewelryToBeEdited.isMale,
-      category: this.jewelryToBeEdited.category,
-      images: this.jewelryToBeEdited.images,
-      popularRank: this.jewelryToBeEdited.popularRank,
-      itemCode: this.jewelryToBeEdited.itemCode,
-      centerStone: this.jewelryToBeEdited.centerStone,
-      weightOneDim: this.jewelryToBeEdited.weightOneDim, 
-      weightThreeDim: this.jewelryToBeEdited.weightThreeDim, 
-      shape: this.jewelryToBeEdited.shape, 
-      clarity: this.jewelryToBeEdited.clarity, 
-      metal: this.jewelryToBeEdited.metal, 
-      details: this.jewelryToBeEdited.details, 
-      formalDescription: this.jewelryToBeEdited.formalDescription, 
-      video: this.jewelryToBeEdited.video
-    }
-    this._dataService.editJewel(editJewel).subscribe();
+   
+    this._dataService.editJewel(this.jewelryToBeEdited).subscribe();
 
     this.router.navigate(['viewJewel']);
+  }
+
+  public addingKey()
+  {
+    this.keywords.push(this.aKey);
   }
 
 }
