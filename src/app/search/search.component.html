@@ -1,6 +1,31 @@
 <layout-header (aSearch)="searchChanged($event)">
 </layout-header>
 
-<div *ngFor="let jewel of jewelry">
-  {{ jewel.jewelName }} 
+<div class="search-wrapper">
+  <div class="search-container">
+    <div class="search-title">
+      Results
+    </div>
+     
+    <div class="search-item-row">
+      <div class="item-jewel" *ngFor="let jewel of jewelry">
+        <div class="the-image">
+        <swiper class="the-swiper" [config]="config">
+          <div class="swiper-wrapper">
+            <img class="swiper-slide" *ngFor="let theImage of jewel.images" src={{theImage}}>
+          </div>
+          <div class="swiper-pagination"></div>
+        </swiper>
+        </div>
+        <div (click)="viewProductPage(i)">
+          <div class="item-name">{{ jewel.jewelName }}</div>
+          <div class="item-price">${{ jewel.price }}</div>
+        </div>
+        <div class="item-button-wrapper">
+          <button class="item-button" (click)="addItem(i)">ADD TO BAG</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
