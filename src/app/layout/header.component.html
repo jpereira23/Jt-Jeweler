@@ -1,25 +1,33 @@
 <div class="header-body">
+  <div class="top-line"></div>
+  <div class="top-part">
+    <div class="right-side">
+    </div>
+    <div class="middle-side">
+      <div class="logo-header">JT</div>
+      <div class="logo-footer">PRIVATE JEWELERS</div>
+    </div>
+    <div class="left-side">
+      <div>
+        <a routerLink="/shoppingCart" class="shoppingSection" >
+          Shopping Bag({{ numOfItems }})
+        </a>
+      </div>
+      <div>
+        <input [(ngModel)]="search" (ngModelChange)="searching()" class="search-bar" type="text" placeholder="Search" />
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <div id="links" *ngIf="signedIn == false">
+    <a  class="link" routerLink="/">Home</a>
+    <a  routerLinkActive="router-link-active" routerLink="/signin">Sign In</a>
+    <a  routerLinkActive="router-link-active"routerLink="/signup">Sign Up</a>
+  </div>
 
-<a routerLink="/shoppingCart" class="shoppingSection" >
-  Shopping Bag({{ numOfItems }})
-</a>
-
-  <input [(ngModel)]="search" (ngModelChange)="searching()" class="search-bar" type="text" placeholder="Search" />
-
-<div class="logo-header">JT</div>
-<div class="logo-footer">PRIVATE JEWELERS</div>
-<div class="line"></div>
-<div id="links" *ngIf="signedIn == false">
-
-  <a  class="link" routerLink="/">Home</a>
-  <a  routerLinkActive="router-link-active" routerLink="/signin">Sign In</a>
-  <a  routerLinkActive="router-link-active"routerLink="/signup">Sign Up</a>
-</div>
-
-<div id="links" *ngIf="signedIn == true">
-
-  <a  routerLink="/">Home</a>
-  <a  routerLinkActive="router-link-active" (click)="signOut()">Sign Out</a>
-  <a  routerLinkActive="router-link-active" routerLink="/manageAccount">My Account</a>
-</div>
+  <div id="links" *ngIf="signedIn == true">
+    <a  routerLink="/">Home</a>
+    <a  routerLinkActive="router-link-active" (click)="signOut()">Sign Out</a>
+    <a  routerLinkActive="router-link-active" routerLink="/manageAccount">My Account</a>
+  </div>
 </div>

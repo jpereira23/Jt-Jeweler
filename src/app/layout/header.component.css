@@ -1,12 +1,40 @@
+
+.top-line{
+  margin: 0% 0% 0% 0%;
+  height: 4px;
+  background-color: #e2af4c;
+  width: 100%;
+}
 .header-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #ffffff;
-  width: 1300px;
-  height: 152px;
+  width: 100%;
+}
+.top-part{
+  margin: 1% 10% 0% 10%; 
+  display: flex;
+  justify-content: space-between;
+}
+.right-side{
+  width: 33%;
+}
+
+.left-side{
+  display: flex;
+  align-content: flex-end;
+  width: 33%;
+}
+
+.middle-side{
+  width: 33%;
 }
 
 .line { 
-  margin: 10px 180px;
-  width: 940px;
+  display: flex;
+  justify-content: center;
+  margin: 1% 10% 0% 10%;
   height: 1px;
   background-color: rgba(255, 223, 223, 0.5);
 }
@@ -41,6 +69,7 @@ a.link :hover{
 
 #links
 {
+  margin: 1% 0% 0% 0%;
   text-align: center;
 }
 
@@ -49,7 +78,6 @@ a.shoppingSection{
   font-family: 'Hind';
   font-size: 12px;
   font-weight:300;
-  left: 880px;
   color:#bbbbbb;
 }
 
@@ -62,12 +90,10 @@ a.shoppingSection{
   color: #bbbbbb;
 }
 .search-bar{
-  position: relative;
   font-family: 'Hind';
   font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.5px;
-  left: 880px;
   color: #bbbbbb;
   width: 130px;
   height: 40px;
