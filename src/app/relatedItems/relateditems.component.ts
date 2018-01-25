@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/router';
 import { DataService } from '../data.service';
+import { CartService } from '../cart.service';
 import { Jewel } from '../models/jewel';
+import { Order } from '../models/order';
+import { UserJewel } from '../models/userjewel';
 @Component({
   moduleId: module.id,
   selector: 'related-item',
@@ -10,6 +14,9 @@ import { Jewel } from '../models/jewel';
 
 export class RelatedItemComponent {
   jewelry: Array<Jewel>;
+  order = new Order();
+  cartNumber: number = 0;
+  @Output() jewel: EventEmitter<Jewel> = new EventEmitter<Jewel>();
   config: SwiperOptions = {
     pagination: '.swiper-pagination',
     paginationClickable: true,
@@ -19,14 +26,52 @@ export class RelatedItemComponent {
     slidesPerColumnFill: 'row'
   };
 
-  constructor(private dataService: DataService) 
+  constructor(private dataService: DataService, private _cartService: CartService, private router: Router) 
   {
     this.dataService.getJewelry()
       .subscribe(res => this.delegateGetJewelry(res));   
+
+    var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
+    if(aOrder != null)
+    {
+      this.order = aOrder;
+    }
+    this.cartNumber = this.order.jewelry.length;
   }
+
+
 
   public delegateGetJewelry(jewelry: Array<Jewel>)
   {
     this.jewelry = jewelry;
   }
+
+  /** 
+   * addItem(i: number) is used to add an item to the CartService for the orders
+   *
+   * @param i, the index of what jewelry to add to the order
+   */
+  public addItem(i: number)
+  {
+    var aJewel: Jewel = this.jewelry[i];
+    aJewel.quantity = 1;
+    var userJewel: UserJewel = aJewel.convertUserJewel();
+    console.log("jewelry name is " + aJewel.jewelName);
+    this._cartService.addItem(userJewel);
+
+    this.order = JSON.parse(localStorage.getItem('currentOrder'));
+    this.cartNumber = this.order.jewelry.length;
+    
+
+  }
+
+  public viewProductPage(i: number)
+  {
+    console.log("Hey");
+    this.jewel.next(this.jewelry[i]);
+    window.scrollTo(0,0);
+
+  }  
+
+
 }

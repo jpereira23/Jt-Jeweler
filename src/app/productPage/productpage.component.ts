@@ -130,6 +130,11 @@ export class ProductPageComponent {
       };
       this.router.navigate(['manageAccount'], navigationExtras); 
   }
+
+  public changeJewel(jewel: Jewel){
+    console.log("why fuck off yeah");
+    this.jewelryToBePreviewed = jewel;
+  }
 }
 
 

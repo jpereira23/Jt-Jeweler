@@ -168,37 +168,7 @@ export class DataService {
       {
         var jewel = new Jewel();
         jewel.convertJSON(aResult[i]);
-        /*
-        jewel._id = aResult[i]._id;
-        jewel.jewelName = aResult[i].jewelName;
-        jewel.price = aResult[i].price;
-        jewel.quantity = aResult[i].quantity;
-        jewel.sizes = aResult[i].sizes;
-        jewel.colors = aResult[i].colors;
-        jewel.isFemale = aResult[i].isFemale; 
-        jewel.isMale = aResult[i].isMale;
-        jewel.category = aResult[i].category;
-        jewel.images = aResult[i].images;
-        jewel.popularRank = aResult[i].popularRank;
-        jewel.itemCode = aResult[i].itemCode;
-        jewel.centerStone = aResult[i].weightOneDim;
-        var weight3d = new Weight3D();
-        weight3d.dimensionOne = aResult[i].weight3d.dimensionOne;
-        weight3d.dimensionTwo = aResult[i].weight3d.dimensionTwo;
-        weight3d.dimensionThree = aResult[i].weight3d.dimensionThree;
-        jewel.weight3d = weight3d;
-        jewel.shape = aResult[i].shape; 
-        jewel.clarity = aResult[i].clarity;
-        jewel.metal = aResult[i].metal;
-        var detaillist = new DetailList();
-        detaillist.detailOne = aResult[i].detaillist.detailOne;
-        detaillist.detailTwo = aResult[i].detaillist.detailTwo;
-        detaillist.detailOne = aResult[i].detaillist.detailOne;
-        jewel.detaillist = detaillist;
-        jewel.formalDescription = aResult[i].formalDescription;
-        jewel.video = aResult[i].video;
-        */
-        jewelry.push(jewel);
+             jewelry.push(jewel);
       }   
       return jewelry;
 

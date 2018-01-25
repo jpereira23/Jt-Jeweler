@@ -55,7 +55,7 @@ export class HomeComponent{
       this.order = aOrder;
     }
     this.cartNumber = this.order.jewelry.length;
-    
+        
   } 
 
   /**
