@@ -167,6 +167,8 @@ export class DataService {
       for(var i = 0; i < aResult.length; i++)
       {
         var jewel = new Jewel();
+        jewel.convertJSON(aResult[i]);
+        /*
         jewel._id = aResult[i]._id;
         jewel.jewelName = aResult[i].jewelName;
         jewel.price = aResult[i].price;
@@ -195,6 +197,7 @@ export class DataService {
         jewel.detaillist = detaillist;
         jewel.formalDescription = aResult[i].formalDescription;
         jewel.video = aResult[i].video;
+        */
         jewelry.push(jewel);
       }   
       return jewelry;

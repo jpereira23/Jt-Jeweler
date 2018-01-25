@@ -42,7 +42,7 @@
 <div class="featured-products">
   <div class="title-featured">Featured Products</div>
   <div class="item-wrapper">
-  <div class="item-element" *ngFor="let jewel of jewelry;let i = index">
+  <div class="item-element" *ngFor="let jewel of jewelry | slice:0:6;let i = index">
     <swiper class="the-swiper" [config]="config">
     <div class="swiper-wrapper">
       <img class="swiper-slide" *ngFor="let theImage of jewel.images" src={{theImage}}>

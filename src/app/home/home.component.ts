@@ -65,6 +65,9 @@ export class HomeComponent{
    */
   private delegateForJewelry(jewelry: Array<Jewel>)
   {
+    
+    jewelry.sort((a,b)=>b.purchaseRank-a.purchaseRank);  
+    console.log(jewelry); 
     this.jewelry = jewelry;
   }
   
@@ -111,7 +114,6 @@ export class HomeComponent{
     var userJewel: UserJewel = aJewel.convertUserJewel();
     console.log("jewelry name is " + aJewel.jewelName);
     this._cartService.addItem(userJewel);
-
 
     this.order = JSON.parse(localStorage.getItem('currentOrder'));
     this.cartNumber = this.order.jewelry.length;

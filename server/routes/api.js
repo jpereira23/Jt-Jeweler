@@ -356,7 +356,7 @@ router.put('/jewel/:id', (req, res) => {
   
   connection((db) => {
     db.collection('jewelry')
-      .update({'_id': ObjectID(req.body._id)}, {'jewelName': req.body.jewelName, 'price': req.body.price, 'quantity': req.body.quantity, 'sizes': req.body.sizes, 'colors': req.body.colors, 'isFemale': req.body.isFemale, 'isMale': req.body.isMale, 'category': req.body.category, 'images': req.body.images, 'popularRank': req.body.popularRank, 'itemCode': req.body.itemCode, 'centerStone': req.body.centerStone, 'weightOneDim': req.body.weightOneDim, 'weight3d': req.body.weight3d, 'shape': req.body.shape, 'clarity': req.body.clarity, 'metal': req.body.metal, 'detaillist': req.body.detaillist, 'formalDescription': req.body.formalDescription, 'video': req.body.video },{ $multi: true } , function(err, jewel){
+      .update({'_id': ObjectID(req.body._id)}, {'jewelName': req.body.jewelName, 'price': req.body.price, 'quantity': req.body.quantity, 'sizes': req.body.sizes, 'colors': req.body.colors, 'isFemale': req.body.isFemale, 'isMale': req.body.isMale, 'category': req.body.category, 'images': req.body.images, 'popularRank': req.body.popularRank, 'purchaseRank': req.body.purchaseRank, 'itemCode': req.body.itemCode, 'centerStone': req.body.centerStone, 'weightOneDim': req.body.weightOneDim, 'weight3d': req.body.weight3d, 'shape': req.body.shape, 'clarity': req.body.clarity, 'metal': req.body.metal, 'detaillist': req.body.detaillist, 'formalDescription': req.body.formalDescription, 'video': req.body.video },{ $multi: true } , function(err, jewel){
         if(err)
         {
           res.send(err);

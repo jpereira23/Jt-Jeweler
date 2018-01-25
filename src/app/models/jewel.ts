@@ -14,6 +14,7 @@ export class Jewel {
   category: string;
   images: string[];
   popularRank: number;
+  purchaseRank: number;
   itemCode: string;
   centerStone: string;
   weightOneDim: number;
@@ -42,6 +43,7 @@ export class Jewel {
     this.category = "";
     this.images = [];
     this.popularRank = 0;
+    this.purchaseRank = 0;
     this.itemCode = "";
     this.centerStone = "";
     this.weightOneDim = 0.0;
@@ -85,6 +87,7 @@ export class Jewel {
       category: this.category,
       images: imagesArray,
       popularRank: this.popularRank,
+      purchaseRank: this.purchaseRank,
       itemCode: this.itemCode,
       centerStone: this.centerStone,
       weightOneDim: this.weightOneDim,
@@ -114,6 +117,7 @@ export class Jewel {
     this.category = jsonJewel.category;
     this.images = jsonJewel.images;
     this.popularRank = jsonJewel.popularRank;
+    this.purchaseRank = jsonJewel.purchaseRank;
     this.itemCode = jsonJewel.itemCode;
     this.centerStone = jsonJewel.centerStone;
     var weight3d = new Weight3D();

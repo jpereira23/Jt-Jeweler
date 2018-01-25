@@ -133,7 +133,7 @@ export class CartService {
 
     for(var i = 0; i < this.order.jewelry.length; i++)
     {
-    var aJewel = this.order.jewelry[i];
+      var aJewel = this.order.jewelry[i];
       for(var j = 0; j < aJewel.jewel.sizes.length; j++)
       {
         var aSelectedSize = aJewel.selectedSize;
@@ -143,9 +143,10 @@ export class CartService {
         {
           aJewel.jewel.sizes[j].quantity -= 1;
           console.log("Making it here");
-          thearguments.push(this.dataService.editJewel(aJewel.jewel));
         }
       }  
+      aJewel.jewel.purchaseRank += 1;
+      thearguments.push(this.dataService.editJewel(aJewel.jewel));
     }
 
     forkJoin(thearguments).subscribe();
