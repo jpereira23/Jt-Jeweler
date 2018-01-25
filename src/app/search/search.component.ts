@@ -55,7 +55,7 @@ export class SearchComponent
     {
       for(var j = 0; j < jewelry[i].keywords.length; j++)
       {
-        if(jewelry[i].keywords[j].indexOf(this.search) != -1 && this.jewelry.indexOf(jewelry[i]) == -1)
+        if((jewelry[i].jewelName.indexOf(this.search) != -1 || jewelry[i].keywords[j].indexOf(this.search)) != -1 && this.jewelry.indexOf(jewelry[i]) == -1)
         {
           this.jewelry.push(jewelry[i]);
         }
@@ -71,7 +71,7 @@ export class SearchComponent
     {
       for(var j = 0; j < this.theJewelry[i].keywords.length; j++)
       {
-        if(this.theJewelry[i].keywords[j].indexOf(this.search) != -1 && this.jewelry.indexOf(this.theJewelry[i]) == -1)
+        if((this.theJewelry[i].jewelName.indexOf(this.search) != -1 || this.theJewelry[i].keywords[j].indexOf(this.search) != -1 ) && this.jewelry.indexOf(this.theJewelry[i]) == -1)
         {
           this.jewelry.push(this.theJewelry[i]);
         }
