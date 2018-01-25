@@ -1,10 +1,22 @@
-    --------------------------------------------------------------------------
-    <div>
-      <strong>You May Also Like</strong>
-      <div *ngFor="let jewel of jewelry">
-        <div><img src={{jewel.images[0]}} style="height:100px;width:100px;" /></div>
-        <div><span>{{ jewel.jewelName }}</span></div>
-        <div><span>${{ jewel.price }}</span></div>
+    <div class="related-items-container">
+      <div class="related-items-wrapper">
+        <div class="related-items-title">You May Also Like</div>
+        <div class="related-item-row">
+          <div class="related-item-jewel" *ngFor="let jewel of jewelry | slice:0:3;">
+            <swiper class="the-swiper" [config]="config">
+              <div class="swiper-wrapper">
+                <img class="swiper-slide" *ngFor="let theImage of jewel.images" src={{theImage}}>
+              </div>
+              <div class="swiper-pagination"></div>
+            </swiper>
+            <div class="item-name">{{ jewel.jewelName }}</div>
+            <div class="item-price">${{ jewel.price }}</div>
+            <div class="item-button-wrapper">
+              <button class="item-button" (click)="addItem(i)">ADD TO BAG</button>
+            </div>
+          </div>
+          
+        </div>
       </div>
     </div>
 

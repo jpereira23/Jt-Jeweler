@@ -10,6 +10,15 @@ import { Jewel } from '../models/jewel';
 
 export class RelatedItemComponent {
   jewelry: Array<Jewel>;
+  config: SwiperOptions = {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 30,
+    slidesPerColumnFill: 'row'
+  };
+
   constructor(private dataService: DataService) 
   {
     this.dataService.getJewelry()

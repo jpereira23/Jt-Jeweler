@@ -1,0 +1,96 @@
+.related-items-container
+{
+  display: flex;
+  flex-direction: column;
+}
+.related-items-wrapper{
+  margin: 5% 10% 5% 10%;
+}
+.related-items-title{
+  font-family: "Playfair Display";
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #1d1d1d; 
+}
+
+.related-item-row{
+  display: flex;
+  justify-content: space-between;
+  margin: 35px 0px 0px 0px;
+
+}
+.related-item-jewel{
+  width: 300px;
+  height: 454px;
+  background-color: #ffffff;
+} 
+
+:host swiper{
+  
+  padding: 20px 44px 0px;
+  width: 211px;
+  height: 211px;
+}
+
+.item-name{
+  font-family: 'Playfair Display';
+  font-size: 20px;
+  font-weight:bold;
+  color: #1d1d1d;
+  padding: 22px 44px;
+  text-align: center;
+}
+span{ 
+  font-family: 'Playfair Display';
+}
+.item-price{
+  font-family: 'Playfair Display';
+  font-size: 15px;
+  text-align:center;
+  color: #1d1d1d; 
+}
+
+.item-button-wrapper{
+
+  padding: 35px 72px 0px; 
+  font-family: 'Hind';
+  font-size: 12px; 
+  font-weight: 600;
+  line-height:2.0;
+  text-align: center;
+  color: #e2af4c;
+}
+
+.item-button-wrapper :hover{
+
+  font-family: 'Hind';
+  font-size: 12px; 
+  font-weight: 600;
+  line-height:2.0;
+  text-align: center;
+  color: #ffffff;
+  background-color: #e2af4c;
+}
+ 
+.item-button{
+
+  font-family: 'Hind';
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 2.0;
+  letter-spacing: 1px;
+  text-align: center;
+  background-color: #ffffff;
+  color: #e2af4c;
+  border: solid 1px #e2af4c;
+}
+
+.item-button :hover{
+}
+.category-wrapper{
+  padding: 0px 0px 100px;
+  width: 1300px;
+  background-color: rgba(0, 0, 0, 0.02);
+
+}

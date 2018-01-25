@@ -27,11 +27,11 @@
         {{ jewelryToBePreviewed.formalDescription }}
       </div>
       <div class="product-selectors">
-        <select class="product-size" [(ngModel)]="userJewel.selectedSize">
-          <option>
+        <select class="product-size form-control" [(ngModel)]="userJewel.selectedSize" placeholder="Quantity">
+          <option value="" disabled="true" [selected]="!userJewel.selectedSize">
             Select Size
           </option>
-          <option [disabled]="size.quantity == 0" *ngFor="let size of jewelryToBePreviewed.sizes" value={{size.size}}>
+          <option [disabled]="size.quantity == 0" *ngFor="let size of jewelryToBePreviewed.sizes" [value]="size.size">
             {{size.size}}
           </option>
         </select>
@@ -97,17 +97,7 @@
       <video class="video-wrapper" src={{jewelryToBePreviewed.video}} controls>Your browser does not support the tag.</video>
     </div>
   </div>
-</div>
-
-
-    <!--
-<div class="product-details-container">
-    <div>
-      <strong>Product Details</strong>
-    </div>
-    
-    <div>
+  <div class="related-items-container">
+    <related-item></related-item>
   </div>
 </div>
-  <related-item></related-item>
-    -->
