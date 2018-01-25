@@ -132,8 +132,11 @@ export class ProductPageComponent {
   }
 
   public changeJewel(jewel: Jewel){
-    console.log("why fuck off yeah");
     this.jewelryToBePreviewed = jewel;
+  }
+
+  public cartNumberChanged(cNumber: number){
+    this.cartNumber = cNumber;
   }
 }
 

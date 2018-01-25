@@ -16,6 +16,7 @@ export class RelatedItemComponent {
   jewelry: Array<Jewel>;
   order = new Order();
   cartNumber: number = 0;
+  @Output() cNumber: EventEmitter<number> = new EventEmitter<number>();
   @Output() jewel: EventEmitter<Jewel> = new EventEmitter<Jewel>();
   config: SwiperOptions = {
     pagination: '.swiper-pagination',
@@ -43,6 +44,8 @@ export class RelatedItemComponent {
 
   public delegateGetJewelry(jewelry: Array<Jewel>)
   {
+
+    jewelry.sort((a,b)=>b.popularRank-a.popularRank);  
     this.jewelry = jewelry;
   }
 
@@ -61,13 +64,15 @@ export class RelatedItemComponent {
 
     this.order = JSON.parse(localStorage.getItem('currentOrder'));
     this.cartNumber = this.order.jewelry.length;
+    this.cNumber.next(this.cartNumber);
     
 
   }
 
   public viewProductPage(i: number)
   {
-    console.log("Hey");
+    this.jewelry[i].popularRank += 1;
+    this.dataService.editJewel(this.jewelry[i]).subscribe();
     this.jewel.next(this.jewelry[i]);
     window.scrollTo(0,0);
 

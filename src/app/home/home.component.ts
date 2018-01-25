@@ -79,6 +79,8 @@ export class HomeComponent{
   public viewProductPage(i: number)
   {
     var jewel = this.jewelry[i];
+    jewel.popularRank += 1;
+    this._dataService.editJewel(jewel).subscribe();
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "itemCode": jewel.itemCode
