@@ -21,7 +21,7 @@
   <div class="line"></div>
   <div id="links" *ngIf="signedIn == false">
     <a  class="link" routerLink="/">Home</a>
-    <a  routerLinkActive="router-link-active" routerLink="/signin">Sign In</a>
+    <a (click)="openDialog()">Sign In</a>
     <a  routerLinkActive="router-link-active"routerLink="/signup">Sign Up</a>
   </div>
 

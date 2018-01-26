@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 // Import the DataService
 import { DataService } from '../data.service';
@@ -20,10 +21,13 @@ export class SignInComponent {
   home: HomeComponent; 
   isError: boolean = false;
   isMessage: string = "";
-  constructor(private _dataService: DataService, private router: Router, private authenticationService: AuthenticationService, private layoutService: LayoutService){
+  constructor(private _dataService: DataService, private router: Router, private authenticationService: AuthenticationService, private layoutService: LayoutService, public dialogRef: MatDialogRef<SignInComponent>, @Inject(MAT_DIALOG_DATA) public data: any){
     this._dataService.getUsers().subscribe(res => this.delegateForUsers(res));
   }
   
+  onNoClick(): void{
+    this.dialogRef.close();
+  }
   delegateForUsers(users)
   {
     this.users = users;

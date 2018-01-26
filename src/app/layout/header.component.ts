@@ -4,6 +4,8 @@ import { CartService } from '../cart.service';
 import { LayoutService } from '../layout.service';
 import { DataService } from '../data.service';
 import { Router, NavigationExtras} from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { SignInComponent } from '../signin/signin.component';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +20,7 @@ export class HeaderComponent {
   @Input() numOfItems: number = 0;
   search: string = ""; 
   @Output() aSearch: EventEmitter<string> = new EventEmitter<string>();
-  constructor(private authenticationService: AuthenticationService, private cartService: CartService, private router: Router, private layoutService: LayoutService, private dataService: DataService)
+  constructor(private authenticationService: AuthenticationService, private cartService: CartService, private router: Router, private layoutService: LayoutService, private dataService: DataService, public dialog: MatDialog)
   {
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser')); 
     this.numOfItems = this.cartService.getNumItems(); 
@@ -28,6 +30,15 @@ export class HeaderComponent {
       this.signedIn = true;
     }
   }
+
+  openDialog(): void {
+  let dialogRef = this.dialog.open(SignInComponent, {
+    width: '400px',
+    height: '484px',
+    data: { }
+  });
+    
+  } 
 
   ngOnInit(){
     this.layoutService.getData().subscribe(data => {

@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SwiperModule } from 'angular2-useful-swiper';
 import { ModalModule } from 'angular2-modal';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatDialogModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -67,7 +69,10 @@ import { LayoutService } from './layout.service';
     FormsModule,
     ReactiveFormsModule,
     FileUploadModule,
-    SwiperModule
+    SwiperModule,
+    BrowserAnimationsModule,
+    MatDialogModule
+
   ],
   providers: [DataService,
   AuthenticationService,
