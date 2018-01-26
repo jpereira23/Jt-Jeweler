@@ -6,6 +6,7 @@ import { DataService } from '../data.service';
 import { Router, NavigationExtras} from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { SignInComponent } from '../signin/signin.component';
+import { SignUpComponent } from '../signup/signup.component';
 
 @Component({
   moduleId: module.id,
@@ -32,13 +33,20 @@ export class HeaderComponent {
   }
 
   openDialog(): void {
-  let dialogRef = this.dialog.open(SignInComponent, {
-    width: '400px',
-    height: '484px',
-    data: { }
-  });
-    
+    let dialogRef = this.dialog.open(SignInComponent, {
+      width: '400px',
+      height: '484px',
+      data: { }
+    });
   } 
+
+  openSignUp(): void{
+    let dialogRef = this.dialog.open(SignUpComponent, {
+      width: '400px',
+      height: '556px', 
+      data: { }
+    });
+  }
 
   ngOnInit(){
     this.layoutService.getData().subscribe(data => {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ViewEncapsulation, Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 // Import the DataService
 import { DataService } from '../data.service';
@@ -9,7 +9,8 @@ import { User } from '../models/user';
   moduleId: module.id,
   selector: 'signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class SignUpComponent {
