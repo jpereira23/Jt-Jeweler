@@ -1,4 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { ViewEncapsulation, Component, Inject } from '@angular/core';
+
 import { Router, NavigationExtras } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -12,7 +13,8 @@ import { LayoutService } from '../layout.service';
 @Component({
   selector: 'signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class SignInComponent {

@@ -10,6 +10,9 @@
   border-top: 3px solid #e4ad51;
 }
 
+.mat-dialog-container{
+  padding: 0px;
+}
 .exit{
   margin: 10px 0px 0px 0px;
   width: 10%;
@@ -117,7 +120,7 @@ a.signup{
   color:#e2af4c;
 }
 
-.line{
+.signin-line{
   display: flex;
   justify-content: center;
   margin: 5% 0% 0% 0%;
