@@ -66,6 +66,8 @@ export class SignInComponent {
           {  
             this.router.navigate(['']);
           }
+          
+          this.dialogRef.close();
           this.layoutService.updateValue(true); 
         },
         error => {

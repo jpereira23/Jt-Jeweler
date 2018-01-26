@@ -7,17 +7,18 @@
 
 .outline{
   width: 100%;
-  border-top: 3px solid #e4ad51;
+  border-top: 4px solid #e4ad51;
 }
 
 .mat-dialog-container{
   padding: 0px;
 }
 .exit{
-  margin: 10px 0px 0px 0px;
+  margin: 1px 0px 0px 0px;
   width: 10%;
   float: right;
   border: none;
+  font-size: 17px;
 }
 
 .title{
@@ -90,6 +91,30 @@
 	text-align: center;
 }
 
+.submittion-wrapper :hover{
+  background-color: #dba741;
+}
+
+.submittion :hover{
+  margin: 5% 0% 0% 0%;
+  border: none;
+  background-color: #dba741;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height:40px;
+
+  font-family: 'Hind';
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 2.0;
+	letter-spacing: 1px;
+	text-align: center;
+
+
+}
+
 .forgot{
   display: flex;
   text-decoration: none;
@@ -113,23 +138,25 @@ a.forgot :hover{
 }
 
 a.signup{
+  text-decoration: none;
   font-family: 'Hind';
   font-size: 15px;
   font-weight: 500;
-  line-height:2.0;
   color:#e2af4c;
 }
+
 
 .signin-line{
   display: flex;
   justify-content: center;
   margin: 5% 0% 0% 0%;
   width: 300px;
-  height: 1px;
+  height: 2px;
   background-color: #bbbbbb;
 }
 
 .dont-have{
+  padding: 5% 0% 0% 0%;
   display: flex;
   justify-content: center;
   font-family:'Hind';
