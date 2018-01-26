@@ -8,14 +8,22 @@
 
 <div class="product-page-container" *ngIf="loading == true">
   <div class="product-container">
-    <div class="product-image-section">
-    <swiper class="the-swiper" [config]="config">
-      <div class="swiper-wrapper">
-        <img class="swiper-slide" *ngFor="let theImage of jewelryToBePreviewed.images" src={{theImage}}>
+    <div class="product-part">
+      <div class="product-image-section">
+        <swiper class="the-swiper" [config]="config">
+          <div class="swiper-wrapper">
+            <img class="swiper-slide" *ngFor="let theImage of jewelryToBePreviewed.images" src={{theImage}}>
+          </div>
+        </swiper>
       </div>
-    </swiper>
+      <div class="product-gallery-section">
+        <swiper class="mini-gallery">
+          <div class="swiper-wrapper">
+            <img class="swiper-slide" *ngFor="let theImage of jewelryToBePreviewed.images" src={{theImage}}>
+          </div>
+        </swiper> 
+      </div>
     </div>
-
     <div class="product-container-details-section">
       <div class="product-name">
         {{ jewelryToBePreviewed.jewelName }}

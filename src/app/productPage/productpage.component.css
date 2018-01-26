@@ -18,12 +18,26 @@
 }
 
 .the-swiper {
-  height: 90%;
+  height: 80%;
   width: 90%;
  }
+.product-part{
+  height: 100%;
+}
 .product-image-section{
-  height: 456px;
+  height: 60%;
   width: 471px;
+}
+
+.product-gallery-section{
+  display: flex;
+  justify-content: center;
+  height: 40%;
+}
+
+.mini-gallery{
+  height:40px;
+  width: 40px;
 }
 
 .product-container-details-section{
