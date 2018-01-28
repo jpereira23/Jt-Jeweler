@@ -1,6 +1,8 @@
-import { ViewEncapsulation, Component } from '@angular/core';
+import { ViewEncapsulation, Component, Inject } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 // Import the DataService
+
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'; 
 import { DataService } from '../data.service';
 import { AuthenticationService } from '../authentication.service';
 import { User } from '../models/user';
@@ -33,13 +35,16 @@ export class SignUpComponent {
    * @param authenticationService, references a AuthenticationService to logout on intialization because it doesnt make sense to signup when you are logged in
    * @param router, references a Router so taht we can route to sign in page once you are done signing up
    */
-  constructor(private _dataService: DataService, private authenticationService: AuthenticationService, private router: Router) {
+   constructor(private _dataService: DataService, private authenticationService: AuthenticationService, private router: Router, private dialogRef: MatDialogRef<SignUpComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this._dataService.getUsers()
         .subscribe(res => this.users = res);
     this.authenticationService.logout();
   }
 
 
+  onNoClick(): void{
+    this.dialogRef.close();
+  }
   /**
    * onSubmit(), is used to submit the entered form in the signup page
    */
@@ -61,7 +66,8 @@ export class SignUpComponent {
       this.emailError = false;
       this.firstNameError = false;
       this._dataService.checkEmail(aUser).subscribe();
-      this.router.navigate(['signin']);
+      this.router.navigate(['checkemail']);
+      this.dialogRef.close();
     }
       
   }

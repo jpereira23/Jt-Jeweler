@@ -1,5 +1,13 @@
-<div *ngIf="user != null && users != null">
-  Hello {{ user.firstName  }}  {{ user.lastName }}, your account has been verified!
-
-
+<div *ngIf="user != null" class="white-bg">
+  <div class="header-center">
+    <div class="texture">
+      {{ user.firstName  }}  {{ user.lastName }}, your account has been verified!
+    </div>
+  </div>
+  <div class="line-header"></div><br>
+  <div class="learn-more-header">
+    <button (click)="openDialog()" class="learn-more">SIGN IN</button>
+  </div>
 </div>
+
+
