@@ -1,4 +1,4 @@
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, Input} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
@@ -18,6 +18,8 @@ import { ChangePasswordComponent } from './changePassword/changepassword.compone
 import { ForgetPasswordComponent } from './forgetPassword/forgetpassword.component';
 import { NewForgottenPasswordComponent } from './newForgottenPassword/newforgottenpassword.component';
 import { SearchComponent } from './search/search.component';
+
+
 
 const appRoutes: Routes = [ 
   {

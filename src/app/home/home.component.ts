@@ -32,7 +32,7 @@ export class HomeComponent{
   };
   signedInUser: User = null;
   order = new Order();
-  cartNumber: number = 0;
+  @Input() cartNumber: number = 0;
   
   /**
    * Constructor for the home component, here is where we initialize DataService, ActivatedRouter, AuthenticationService, Router, CartService, and
@@ -116,7 +116,7 @@ export class HomeComponent{
     var userJewel: UserJewel = aJewel.convertUserJewel();
     console.log("jewelry name is " + aJewel.jewelName);
     this._cartService.addItem(userJewel);
-
+    this.layoutService.addToCart(1);
     this.order = JSON.parse(localStorage.getItem('currentOrder'));
     this.cartNumber = this.order.jewelry.length;
     

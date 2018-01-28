@@ -23,6 +23,10 @@ export class HeaderComponent {
   @Output() aSearch: EventEmitter<string> = new EventEmitter<string>();
   constructor(private authenticationService: AuthenticationService, private cartService: CartService, private router: Router, private layoutService: LayoutService, private dataService: DataService, public dialog: MatDialog)
   {
+    this.layoutService.numberCart$.subscribe(
+      aNum => {
+        this.numOfItems += 1;
+      });
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser')); 
     this.numOfItems = this.cartService.getNumItems(); 
     if(this.signedInUser != null)

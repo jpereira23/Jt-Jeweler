@@ -3,9 +3,11 @@ import { Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class LayoutService {
+  private theNumber = new Subject<number>();
   private dataObs$ = new Subject<boolean>();
   private _subject = new Subject<any>();
-    
+
+  numberCart$ = this.theNumber.asObservable();
   newEvent(event) {
     this._subject.next(event);
   }
@@ -21,5 +23,9 @@ export class LayoutService {
   updateValue(data: boolean){ 
     this.dataObs$.next(data); 
   }
+
+  addToCart(aNum: number){
+    this.theNumber.next(aNum);
+  } 
 
 }

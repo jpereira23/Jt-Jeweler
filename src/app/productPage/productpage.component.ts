@@ -43,7 +43,7 @@ export class ProductPageComponent {
    * @param route, represents a ActivatedRoute for when we retrieve a route
    * @param wishListService, represents a WishListService for when we click to add something to the wish list
    */
-  constructor(private cartService: CartService, private _dataService: DataService, private route: ActivatedRoute, private wishListService: WishListService, private router: Router) 
+  constructor(private cartService: CartService, private _dataService: DataService, private route: ActivatedRoute, private wishListService: WishListService, private router: Router, private layoutService: LayoutService) 
   {
     this.route.queryParams.subscribe(params => {
       this.itemCode = params["itemCode"];
@@ -95,6 +95,7 @@ export class ProductPageComponent {
 
 
       this.order = JSON.parse(localStorage.getItem('currentOrder'));
+      this.layoutService.addToCart(1);
       this.cartNumber = this.order.jewelry.length;
     }
     else

@@ -32,10 +32,11 @@ export class SearchComponent
 
   constructor(private route: ActivatedRoute, private dataService: DataService)
   {
-    this.dataService.getJewelry().subscribe(res => this.delegateForJewelry(res));
     this.route.queryParams.subscribe(params => {
       this.search = params["search"]; 
+      this.dataService.getJewelry().subscribe(res => this.delegateForJewelry(res));
     });
+
     var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
     if(aOrder != null)
     {

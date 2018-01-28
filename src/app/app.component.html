@@ -5,9 +5,9 @@
 </head>
 <body>
   <div class="container">
-
   
-    <router-outlet ></router-outlet>
+    <layout-header [numOfItems]="cartNumber"></layout-header> 
+    <router-outlet (activate)="componentAdded($event)"></router-outlet>
   </div>
 </body>
 </html>

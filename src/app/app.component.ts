@@ -19,4 +19,10 @@ export class AppComponent {
     //console.log(this.signedInUser.email);
   }
 
+  componentAdded(component)
+  {
+    console.log("Components cart number " + component.cartNumber);
+    this.cartNumber = component.cartNumber;
+  } 
+
 }
