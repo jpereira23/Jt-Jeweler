@@ -1,0 +1,169 @@
+.log-in-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.outline{
+  width: 100%;
+  border-top: 4px solid #e4ad51;
+}
+
+.mat-dialog-container{
+  padding: 0px;
+}
+.exit{
+  margin: 1px 0px 0px 0px;
+  width: 10%;
+  float: right;
+  border: none;
+  font-size: 17px;
+}
+
+.title{
+  margin: 30px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Playfair Display';
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #1d1d1d;
+}
+
+.text{
+  font-family: 'Hind';
+	font-size: 15px;
+	text-align: center;
+	color: #1d1d1d;
+}
+.form-layout{ 
+  margin: 10% 0% 0% 0%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+ } 
+
+.form-control{
+ width:290px;
+  height: 30px;
+  padding: 5px;
+  color:#bbbbbb;
+  border: 1px solid #1d1d1d;
+  background-color: #ffffff;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #bbbbbb;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #bbbbbb;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #bbbbbb;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #bbbbbb;
+}
+.submittion-wrapper{
+  font-family:'Hind';
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 2.0;
+	letter-spacing: 1px;
+	text-align: center;
+}
+.submittion{
+  margin: 5% 0% 0% 0%;
+  border: none;
+  background-color: #e2af4c;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height:40px;
+
+  font-family: 'Hind';
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 2.0;
+	letter-spacing: 1px;
+	text-align: center;
+}
+
+.submittion-wrapper :hover{
+  background-color: #dba741;
+}
+
+.submittion :hover{
+  margin: 5% 0% 0% 0%;
+  border: none;
+  background-color: #dba741;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height:40px;
+
+  font-family: 'Hind';
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 2.0;
+	letter-spacing: 1px;
+	text-align: center;
+
+
+}
+
+.forgot{
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  font-family: 'Hind';
+  font-size: 12px;
+  font-weight: 500;
+  line-height:2.0;
+  color:#e2af4c;
+}
+
+a.forgot :hover{
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  font-family: 'Hind';
+  font-size: 12px;
+  font-weight: 500;
+  line-height:2.0;
+  color:#e2af4c;
+}
+
+a.signup{
+  text-decoration: none;
+  font-family: 'Hind';
+  font-size: 15px;
+  font-weight: 500;
+  color:#e2af4c;
+}
+
+
+.signin-line{
+  display: flex;
+  justify-content: center;
+  margin: 5% 0% 0% 0%;
+  width: 300px;
+  height: 2px;
+  background-color: #bbbbbb;
+}
+
+.dont-have{
+  padding: 5% 0% 0% 0%;
+  display: flex;
+  justify-content: center;
+  font-family:'Hind';
+	font-size: 15px;
+	text-align: left;
+	color: #1d1d1d;
+}
+
+  
+
