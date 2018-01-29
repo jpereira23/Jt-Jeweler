@@ -1,11 +1,13 @@
 .account-wrapper{
+  margin: 1% 0% 0% 0%;
+  padding: 0% 0% 20% 0%;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.02);
 }
 
 .account-title{
-  padding: 5% 0% 0% 20%;
+  padding: 5% 0% 0% 10%;
   font-family: 'Playfair Display'; 
   font-size: 30px;
   font-style: normal;
@@ -15,7 +17,7 @@
 }
 
 .body-container{
-  padding: 1% 20% 0% 20%;
+  margin: 1% 10% 0% 10%;
   display: flex;
   justify-content: space-between;
 }
@@ -48,5 +50,195 @@
 }
 
 .body-top-selection-categories-selected{
-  
+  border: none;
+	font-family: 'Hind';
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 0.2px;
+	text-align: left;
+	color: #1d1d1d;
+ 
+}
+
+.body-bottom-selection{
+  margin: 5% 0% 10% 0%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20%;
+  background-color: #ffffff; 
+  width: 100%;
+  height: 100%;
+  font-family: 'Hind';
+  font-size: 15px;
+  text-align: left;
+  color: #1d1d1d;
+}
+
+.questions{
+  font-family: 'Hind';
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  text-align: left;
+  color: #1d1d1d;
+}
+
+.contact-us{
+  text-decoration: none;
+  color: #e2af4c;
+} 
+
+.body-personal{
+  width: 50%;
+}
+.body-title{
+  font-family: 'Hind';
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+  text-align: left; 
+  color: #1d1d1d; 
+}
+
+.form-names{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+} 
+.state-stuff{
+  display: flex;
+  flex-orientation: row;
+}
+
+.temp-state{
+  margin: 0px 10px 0px 0px;
+  width: 100%;
+}
+
+.list-order{
+  border-top: 1px solid rgba(0, 0, 0, 0.0);
+  border-left: 1px solid rgba(0, 0, 0, 0.0);
+  border-right: 1px solid rgba(0, 0, 0, 0.0);
+  border-bottom: 1px solid #e2af4c;
+  background-color: rgba(0, 0, 0, 0.0);
+
+  font-family: 'Hind';
+  font-size: 15px;
+  text-align: left;
+  color: #e2af4c;
+  padding: 0%;
+}
+
+.temp-zip{
+  width: 100%;
+}
+.form-body{
+  margin: 5% 0% 0% 0%;
+  font-family: 'Hind';
+  font-size: 15px;
+  text-align: left;
+  color: #1d1d1d;
+}
+
+.a-form{
+  padding: 5% 0% 0% 0%;
+  font-family: 'Hind';
+  font-size: 15px;
+  text-align: left;
+  color: #1d1d1d;
+}
+.form-control{
+  padding: 1%;
+  margin: 0% 0% 5% 0%;
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: #ffffff;
+  font-family: 'Hind';
+  font-size: 15px;
+  text-align: left;
+  color: #bbbbbb;
+}
+
+.temp-name{
+  margin: 0px 10px 30px 0px;
+  width: 100%;
+}
+
+.temp-last{
+  width: 100%;
+}
+.mini-input{
+  padding: 1%;
+  margin: 0% 0% 0% 0%;
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: #ffffff;
+  font-family: 'Hind';
+  font-size: 15px;
+  text-align: left;
+  color: #bbbbbb;
+}
+
+.button-class{
+  margin: 10% 0% 0% 0%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-button{
+  border: none;
+  width: 140px;
+  height: 40px;
+  background-color: #e2af4c;
+  font-family: 'Hind';
+  font-size: 12px;
+  line-height: 2.0;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.body-order{
+  width: 50%;
+}
+.order-header{
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Hind';
+  font-size: 15px;
+  color: #1d1d1d;
+}
+
+.order-item{
+  display: flex;
+  flex-orientation: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5% 0% 0% 0%;
+}
+
+.order-details-section{
+  font-family: 'Hind';
+  font-size: 15px;
+  color: #bbbbbb;
+}
+
+.order-price-section{
+  font-family: 'Hind';
+  font-size: 15px;
+  color: #000000;
+}
+
+.item-title{
+  font-family: 'Playfair Display';
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  color: #1d1d1d;
+}
+
+.order-price-section{
 }

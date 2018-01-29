@@ -5,60 +5,85 @@
   <div class="body-container">
     <div class="body-selection">
       <div class="body-top-selection">
-        <button (click)="personalInformationFunc()" class="body-top-selection-categories">
+        <button *ngIf="personalInformation == false" (click)="personalInformationFunc()" class="body-top-selection-categories">
           Personal Information
         </button>
-        <button (click)="orderHistoryFunc()" class="body-top-selection-categories">
+        <button *ngIf="personalInformation == true" (click)="personalInformationFunc()" class="body-top-selection-categories-selected">
+          Personal Information
+        </button>
+        <button *ngIf="orderHistory == false" (click)="orderHistoryFunc()" class="body-top-selection-categories">
           Order History
         </button>
+        <button *ngIf="orderHistory == true" (click)="orderHistoryFunc()" class="body-top-selection-categories-selected">
+          Order History
+        </button>
+        
         <div *ngIf="orderHistory == true">
         <ul>
-          <li *ngFor="let order of signedInUser.orders; let i = index" (click)="selectPreviewedOrder(i)">{{ order }}</li>
+          <button class="list-order" *ngFor="let order of signedInUser.orders; let i = index" (click)="selectPreviewedOrder(i)">Order #{{ order }}</button>
         </ul>
         </div>
-        <button (click)="wishListFunc()" class="body-top-selection-categories">
+        <button *ngIf="wishList == false" (click)="wishListFunc()" class="body-top-selection-categories">
           Wishlist
         </button>
+        <button *ngIf="wishList == true" (click)="wishListFunc()" class="body-top-selection-categories-selected">
+          Wishlist
+        </button>
+        
       </div>
       <div class="body-bottom-selection">
-        <span>Questions?</span><br>
-        <span>If you have any questions, or comments, feel free to <a routerLink="/contactUs">contact us.</a></span>
+        <div class="questions">Questions?</div>
+        <div>
+        If you have any questions, or comments, feel free to <a class="contact-us" routerLink="/contactUs">contact us</a>.
+        </div>
       </div>
     </div>
     <div class="body-personal" *ngIf="personalInformation == true">
-      <div>
-        <strong>Personal Information</strong>
+      <div class="body-title">
+          Personal Information
       </div>
 
-      <form (ngSubmit)="onSubmit()">
-      <div>
-        <label for="firstName">First name</label>
-        <input type="text" class="form-control" id="firstName" name="firstName" ngControl="firstName" [(ngModel)]="signedInUser.firstName" (ngModelChange)="signedInUser.firstName" #firstName="ngModel" />
+      <form class="a-form" (ngSubmit)="onSubmit()">
+      <div class="form-names">
+        <div class="temp-name">
+          <label>First name</label><br>
+          <input type="text" class="mini-input" id="firstName" name="firstName" ngControl="firstName" [(ngModel)]="signedInUser.firstName" (ngModelChange)="signedInUser.firstName" #firstName="ngModel" />
+        </div>
+        <div class="temp-last">
+          <label>Last name</label><br>
+          <input type="text" class="mini-input" id="lastName" name="lastName" ngControl="lastName" [(ngModel)]="signedInUser.lastName" (ngModelChange)="signedInUser.lastName" #lastName="ngModel" />
+        </div>
       </div>
       <div>
-        <label for="lastName">Last name</label>
-        <input type="text" class="form-control" id="lastName" name="lastName" ngControl="lastName" [(ngModel)]="signedInUser.lastName" (ngModelChange)="signedInUser.lastName" #lastName="ngModel" />
-      </div>
-      <div>
-        <label for="email">Email</label>
+        <label>Email</label><br>
         <input type="text" class="form-control" id="email" name="email" ngControl="email" [(ngModel)]="signedInUser.email" (ngModelChange)="signedInUser.email" #email="ngModel" />
       </div>
       <div>
-        <label for="streetAddress">Address</label>
+        <label>Address</label><br>
         <input type="text" class="form-control" id="streetAddress" name="streetAddress" ngControl="streetAddress" [(ngModel)]="signedInUser.streetAddress" (ngModelChange)="signedInUser.streetAddress" #streetAddress="ngModel" />
       </div>
       <div>
-        <label for="city">City</label>
+        <label>City</label><br>
         <input type="text" class="form-control" id="city" name="city" ngControl="city" [(ngModel)]="signedInUser.city" (ngModelChange)="signedInUser.city" #city="ngModel" />
       </div>
-      <div>
-        <label for="state">State</label>
-        <input type="text" class="form-control" id="state" name="state" ngControl="state" [(ngModel)]="signedInUser.state" (ngModelChange)="signedInUser.state" #state="ngModel" />
+      <div class="state-stuff">
+        <div class="temp-state">
+          <label>State</label><br>
+          <input type="text" class="mini-input" id="state" name="state" ngControl="state" [(ngModel)]="signedInUser.state" (ngModelChange)="signedInUser.state" #state="ngModel" />
+        </div>
+        <div class="temp-zip">
+          <label>Zip Code</label><br>
+          <input type="text" class="mini-input" id="state" name="state" ngControl="state" [(ngModel)]="signedInUser.state" (ngModelChange)="signedInUser.state" #state="ngModel" />
+        </div>
       </div>
-      <div>
-        <button (click)="changePassword()">Change Password</button>
+      <div class="button-class">
+        <div>
+          <button class="form-button" (click)="changePassword()">CHANGE PASSWORD</button>
+        </div>
+        <div>
+          <button class="form-button" type="submit">SAVE CHANGES</button>
+        </div>
       </div>
-      <button type="submit">Save Changes</button>
       </form>
 
       <div *ngIf="updated == true">
@@ -67,14 +92,26 @@
     </div>
 
     <div class="body-order" *ngIf="orderHistory == true">
-      <div>
-        <strong>Order History</strong>
-        <span>Order  #{{ previewedOrder.orderNumber }}</span>
+      <div class="order-header">
+        <div class="body-title">
+          Order History
+        </div>
+        <div class="order-number">
+          Order  #{{ previewedOrder.orderNumber }}
+        </div>
       </div>
-      <div *ngFor="let order of previewedOrder.jewelry; let i = index" (click)="selectCurrentOrder(i)">
-        <img src={{order.jewel.images[0]}} style="height:100px;width:100px;" /> <span>${{ order.jewel.price }}</span><br>
-        <span><strong>{{ order.jewel.jewelName }}</strong></span><br>
-        <span>Size: {{ order.jewel.sizes[0].name }}</span>
+
+      <div class="order-item" *ngFor="let order of previewedOrder.jewelry; let i = index" (click)="selectCurrentOrder(i)">
+        <div class="order-image-section">
+          <img src={{order.jewel.images[0]}} style="height:100px;width:100px;" />         
+        </div>
+        <div class="order-details-section">
+          <div class="item-title">{{ order.jewel.jewelName }}</div><br>
+          Size: {{ order.selectedSize }}
+        </div>
+        <div class="order-price-section">
+          ${{ order.jewel.price }}
+        </div>
       </div>
     </div>
 
