@@ -56,9 +56,11 @@
 }
 
 .video-wrapper{
+  display: flex;
+  justify-content: center;
   padding: 0px;
   width: 100%;
-  height: 339px;
+  height: 100%;
   background-color: #1d1d1d;
 }
 
@@ -218,6 +220,7 @@
 
 .product-video-container{
   width: 50%; 
+  height: 100%;
 }
 .related-items-container{
   background-color: rgba(0, 0, 0, 0.02);

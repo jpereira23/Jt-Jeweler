@@ -186,6 +186,7 @@ span{
 }
 
 .category-image-wrapper :hover{
+  display: block;
   background-color: #ffffff;
   -moz-border-radius: 200px;
   border-radius: 200px;
@@ -207,6 +208,6 @@ span{
 
 .category-image{
   padding: 50px 50px 50px 50px;
-  width: 205px;
-  height: 205px;
+  width: 203px;
+  height: 203px;
 }
