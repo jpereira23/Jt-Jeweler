@@ -1,0 +1,105 @@
+.shopping-bag-container{
+  margin: 5% 10% 1% 10%;
+}
+
+.shopping-title{
+  font-family: "Playfair Display";
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #000000; 
+}
+
+.items-header{
+  margin: 5% 0% 5% 0%; 
+  padding: 0px 0px 5px 0px;
+  display:flex;
+  justify-content: space-between;
+  font-family: 'Hind';
+  font-size: 12px;
+  color: #bbbbbb;
+  border-bottom: solid 1px #bbbbbb;
+}
+.items-wrapper{
+  margin: 5% 0% 5% 0%; 
+  padding: 0px 0px 5px 0px;
+  display:flex;
+  justify-content: space-between;
+  border-bottom: solid 1px #bbbbbb;
+
+}
+
+.item-header{
+  width: 60%;
+  display: flex;
+  flex-orientation: row;
+}
+
+.item-quantity{
+  width: 15%;
+}
+
+.item-price{
+  width: 15%;
+  text-align: right;
+}
+
+.item-title{
+  font-family: 'Playfair Display';
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 0px 0px 30px;
+
+}
+
+.quantity-plus{
+  text-align: center;
+  width: 15px;
+  background-color: #ffffff;
+  margin: 0px 0px 0px 0px; 
+  padding: 0px 0px 0px 0px;
+  height: 39px;
+  border-top: solid 1px #bbbbbb;
+  border-bottom: solid 1px #bbbbbb;
+  border-right: solid 0px #ffffff;
+}
+
+.quantity-minus{
+  text-align: center;
+  width: 15px;
+  background-color: #ffffff;
+  margin: 0px 0px 0px 0px; 
+  padding: 0px 0px 0px 0px;
+  height: 39px;
+  border-top: solid 1px #bbbbbb;
+  border-bottom: solid 1px #bbbbbb;
+  border-left: solid 0px #ffffff;
+}
+
+.the-item-quantity{
+  width: 70%;
+  height: 35px;
+  margin: 0px -5px 0px -5px;
+  text-align: center;
+  border-top: solid 1px #bbbbbb;
+  border-bottom: solid 1px #bbbbbb;
+  border-left: solid 0px #ffffff;
+  border-right: solid 0px #ffffff;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  background-color: #ffffff;
+}
+
+.price-header{
+  font-family: 'Hind';
+  font-size: 15px;
+  color: #000000;
+}
+
+.remove-button-button{
+  border: none;
+  padding: 0px 0px 0px 0px;
+  font-family: 'Hind';
+  font-size: 15px;
+  color: #bbbbbb;
+}

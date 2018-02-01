@@ -10,7 +10,7 @@ import { JewelSize } from '../models/jewelSize';
 import { Weight3D } from '../models/weight3d';
 import { DetailList } from '../models/detaillist';
 
-const URL = 'http://192.168.1.69:3000/upload';
+const URL = 'http://172.124.232.210:443/upload';
 
 @Component({
   selector: 'addJewel',

@@ -1,22 +1,43 @@
-
-
-<div>
-  <strong>Shopping Bag</strong>
+<div class="shopping-bag-container">
+  <div class="shopping-title">
+    Shopping Bag
+  </div>
+  <div class="items-header">
+    <div class="item-header">
+      Item
+    </div>
+    <div class="item-quantity">
+      Quantity
+    </div>
+    <div class="item-price">
+      Price
+    </div>
+  </div>
+  <div class="items-wrapper" *ngFor="let jewel of order.jewelry; let i = index">
+    <div class="item-header">
+      <div>
+      <img src={{jewel.jewel.images[0]}} style="height:100px;width:100px" />
+      </div>
+      <div class="item-title">
+        {{jewel.jewel.jewelName}}
+      </div>
+    </div>
+    <div class="item-quantity">
+        <button class="quantity-plus">+</button>
+        <input class="the-item-quantity" type="text" name="quantity" ngControl="quantity" [(ngModel)]="jewel.jewel.quantity" (ngModelChange)="jewel.jewel.quantity" #quantity="ngModel" />
+        <button class="quantity-minus">-</button>
+    </div>
+    <div class="item-price">
+      <div class="price-header">
+        ${{jewel.jewel.price * jewel.jewel.quantity}}
+      </div>
+      <div class="remove-button">
+        <button class="remove-button-button" (click)="removeItem(i)">Remove</button>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th width="50%">Item</th>
-        <th>Quantity</th>
-        <th>Price</th>
-      </tr>
-      <tbody>
-        <tr *ngFor="let jewel of order.jewelry; let i = index">
-          <td><img src={{jewel.jewel.images[0]}} style="height:100px;width:100px" /><strong>{{ jewel.jewel.jewelName }}</strong></td>
-          <td><input type="number" min="1" name="quantity" ngControl="quantity" (change)="changeQuantity()" [(ngModel)]="jewel.jewel.quantity" (ngModelChange)="jewel.jewel.quantity" #quantity="ngModel"  /> </td>
-          <td>
+<!--
             <select [(ngModel)]="jewel.selectedSize">
               <option>
                {{ jewel.selectedSize }}
@@ -46,4 +67,4 @@ Shopping and tax will be calculated in checkout
     One of the items in your bag are missing a size.
   </div>
 </div>
-
+-->

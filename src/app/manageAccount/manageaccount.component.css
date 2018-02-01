@@ -204,6 +204,10 @@
 .body-order{
   width: 50%;
 }
+
+.body-wish{
+  width: 50%;
+}
 .order-header{
   display: flex;
   justify-content: space-between;
@@ -230,6 +234,11 @@
   font-family: 'Hind';
   font-size: 15px;
   color: #000000;
+}
+
+.wish-image-section{
+  display: flex;
+  flex-orientation: column;
 }
 
 .item-title{

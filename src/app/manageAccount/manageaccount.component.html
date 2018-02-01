@@ -116,14 +116,26 @@
     </div>
 
     <div class="body-wish" *ngIf="wishList == true">
-      <div>
-        <strong>Wish List</strong>
+      <div class="order-header">
+	<div class="body-title">
+	  Wishlist
+	</div>
       </div>
-      <div *ngFor="let wish of signedInUser.wishList; let i = index">
-        <img src={{wish.images[0]}} style="height:100px;width:100px;" /> <span>${{ wish.price }}</span><br><button (click)="addToCart(i)">Add to Bag</button>
-        <span><strong>{{ wish.jewelName }}</strong></span><br>
-        <!--<span>Size: {{ wish.sizes[0].name }}</span> -->
-      <div (click)="removeItem(i)">remove</div>
+      <div class="order-item" *ngFor="let wish of signedInUser.wishList; let i = index">
+	<div class="wish-image-section">
+	  <div>
+        <img src={{wish.images[0]}} style="height:100px;width:100px;" /> 
+          </div>
+          <div>
+    	  <button class="remove-button" (click)="removeItem(i)">remove</button>
+          </div>
+	</div>
+	<div class="order-details-section">
+          <div class="item-title">{{ wish.jewelName }}</div>	
+	</div>
+        <div class="wish-price-section">
+         ${{ wish.price }}<button class="addToCart-button" (click)="addToCart(i)">Add to Bag</button>
+        </div>
     </div>
   </div>
 </div> 
