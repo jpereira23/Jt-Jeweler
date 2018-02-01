@@ -52,7 +52,7 @@ app.options('/upload', function(req, res, next) {
   if(req.method == 'OPTIONS')
   {
     var headers = {};
-    headers["Access-Control-Allow-Origin"] = "http://192.168.1.69:4200";
+    headers["Access-Control-Allow-Origin"] = "http://172.124.232.210:80";
     headers["Access-Control-Allow-Credentials"] = true;
     headers["Access-Control-Max-Age"] = '86400';
     headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept";
@@ -79,7 +79,7 @@ app.get('*', (req, res) => {
 });
 
 //Set Port
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '443';
 app.set('port', port);
 
 const server = http.createServer(app);

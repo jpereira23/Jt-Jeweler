@@ -14,7 +14,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 export class DataService {
 
   result:any;
-  url: string = "http://192.168.1.69:3000/api/";
+  url: string = "http://172.124.232.210:443/api/";
   routesArray: Array<string> = ["forgetPassword", "tempUsers", "tempUser", "users", "checkEmail", "adduser", "user", "addjewelry", "jewelry", "jewel", "addsize", "size", "addimage", "image", "addvideo", "video", "addorder", "order", "updateordernumber", "ordernumber"];
   headers = new Headers();
   
