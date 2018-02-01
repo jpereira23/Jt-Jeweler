@@ -30,6 +30,7 @@ import { NewForgottenPasswordComponent } from './newForgottenPassword/newforgott
 import { RelatedItemComponent } from './relatedItems/relateditems.component';
 import { SearchComponent } from './search/search.component';
 import { CheckEmailComponent } from './checkEmail/checkemail.component';
+import { AuthorityComponent } from './authority/authority.component';
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
@@ -62,7 +63,8 @@ import { LayoutService } from './layout.service';
     NewForgottenPasswordComponent,
     RelatedItemComponent,
     SearchComponent,
-    CheckEmailComponent
+    CheckEmailComponent,
+    AuthorityComponent
   ],
   imports: [
     BrowserModule,

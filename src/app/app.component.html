@@ -1,13 +1,15 @@
-<!DOCTYPE HTML>
 <html>
 <head>
-  <title>JT</title>
 </head>
 <body>
   <div class="container">
-  
+    <div *ngIf="authority == false">
+      <authority (authority)="isItAuthority($event)"></authority>
+    </div>  
+    <div *ngIf="authority == true"> 
     <layout-header [numOfItems]="cartNumber"></layout-header> 
     <router-outlet (activate)="componentAdded($event)"></router-outlet>
+    </div>
   </div>
 </body>
 </html>

@@ -1,0 +1,21 @@
+<div class="wrapper">
+<div class="header">
+  JT
+</div>
+<div class="service">
+  CONFIDENTIAL
+</div>
+</div>
+<div class="authority-container">
+  <div class="text-label">Username</div>
+  <div class="inputs">
+  <input type="text" class="form-control" name="username" [value]="username" (input)="username=$event.target.value" placeholder="username" />
+  </div>
+  <div class="text-label">Password</div>
+  <div class="inputs">
+  <input type="password" class="form-control" name="password" [value]="password" (input)="password=$event.target.value" placeholder="password"/>
+  </div>
+  <div style="display:flex;justify-content:center;margin:5% 0%;">
+  <button (click)="logIn()" style="background-color:#e2af4c;border:none;color:#ffffff;">Log In</button>
+  </div>
+</div>

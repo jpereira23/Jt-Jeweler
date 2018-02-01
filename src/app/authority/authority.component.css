@@ -1,0 +1,51 @@
+.wrapper{
+  margin: 15% 0% 0% 30%;
+}
+
+.header{
+  font-family: Didot;
+  font-size: 60px;
+  font-weight: bold;
+  color: #e2af4c;
+}
+
+.service{
+  font-family: Avenir;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: #e2af4c; 
+ 
+}
+.authority-container{
+  margin: 0% 30%;
+  border: 1px solid #e2af4c;
+  background-color: #e2af4c;
+  color: #ffffff;
+  width: 30%;
+  height: 100%;
+  padding: 5%;
+}
+
+.text-label{
+  display: flex;
+  justify-content: center;
+  font-family: 'Hind';
+  font-size: 15px;
+}
+
+.inputs{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-control{
+  text-align: center;
+  height: 30px;
+  width: 250px;
+  border:none;
+  font-family: 'Hind';
+  color: #bbbbbb;
+
+}

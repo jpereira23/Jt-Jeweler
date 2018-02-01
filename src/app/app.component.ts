@@ -14,6 +14,7 @@ export class AppComponent {
   order = new Order(); 
   cartNumber: number = 0;
   signedInUser: any = null;
+  authority: boolean = false;
   constructor(private authenticationService: AuthenticationService){
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser')); 
     //console.log(this.signedInUser.email);
@@ -24,5 +25,9 @@ export class AppComponent {
     console.log("Components cart number " + component.cartNumber);
     this.cartNumber = component.cartNumber;
   } 
+
+  public isItAuthority(isIt){
+    this.authority = isIt;
+  }
 
 }
