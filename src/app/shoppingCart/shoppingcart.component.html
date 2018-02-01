@@ -19,8 +19,18 @@
       <img src={{jewel.jewel.images[0]}} style="height:100px;width:100px" />
       </div>
       <div class="item-title">
-        {{jewel.jewel.jewelName}}
+        {{jewel.jewel.jewelName}}<br>
+          <select [(ngModel)]="jewel.selectedSize">
+              <option>
+               {{ jewel.selectedSize }}
+              </option>
+              <option [disabled]="size.quantity == 0" *ngFor="let size of jewel.jewel.sizes" value={{size.size}}>
+               {{ size.size }}
+              </option>
+            </select>
+
       </div>
+      
     </div>
     <div class="item-quantity">
         <button class="quantity-plus">+</button>
@@ -33,6 +43,21 @@
       </div>
       <div class="remove-button">
         <button class="remove-button-button" (click)="removeItem(i)">Remove</button>
+      </div>
+    </div>
+  </div>
+  <div class="subtotal-container">
+    <div class="the-subtotal">
+      Subtotal: ${{runningTotal}}
+    </div>
+    <div class="shipping-and-handling">
+      Shipping and tax will be calculated in checkout.
+    </div>
+    <div class="subtotal-buttons">
+      <button class="check-out" (click)="checkOut()">CHECKOUT</button><br>
+      <button class="continue-shopping">CONTINUE SHOPPING</button><br>
+      <div *ngIf="sizesSelectedError == true">
+        One of the items in your bag are missing a size.
       </div>
     </div>
   </div>

@@ -103,3 +103,52 @@
   font-size: 15px;
   color: #bbbbbb;
 }
+
+.the-subtotal{
+  font-family: 'Hind';
+  font-size: 20px;
+  font-weight: 100;
+  text-align: right;  
+  color: #000000;
+}
+
+.shipping-and-handling{
+  font-family: 'Hind';
+  font-size: 15px;
+  text-align: right;
+  color: #bbbbbb;
+}
+
+.subtotal-buttons{
+  float: right;
+
+}
+
+.check-out{
+  width: 355px;
+  height: 40px;
+  background-color: #e2af4c;
+  margin: 15px 0px 0px 0px;
+  border: none;
+  font-family: 'Hind';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 2.0;
+  text-align: center;
+  color: #ffffff;
+}
+
+.continue-shopping{
+  width: 355px;
+  height: 40px;
+  background-color: #ffffff;
+  margin: 15px 0px 0px 0px;
+  border: 1px solid #e2af4c;
+  font-family: 'Hind';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 2.0;
+  text-align: center;
+  color: #e2af4c;
+
+}

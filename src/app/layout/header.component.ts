@@ -27,6 +27,16 @@ export class HeaderComponent {
       aNum => {
         this.numOfItems += 1;
       });
+
+    this.layoutService.checkOutCart$.subscribe(
+      aNum => {
+        this.numOfItems = 0;  
+    });
+
+    this.layoutService.removeNumber$.subscribe(
+      aNum => {
+        this.numOfItems -= 1;
+    });
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser')); 
     this.numOfItems = this.cartService.getNumItems(); 
     if(this.signedInUser != null)

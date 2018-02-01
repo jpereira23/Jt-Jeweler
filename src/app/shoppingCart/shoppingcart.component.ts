@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { Jewel } from '../models/jewel'; 
 import { Order } from '../models/order';
+import { LayoutService } from '../layout.service'; 
 
 @Component({
   moduleId: module.id,
@@ -24,7 +25,7 @@ import { Order } from '../models/order';
      * @param cartService, used to checkOut an item when we are finished
      * @param router, used to navigate to home page when cart is successfully checked out
      */
-    constructor(private cartService: CartService, private router: Router)
+    constructor(private cartService: CartService, private router: Router, private layoutService: LayoutService)
     {
       var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
       if(aOrder != null)
@@ -49,7 +50,7 @@ import { Order } from '../models/order';
       this.runningTotal -= this.order.jewelry[i].jewel.price; 
       this.order = JSON.parse(localStorage.getItem('currentOrder'));
       this.cartNumber = this.order.jewelry.length;
- 
+      this.layoutService.removeItem(0); 
     }
     
     /**
@@ -69,6 +70,7 @@ import { Order } from '../models/order';
       {
         this.cartService.checkOut(this.order); 
         this.router.navigate(['/']);  
+        this.layoutService.checkOutCart(0); 
       }
     }
     /** 
