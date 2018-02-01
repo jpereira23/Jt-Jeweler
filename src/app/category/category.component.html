@@ -1,21 +1,39 @@
-<div>
-  <div>
-    <strong>{{ filter }}s</strong>
-  </div>
-  <div style="position:absolute;display:inline;right:10%;">
-    <select name="theFilter" [(ngModel)]="theFilter" (change)="filterData()">
+<div class="search-wrapper">
+  <div class="search-container">
+    <div class="search-header">
+    <div class="search-title">
+     {{filter}}s
+    </div>
+    <div class="search-filter">
+    <select class="select-search" name="theFilter" [(ngModel)]="theFilter" (change)="filterData()">
       <option disabled="disabled" selected="selected">
         Sort By:
       </option>
-      <option *ngFor="let category of filters" value={{category}}>
+      <option class="option-search" *ngFor="let category of filters" value={{category}}>
         {{category}}
       </option>
     </select>
-  </div>
-
-
-  <div>
-    <span *ngFor="let jewel of filteredJewelry;let i = index"><div (click)="viewProductPage(i)"><div><img src={{jewel.images[0]}} style="height:100px;width:100px"></div><div>{{ jewel.jewelName }}</div><div>${{ jewel.price }}</div></div><div><button (click)="addToCart(i)">Add To Bag</button></div></span>
-
+    </div>   
+    </div>
+    <div class="search-item-row">
+      <div class="item-jewel" *ngFor="let jewel of filteredJewelry;let i = index">
+        <div class="the-image">
+        <swiper class="the-swiper" [config]="config">
+          <div class="swiper-wrapper">
+            <img class="swiper-slide" *ngFor="let theImage of jewel.images" src={{theImage}}>
+          </div>
+          <div class="swiper-pagination"></div>
+        </swiper>
+        </div>
+        <div (click)="viewProductPage(i)">
+          <div class="item-name">{{ jewel.jewelName }}</div>
+          <div class="item-price">${{ jewel.price }}</div>
+        </div>
+        <div class="item-button-wrapper">
+          <button class="item-button" (click)="addItem(i)">ADD TO BAG</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
