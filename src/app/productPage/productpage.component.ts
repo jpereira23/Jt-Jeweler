@@ -26,7 +26,7 @@ export class ProductPageComponent {
   sizeSelected: boolean = false;
   cartNumber: number = 0;
   order = new Order(); 
-
+  initialValue: string = "Select Size"; 
   config: SwiperOptions = {
     pagination: '.swiper-pagination',
     paginationClickable: true,
@@ -50,6 +50,7 @@ export class ProductPageComponent {
     this.route.queryParams.subscribe(params => {
       this.itemCode = params["itemCode"];
     });
+
     this._dataService.getJewelry()
       .subscribe(res => this.delegateForJewelry(res));
 

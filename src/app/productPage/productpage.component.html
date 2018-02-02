@@ -27,11 +27,9 @@
       <div class="product-description">
         {{ jewelryToBePreviewed.formalDescription }}
       </div>
-      <div class="product-selectors">
-        <select class="product-size form-control" [(ngModel)]="userJewel.selectedSize" placeholder="Quantity">
-          <option value="" disabled="true" [selected]="!userJewel.selectedSize">
-            Select Size
-          </option>
+      <div *ngIf="loading == true && jewelryToBePreviewed.sizes != null" class="product-selectors">
+        <select class="product-size" [(ngModel)]="userJewel.selectedSize">
+          <option [selected]="true">Select Size</option>
           <option [disabled]="(size.quantity - jewelryToBePreviewed.quantity) <= 0" *ngFor="let size of jewelryToBePreviewed.sizes" [value]="size.size">
             {{size.size}}
           </option>

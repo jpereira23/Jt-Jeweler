@@ -110,7 +110,14 @@ export class Jewel {
     this.jewelName = jsonJewel.jewelName;
     this.price = jsonJewel.price;
     this.quantity = jsonJewel.quantity;
-    this.sizes = jsonJewel.sizes;
+    this.sizes = [];
+    for(var i = 0; i < jsonJewel.sizes.length; i++)
+    {
+      var aSize = new JewelSize();
+      aSize.size = jsonJewel.sizes[i].size;
+      aSize.quantity = jsonJewel.sizes[i].quantity;
+      this.sizes.push(aSize);
+    }
     this.colors = jsonJewel.colors;
     this.isFemale = jsonJewel.isFemale;
     this.isMale = jsonJewel.isMale;
