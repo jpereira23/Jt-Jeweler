@@ -1,4 +1,3 @@
-
 .top-line{
   margin: 0% 0% 0% 0%;
   height: 4px;
@@ -47,17 +46,7 @@
   color: #e2af4c;
 }
 
-a.link :hover{
-  color: #e2af4c;
-}
-:host .router-link-active
-{
-  color: #e2af4c; 
-}
 
-.router-link-active :visted{
-  color: #bbbbbb;
-}
 .logo-footer {
   font-family: Avenir;
   font-size: 10px;
@@ -71,6 +60,21 @@ a.link :hover{
 {
   margin: 1% 0% 0% 0%;
   text-align: center;
+  display: flex;
+  flex-orientation: row;
+  justify-content: center;
+}
+
+a #links :active {
+  color: #1d1d1d;
+}
+
+.aLink :hover{
+  color: #1d1d1d;
+}
+
+.router-link-active :active{
+  color: #1d1d1d;
 }
 
 a.shoppingSection{ 

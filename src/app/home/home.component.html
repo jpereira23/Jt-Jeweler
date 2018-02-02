@@ -1,66 +1,86 @@
-<!--<div *ngIf="signedInUser != null && signedInUser.email != 'admin@gmail.com' || signedInUser == null">
-  <layout-header [numOfItems]="cartNumber"></layout-header> 
-</div>
--->
-  
-<div *ngIf="signedInUser != null && signedInUser.email == 'admin@gmail.com'">
-  <layout-admin></layout-admin>
-</div>
-
-<div class="white-bg">
-  <div class="header-center">
-    Introducing a New Line of Jewelry
-  </div>
-  <div class="line-header"></div>
-  <div class="learn-more-header">
-    <button class="learn-more">LEARN MORE ABOUT JT JEWELRY</button>
-  </div>
-</div>
-
-
-<div class="category-wrapper">
-    <div class="category-element-row-one">
-    <div *ngFor="let category of categories | slice:0:3; let i = index" (click)="changeFilter(i)" class="category-element">
-      <div class="category-name">
-        {{category}}s
+<div *ngIf="images.length > 0" class="home-container">
+  <div class="white-bg">
+    <div class="image-section">
+      <div class="anImage">
+        <img class="in" src={{images[0].name}} />
       </div>
-      <div class="category-image-wrapper">
-      <img class="category-image" src={{categoryImages[i]}}>
+      <div class="anImage">
+        <img class="out" src={{images[1].name}} />
+      </div>
+      <div class="anImage">
+        <img class="in" src={{images[2].name}} />
       </div>
     </div>
+    <div class="header-print">
+      <div class="header-center">
+        Introducing a New Line of Jewelry
+      </div>
+      <div class="line-header">
+      </div>
+      <div class="learn-more-header">
+        <button class="learn-more">LEARN MORE ABOUT JT JEWELRY</button>
+      </div>
+    </div>
+    <div class="image-section">
+      <div class="anImage">
+        <img class="out" src={{images[3].name}} />
+      </div>
+      <div class="anImage">
+        <img class="in" src={{images[4].name}} />
+      </div>
+      <div class="anImage">
+        <img class="out" src={{images[5].name}} />
+      </div>
+    </div>
+  </div>
+  <div class="category-wrapper">
+    <div class="category-element-row-one">
+      <div *ngFor="let category of categories | slice:0:3; let i = index" (click)="changeFilter(i)" class="category-element">
+        <div class="category-name">
+          {{category}}s
+        </div>
+        <div class="category-image-wrapper">
+          <img class="category-image" src={{categoryImages[i]}}>
+        </div>
+      </div>
     </div>
     <div class="category-element-row-two">
-    <div *ngFor="let category of categories | slice:3:5; let i = index" (click)="changeFilter(i+3)" class="category-element">
-      <div class="category-name">
-        {{category}}s
-      </div>
-      <div class="category-image-wrapper">
-      <img class="category-image" src={{categoryImages[i+3]}}>
+      <div *ngFor="let category of categories | slice:3:5; let i = index" (click)="changeFilter(i+3)" class="category-element">
+        <div class="category-name">
+          {{category}}s
+        </div>
+        <div class="category-image-wrapper">
+          <img class="category-image" src={{categoryImages[i+3]}}>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="featured-products">
+    <div class="title-featured">Featured Products</div>
+    <div class="item-wrapper">
+      <div class="item-element" *ngFor="let jewel of jewelry | slice:0:6;let i = index">
+        <swiper class="the-swiper" [config]="config">
+          <div class="swiper-wrapper">
+            <img class="swiper-slide" *ngFor="let theImage of jewel.images" src={{theImage}}>
+          </div>
+          <div class="swiper-pagination"></div>
+        </swiper>
+        <div (click)="viewProductPage(i)">
+          <div class="item-name">
+            <span>{{ jewel.jewelName }}</span>
+          </div>
+          <div class="item-price">
+            <span> ${{ jewel.price }}</span>
+          </div>
+        </div>
+        <div class="item-button-wrapper">
+          <button class="item-button" (click)="addItem(i)">ADD TO BAG</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-<div class="featured-products">
-  <div class="title-featured">Featured Products</div>
-  <div class="item-wrapper">
-  <div class="item-element" *ngFor="let jewel of jewelry | slice:0:6;let i = index">
-    <swiper class="the-swiper" [config]="config">
-    <div class="swiper-wrapper">
-      <img class="swiper-slide" *ngFor="let theImage of jewel.images" src={{theImage}}>
-    </div>
-    <div class="swiper-pagination"></div>
-    </swiper>
-    <div (click)="viewProductPage(i)">
-      <div class="item-name">
-        <span>{{ jewel.jewelName }}</span>
-      </div>
-      <div class="item-price">
-        <span> ${{ jewel.price }}</span>
-      </div>
-  </div>
-  <div class="item-button-wrapper">
-    <button class="item-button" (click)="addItem(i)">ADD TO BAG</button>
-  </div>
-  </div>
-  </div>
-</div>
+<!-- 
+    
+
+-->

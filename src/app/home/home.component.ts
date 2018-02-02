@@ -30,6 +30,7 @@ export class HomeComponent{
     spaceBetween: 30,
     slidesPerColumnFill: 'row'
   };
+  images: Array<string> = [];
   signedInUser: User = null;
   order = new Order();
   @Input() cartNumber: number = 0;
@@ -48,6 +49,9 @@ export class HomeComponent{
     this._dataService.getJewelry()
       .subscribe(res => this.delegateForJewelry(res));
 
+    this._dataService.getImages()
+      .subscribe(res => this.delegateForImages(res));
+
     this.signedInUser = JSON.parse(localStorage.getItem('currentUser'));
     var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
     if(aOrder != null)
@@ -57,6 +61,12 @@ export class HomeComponent{
     this.cartNumber = this.order.jewelry.length;
         
   } 
+
+  delegateForImages(images)
+  {
+    this.images = images;
+    console.log(this.images[0]);
+  }
 
   /**
    *  delegateForJewelry(jewelry: Array<jewel>) is used to as the delegate callback to get the jewelry for the jewelry instance

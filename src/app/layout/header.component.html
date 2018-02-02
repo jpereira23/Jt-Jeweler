@@ -20,14 +20,20 @@
   </div>
   <div class="line"></div>
   <div id="links" *ngIf="signedIn == false">
-    <a  class="link" routerLink="/">Home</a>
-    <a routerLink="#" (click)="openDialog()">Sign In</a>
-    <a  routerLinkActive="router-link-active" (click)="openSignUp()" routerLink="/">Sign Up</a>
+    <div class="aLink">
+    <a routerLinkActive="router-link-active" routerLink="/">HOME</a>
+    </div>
+    <div class="aLink">
+    <a routerLinkActive="router-link-active" (click)="openSignUp()" routerLink="/">SIGN UP</a>
+    </div>
+    <div class="aLink">
+    <a routerLinkActive="router-link-active" routerLink="#" (click)="openDialog()">LOG IN</a>
+    </div>
   </div>
 
   <div id="links" *ngIf="signedIn == true">
-    <a  routerLink="/">Home</a>
-    <a  routerLinkActive="router-link-active" routerLink="/" (click)="signOut()">Sign Out</a>
-    <a  routerLinkActive="router-link-active" routerLink="/manageAccount">My Account</a>
+    <a  routerLink="/">HOME</a>
+    <a  routerLinkActive="router-link-active" routerLink="/" (click)="signOut()">SIGN OUT</a>
+    <a  routerLinkActive="router-link-active" routerLink="/manageAccount">MY ACCOUNT</a>
   </div>
 </div>
