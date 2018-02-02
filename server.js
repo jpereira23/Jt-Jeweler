@@ -17,7 +17,8 @@ app.use(function(req, res, next) {
 
 const storage = multer.diskStorage({
   destination: function(req, res, cb) {
-    cb(null, './src/multimedia');
+    //cb(null, './src/multimedia');
+    cb(null, './dist/multimedia');
   },
   filename: function(req, file, cb){
     cb(null, file.originalname);
@@ -53,8 +54,8 @@ app.options('/upload', function(req, res, next) {
   {
     var headers = {};
     //headers["Access-Control-Allow-Origin"] = "http://172.124.232.210:443";
-    //headers["Access-Control-Allow-Origin"] = "http://172.124.232.210:80";
-    headers["Access-Control-Allow-Origin"] = "http://192.168.1.64:4200";
+    headers["Access-Control-Allow-Origin"] = "http://172.124.232.210:80";
+    //headers["Access-Control-Allow-Origin"] = "http://192.168.1.64:4200";
     headers["Access-Control-Allow-Credentials"] = true;
     headers["Access-Control-Max-Age"] = '86400';
     headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept";

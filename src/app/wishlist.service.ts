@@ -61,7 +61,9 @@ export class WishListService {
     var tempUser = JSON.parse(localStorage.getItem('currentUser'));
     if(tempUser != null)
     {
-      user.convertJSON(JSON.parse(tempUser));
+      console.log(tempUser);
+      
+      user.convertJSON(tempUser);
 
       if(user != null && user.wishList != null && user.wishList.length > 0)
       {

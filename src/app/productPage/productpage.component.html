@@ -32,14 +32,15 @@
           <option value="" disabled="true" [selected]="!userJewel.selectedSize">
             Select Size
           </option>
-          <option [disabled]="size.quantity == 0" *ngFor="let size of jewelryToBePreviewed.sizes" [value]="size.size">
+          <option [disabled]="(size.quantity - jewelryToBePreviewed.quantity) <= 0" *ngFor="let size of jewelryToBePreviewed.sizes" [value]="size.size">
             {{size.size}}
           </option>
         </select>
         <div class="spacer"></div>
-        <button class="quantity-plus">+</button>
+
+        <button class="quantity-minus" (click)="subtractQuantity()">-</button>
         <input class="product-quantity" type="text" name="quantity" ngControl="quantity" [(ngModel)]="jewelryToBePreviewed.quantity" (ngModelChange)="jewelryToBePreviewed.quantity" #quantity="ngModel" />
-        <button class="quantity-minus">-</button>
+        <button class="quantity-plus" (click)="addQuantity()">+</button>
         <div *ngIf="sizeSelected == true">
           A Size needs to be selected in order for you to add an item to the bag.
         </div>
@@ -52,9 +53,11 @@
           Add To Wishlist
         </button>
       </div>
-      <div *ngIf="wishListSuccess == true">
+      <div class="wishlist-success" *ngIf="wishListSuccess == true">
         This item has been added to your Wishlist.<br>
-        <div (click)="wishList()">View Wishlist</div>
+        <div class="view-wishlist-wrapper">
+          <button class="view-wishlist-button" (click)="wishList()">View Wishlist</button>
+        </div>
       </div>
     </div>
   </div>

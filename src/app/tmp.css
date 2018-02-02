@@ -100,7 +100,7 @@
 }
 
 .product-quantity{
-  width: 71px;
+  width: 141px;
   height: 35px;
   text-align: center;
   border-top: solid 1px #bbbbbb;
@@ -117,30 +117,27 @@
 } 
 .quantity-plus{
   text-align: center;
-  width: 50px;
+  width: 15px;
   background-color: #ffffff;
   margin: 0px 0px 0px 0px; 
   height: 39px;
   border-top: solid 1px #bbbbbb;
   border-bottom: solid 1px #bbbbbb;
   border-left: solid 0px #ffffff;
-  font-family: 'Hind';
-  font-size: 11px;
-  color: #bbbbbb;
+
+
  }
 
 .quantity-minus{
-  text-align: center;
-  width: 50px;
+  text-align: left;
+  width: 15px;
   background-color: #ffffff;
   margin: 0px 0px 0px 0px; 
   height: 39px;
  border-top: solid 1px #bbbbbb;
   border-bottom: solid 1px #bbbbbb;
   border-right: solid 0px #ffffff;
-  font-family: 'Hind';
-  font-size: 15px;
-  color: #bbbbbb;
+
 
 }
 

@@ -7,6 +7,8 @@ import { LayoutService } from '../layout.service';
 import { Jewel } from '../models/jewel';
 import { UserJewel } from '../models/userjewel';
 import { Order } from '../models/order';
+import { MatDialog } from '@angular/material';
+import { SignInComponent } from '../signin/signin.component';
 
 @Component({
   selector: 'productPage',
@@ -43,7 +45,7 @@ export class ProductPageComponent {
    * @param route, represents a ActivatedRoute for when we retrieve a route
    * @param wishListService, represents a WishListService for when we click to add something to the wish list
    */
-  constructor(private cartService: CartService, private _dataService: DataService, private route: ActivatedRoute, private wishListService: WishListService, private router: Router, private layoutService: LayoutService) 
+  constructor(private cartService: CartService, private _dataService: DataService, private route: ActivatedRoute, private wishListService: WishListService, private router: Router, private layoutService: LayoutService, public dialog: MatDialog) 
   {
     this.route.queryParams.subscribe(params => {
       this.itemCode = params["itemCode"];
@@ -116,8 +118,11 @@ export class ProductPageComponent {
     }  
     else
     {
-      console.log("Hello");
-      this.router.navigate(['signin']); 
+      let dialogRef = this.dialog.open(SignInComponent, {
+        width: '400px',
+        height: '484px',
+        data: { }
+      });
     }
   }
 
@@ -138,6 +143,17 @@ export class ProductPageComponent {
 
   public cartNumberChanged(cNumber: number){
     this.cartNumber = cNumber;
+  }
+
+  public addQuantity(){
+    this.jewelryToBePreviewed.quantity += 1;
+  }
+
+  public subtractQuantity(){
+    if(this.jewelryToBePreviewed.quantity > 0)
+    {
+      this.jewelryToBePreviewed.quantity -=1;
+    }
   }
 }
 
