@@ -29,7 +29,7 @@
 }
 
 .anImage{
-  margin: -2px;
+  margin: -2px -1px;
 }
 .header-print{
   display:flex;
