@@ -16,6 +16,7 @@ export class RelatedItemComponent {
   jewelry: Array<Jewel>;
   order = new Order();
   cartNumber: number = 0;
+  @Input() currentJewel: Jewel = new Jewel();
   @Output() cNumber: EventEmitter<number> = new EventEmitter<number>();
   @Output() jewel: EventEmitter<Jewel> = new EventEmitter<Jewel>();
   config: SwiperOptions = {
@@ -47,6 +48,18 @@ export class RelatedItemComponent {
 
     jewelry.sort((a,b)=>b.popularRank-a.popularRank);  
     this.jewelry = jewelry;
+    this.removeCurrentJewelFromJewelry();
+  }
+
+  private removeCurrentJewelFromJewelry()
+  {
+    for(var i = 0; i < this.jewelry.length; i++)
+    {
+      if(this.jewelry[i].jewelName == this.currentJewel.jewelName)
+      {
+        this.jewelry.splice(i, 1);
+      }
+    } 
   }
 
   /** 
