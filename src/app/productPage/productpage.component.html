@@ -3,18 +3,14 @@
   <div class="product-container">
     <div class="product-part">
       <div class="product-image-section">
-        <swiper class="the-swiper" [config]="config">
+        <swiper class="the-swiper" [config]="config" #usefulSwiper>
           <div class="swiper-wrapper">
             <img class="swiper-slide" *ngFor="let theImage of jewelryToBePreviewed.images" src={{theImage}}>
           </div>
         </swiper>
       </div>
-      <div class="product-gallery-section">
-        <swiper class="mini-gallery">
-          <div class="swiper-wrapper">
-            <img class="swiper-slide" *ngFor="let theImage of jewelryToBePreviewed.images" src={{theImage}}>
-          </div>
-        </swiper> 
+      <div>
+          <img class="mini-gallery" *ngFor="let theImage of jewelryToBePreviewed.images; let i = index" src={{theImage}} (click)="changeImage(i)">
       </div>
     </div>
     <div class="product-container-details-section">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavigationExtras, ActivatedRoute, Params, Router} from '@angular/router';
 import { WishListService } from '../wishlist.service';
 import { DataService } from '../data.service';
@@ -7,6 +7,7 @@ import { LayoutService } from '../layout.service';
 import { Jewel } from '../models/jewel';
 import { UserJewel } from '../models/userjewel';
 import { Order } from '../models/order';
+import { SwiperComponent } from 'angular2-useful-swiper';
 import { MatDialog } from '@angular/material';
 import { SignInComponent } from '../signin/signin.component';
 
@@ -27,6 +28,7 @@ export class ProductPageComponent {
   cartNumber: number = 0;
   order = new Order(); 
   initialValue: string = "Select Size"; 
+  @ViewChild('usefulSwiper') usefulSwiper: SwiperComponent;
   config: SwiperOptions = {
     pagination: '.swiper-pagination',
     paginationClickable: true,
@@ -155,6 +157,10 @@ export class ProductPageComponent {
     {
       this.jewelryToBePreviewed.quantity -=1;
     }
+  }
+
+  public changeImage(index){
+    this.usefulSwiper.swiper.slideTo(index); 
   }
 
 }
