@@ -9,7 +9,7 @@
           </div>
         </swiper>
       </div>
-      <div>
+      <div class="gallery-wrapper">
           <img class="mini-gallery" *ngFor="let theImage of jewelryToBePreviewed.images; let i = index" src={{theImage}} (click)="changeImage(i)">
       </div>
     </div>
