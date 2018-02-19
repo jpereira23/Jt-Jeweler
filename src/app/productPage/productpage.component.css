@@ -44,7 +44,7 @@
   width: 40px;
   padding: 0px 2px;
   -webkit-filter: grayscale(100%);
-  filter: grayscale(20%);
+  filter: grayscale(100%);
 }
 
 .product-container-details-section{
