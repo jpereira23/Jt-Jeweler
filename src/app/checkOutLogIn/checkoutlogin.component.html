@@ -1,0 +1,40 @@
+<div class="wrapper-checkout">
+  <div class="new-customer">
+    <div class="title-header">
+      New Customer?
+    </div>
+    
+    <div class="subtitle-header">
+      You don't need an account to checkout.
+    </div>
+    <div class="image-stuff">
+      <img src="./some-image" class="shopping-cart-image" />
+    </div>
+    <div class="checkout-as-customer">
+      <button class="checkout-button" (click)="continueAsGuest()">CONTINUE AS GUEST</button>
+    </div>
+  </div>
+  <div class="vertical-divider">
+  </div>
+  <div class="login-wrapper">
+    <div class="login-header">
+      Log In
+    </div>
+    <div class="a-form">
+      <label class="email-label">Email Address*</label><br>
+      <div class="email-input">
+        <input type="email" class="form-control" id="email" name="email" ngControl="email" [(ngModel)]="signedIn.email" (ngModelChange)="signedIn.email" #email="ngModel" placeholder="johnsmith@gmail.com" />
+      </div>
+      <label class="password-label">Password*</label><br>
+      <div class="password-input">
+        <input type="password" class="form-control" id="password" name="password" ngControl="password" [(ngModel)]="signedIn.password" (ngModelChange)="signedIn.password" #password="ngModel" placeholder="********">
+      </div>
+      <div class="login-button">
+        <button class="button-login" (click)="loggingIn()">SIGN IN</button>
+      </div>
+      <div class="forgot-password-wrapper">
+        <a class="forgot" routerLink="forgotPassword">Forgot Password?</a>
+      </div>
+    </div>
+  </div>
+</div>

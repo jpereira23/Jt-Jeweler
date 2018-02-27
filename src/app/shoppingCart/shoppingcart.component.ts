@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Jewel } from '../models/jewel'; 
 import { Order } from '../models/order';
 import { LayoutService } from '../layout.service'; 
+import { CheckOutLoginComponent } from '../checkOutLogIn/checkoutlogin.component'; 
+import { MatDialog } from '@angular/material';
 
 @Component({
   moduleId: module.id,
@@ -25,13 +27,12 @@ import { LayoutService } from '../layout.service';
      * @param cartService, used to checkOut an item when we are finished
      * @param router, used to navigate to home page when cart is successfully checked out
      */
-    constructor(private cartService: CartService, private router: Router, private layoutService: LayoutService)
+    constructor(private cartService: CartService, private router: Router, private layoutService: LayoutService, public dialog: MatDialog)
     {
       var aOrder = JSON.parse(localStorage.getItem('currentOrder'));
       if(aOrder != null)
       {
         this.order.convertJSON(aOrder);
-
       }
 
       this.cartNumber = this.order.jewelry.length;
@@ -58,6 +59,7 @@ import { LayoutService } from '../layout.service';
      */
     checkOut()
     {
+      
       this.sizesSelectedError = false;
       for(var i = 0; i < this.order.jewelry.length; i++)
       {
@@ -68,9 +70,11 @@ import { LayoutService } from '../layout.service';
       }
       if(this.sizesSelectedError == false)
       {
-        this.cartService.checkOut(this.order); 
-        this.router.navigate(['/']);  
-        this.layoutService.checkOutCart(0); 
+        let dialogRef = this.dialog.open(CheckOutLoginComponent, {
+          width: '804px', 
+          height: '466px',
+          data: { order: this.order } 
+        });
       }
     }
     /** 

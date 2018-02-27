@@ -19,6 +19,7 @@ import { ForgetPasswordComponent } from './forgetPassword/forgetpassword.compone
 import { NewForgottenPasswordComponent } from './newForgottenPassword/newforgottenpassword.component';
 import { SearchComponent } from './search/search.component';
 import { CheckEmailComponent } from './checkEmail/checkemail.component'; 
+import { CheckOutLoginComponent } from './checkOutLogIn/checkoutlogin.component'; 
 
 const appRoutes: Routes = [ 
   {
@@ -92,6 +93,10 @@ const appRoutes: Routes = [
   {
     path: 'checkemail', 
     component: CheckEmailComponent
+  },
+  {
+    path: 'checkoutlogin',
+    component: CheckOutLoginComponent
   }  
 
 ];
