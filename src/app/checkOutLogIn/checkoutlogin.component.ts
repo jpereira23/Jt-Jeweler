@@ -64,6 +64,7 @@ export class CheckOutLoginComponent {
           this.isError = true;
           this.isMessage = "Password is incorrect.";
         });
+    }
   }
 }
 
