@@ -31,6 +31,7 @@ export class CheckOutLoginComponent {
   }
   continueAsGuest(){
     this.cartService.checkOut(this.data.order);
+    this.dialogRef.close();
     this.router.navigate(['/']);
     this.layoutService.checkOutCart(0);
   }   
@@ -52,13 +53,10 @@ export class CheckOutLoginComponent {
           data => {
           this.isError = false;
           this.isMessage = "";
-          
           this.cartService.checkOut(this.data.order);
-          
-          this.router.navigate(['']);
-
           this.dialogRef.close();
           this.layoutService.updateValue(true); 
+          this.router.navigate(['']);
         },
         error => {
           this.isError = true;
