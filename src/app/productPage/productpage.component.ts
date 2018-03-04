@@ -24,10 +24,10 @@ export class ProductPageComponent {
   jewelryToBePreviewed: Jewel;
   userJewel = new UserJewel();
   wishListSuccess:boolean = false;
+  aSize: string = "Select Size";
   sizeSelected: boolean = false;
   cartNumber: number = 0;
   order = new Order(); 
-  initialValue: string = "Select Size"; 
   @ViewChild('usefulSwiper') usefulSwiper: SwiperComponent;
   config: SwiperOptions = {
     pagination: '.swiper-pagination',
