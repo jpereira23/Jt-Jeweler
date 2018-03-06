@@ -54,7 +54,7 @@ app.options('/upload', function(req, res, next) {
   {
     var headers = {};
     //headers["Access-Control-Allow-Origin"] = "http://172.124.232.210:443";
-    headers["Access-Control-Allow-Origin"] = "http://172.124.232.210:80";
+    headers["Access-Control-Allow-Origin"] = "http://172.124.232.210";
     //headers["Access-Control-Allow-Origin"] = "http://192.168.1.64:4200";
     headers["Access-Control-Allow-Credentials"] = true;
     headers["Access-Control-Max-Age"] = '86400';

@@ -25,11 +25,11 @@
   width: 120px;
   height: 120px; 
   border: 1px solid #e2af4c;
-  margin: 0px 0px 0px 120px;
+  margin: 0px 0px 0px 121px;
 }
 
 .anImage{
-  margin: -2px 0px;
+  margin: -2.5px 0px;
 }
 .header-print{
   display:flex;
