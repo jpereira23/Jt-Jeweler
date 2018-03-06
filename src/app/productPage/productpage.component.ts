@@ -92,6 +92,14 @@ export class ProductPageComponent {
    */
   addItem()
   {
+    if(this.aSize == "Select Size")
+    {
+      this.userJewel.selectedSize = 0; 
+    }
+    else
+    {   
+      this.userJewel.selectedSize = +this.aSize;
+    }
     if(this.userJewel.selectedSize != 0)
     {
       this.userJewel.jewel = this.jewelryToBePreviewed;
